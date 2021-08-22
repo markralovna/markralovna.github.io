@@ -1,0 +1,43 @@
+body {
+	padding: 0;
+	margin: 0;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	overflow: hidden;
+	background-color: black;
+}
+#contenidor {
+	position: relative;
+}
+#buttonRow {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+#buttonRow button {
+	margin-left: 10px;
+	padding: 5px 10px;
+	border-radius: 50px;
+	box-shadow: none;
+	border: 2px solid #ff00ff;
+	background-color: #00000000;
+	color: #ccc;
+	font-size: 14pt;
+	width: 150px
+}
+#comptadors {
+	position: absolute ;
+	display: inline-block;
+	right: 10px;
+	top: 10px;
+	padding: 10px;
+}
+#comptadors img {
+	width: 48px;
+}
+#comptadors span {
+	font-size: 2.5em;
+	margin: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #cccccc
+}

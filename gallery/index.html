@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Mar's Lab</title>
+	</head>
+
+	<style>
+		@font-face {
+			font-family: font;
+			src: url(../recursos/fonts/Poiret_One/PoiretOne-Regular.ttf);
+		}
+		
+		body {
+			background-color: #1F1F1F;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			overflow: hidden;
+		}
+		h1, h2, h3, p, li, a {
+			color: #F8F8F8;
+			font-family: font, 'Raleway', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+			font-size: 22pt;
+		}
+		ul {
+			text-align: center;
+			list-style-type: none;
+			padding: 0;
+		}
+		ul>li {
+			margin-top: 20px;
+		}
+		ul>li>a {
+			text-decoration: none;
+		}
+		.centered {
+			margin: 0;
+			position: fixed;
+			left: 50%; top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		#marc {
+			height: 90vh;
+		}
+		#marc>path, #marc>rect {
+			fill: none;
+			stroke: #F8F8F8;
+			stroke-width: 1px;
+		}
+
+		@media (max-width: 700px) {
+			#marc { width: 90%;}
+			#container { width: 90%; }
+			ul>li>a { font-size: 18pt; }
+			#marc>path, #marc>rect { stroke-width: 2px; }
+		}
+
+		@media (max-width: 400px) {
+			#marc { display: none;}
+		}
+	</style>
+	
+	<style>
+		#marc>path, #marc>rect {
+			animation-name: animFrame;
+			animation-duration: 3s;
+		}
+		#container {
+			animation-name: animText;
+			animation-duration: 5s;
+		}
+		ul>li>a {
+			position: relative;
+		}
+		ul>li>a:hover::after {
+			content: '';
+			width: 100%;
+			display: inline-block;
+			border-bottom: 1px solid #F8F8F8;
+			position: absolute;
+			bottom: 0; left: 0;
+			animation-name: animTextHover;
+			animation-duration: 2s;
+		}
+		@keyframes animText {
+			from { letter-spacing: 0.4em; }
+			to   { letter-spacing: 0;     }
+		}
+		@keyframes animTextHover {
+			from { width:  10%; left: 45%; }
+			to   { width: 100%; left: 0;   }
+		}
+		@keyframes animFrame {
+			from { clip-path: circle(29.3% at 50% 50%); }
+			to   { clip-path: circle(70.7% at 50% 50%); }
+		}
+	</style>
+
+	<body>
+
+		<svg id="marc" class="centered" xmlns="http://www.w3.org/2000/svg" width="600" height="825" viewBox="0 25 800 1000" >
+
+			<!-- Diamants (superior i inferior) -->
+			<path d="  m  375 25       l  25  -25     l  25   25      l -25  25    l -25 -25                                                             " />
+			<path d="  m  375 1025     l  25  -25     l  25   25      l -25  25    l -25 -25                                                             " />
+
+			<!-- sldfjslkdfjslkdflskdfj -->
+			<path d="  m  350 25       l  50   50     l  50  -50                                                                                         " />
+			<path d="  m  350 1025     l  50  -50     l  50   50                                                                                         " />
+			<path d="  m  300 75       l  50   50     l  50  -50      l  50 50     l  50 -50                                                             " />
+			<path d="  m  300 975      l  50  -50     l  50   50      l  50 -50    l  50  50                                                             " />
+
+			<!-- Marcs (rectangles discontinus) -->
+			<path d="  m  0   25       l  350  0      m  100  0       l  350 0     l  0   1000     l  -350 0     m  -100 0     l  -350 0     l  0 -1000  " />
+			<path d="  m  50  50       l  275  0      m  150  0       l  275 0     l  0    950     l  -275 0     m  -150 0     l  -275 0     l  0  -950  " />
+			<path d="  m  25  75       l  275  0      m  200  0       l  275 0     l  0    900     l  -275 0     m  -200 0     l  -275 0     l  0  -900  " />
+			<path d="  m  100 125      l  175  0      m  250  0       l  175 0     l  0    800     l  -175 0     m  -250 0     l  -175 0     l  0  -800  " />
+
+			<!-- Rectangles del marc interior -->
+			<rect x="75"      y="100"     width="25"     height="25" />
+			<rect x="700"     y="100"     width="25"     height="25" />
+			<rect x="75"      y="925"     width="25"     height="25" />
+			<rect x="700"     y="925"     width="25"     height="25" />
+		</svg>
+
+		<div id="container" class="centered">
+			<ul>
+				<li><a href="tree">Recycle</a></li>
+				<li><a href="geo">Recursive Geometry</a></li>
+				<li><a href="draw">Magic Drawing</a></li>
+				<li><a href="metatron">Metatron's Cube</a></li>
+				<li><a href="fract">Moving Fractals</a></li>
+				<!-- <li><a href="poli">Platonic solids</a></li> -->
+				<!-- <li><a href="school">The Magic School</a></li> -->
+				<li><a href="arcade">Arcade</a></li>
+				<!-- <li><a href="sine">Synesthesia</a></li> -->
+			</ul>
+		</div>
+	</body>
+
+</html>

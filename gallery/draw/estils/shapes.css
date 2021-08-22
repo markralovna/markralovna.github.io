@@ -1,0 +1,37 @@
+/* ┌──────────────────────────────┐
+   │            Quadrat           │
+   └──────────────────────────────┘ */
+
+.square, .square::before, .square::after {
+	border-radius: 0;
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Cercle            │
+   └──────────────────────────────┘ */
+
+.circle, .circle::before, .circle::after {
+	border-radius: 50%;
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │           Triangle           │
+   └──────────────────────────────┘ */
+
+.triangle, .triangle::before, .triangle::after {
+	border-radius: 0;
+}
+
+
+.triangle::after {
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+
+.triangle::before {
+	clip-path: polygon(50% 10%, 5% 100%, 95% 100%);
+}

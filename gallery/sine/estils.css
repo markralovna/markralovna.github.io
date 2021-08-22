@@ -1,0 +1,171 @@
+@font-face {
+	font-family: Monoton;
+	src: url(../../recursos/fonts/Monoton/Monoton-Regular.ttf);
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	overflow: hidden;
+	background-color: #141414;
+}
+
+canvas {
+	position: absolute;
+	top: 0; left: 0;
+	z-index: -1;
+}
+
+#controlsContainer {
+	display: flex;
+	margin: 20px;
+	padding: 10px;
+	flex-direction: row;
+	justify-content: center;
+	z-index: 2;
+}
+
+#controlsContainer>button {
+	position: relative;
+	margin: 0 20px;
+	width: 150px; height: 150px;
+
+	font-size: 16pt;
+	font-family: 'Monoton', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+
+	border-radius: 50%;
+	border: 1px solid #FFFFFF;
+	background-color: #0000;
+
+	animation: rot 4s linear infinite;
+}
+
+#controlsContainer>button:hover {
+	animation: none;
+}
+
+#controlsContainer>button:before, #controlsContainer>button:after {
+	content: '';
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	border: 1px solid #FFFFFF;
+}
+
+#controlsContainer>button:before {
+	top: -12px; left: -12px;
+	width: 170px; height: 170px;
+}
+
+#controlsContainer>button:after {
+	top: 8px; left: 8px;
+	width: 130px; height: 130px;
+}
+
+#controlsContainer>button:first-child, #controlsContainer>button:first-child:before, #controlsContainer>button:first-child:after {
+	color: hsl(0, 60%, 60%);
+	border-color: hsla(0, 50%, 60%);
+}
+#controlsContainer>button:nth-child(2), #controlsContainer>button:nth-child(2):before, #controlsContainer>button:nth-child(2):after {
+	color: hsla(90, 60%, 60%);
+	border-color: hsla(90, 50%, 60%);
+}
+#controlsContainer>button:nth-child(3), #controlsContainer>button:nth-child(3):before, #controlsContainer>button:nth-child(3):after {
+	color: hsla(180, 60%, 60%);
+	border-color: hsla(180, 50%, 60%);
+}
+#controlsContainer>button:nth-child(4), #controlsContainer>button:nth-child(4):before, #controlsContainer>button:nth-child(4):after {
+	color: hsla(270, 60%, 60%);
+	border-color: hsla(270, 50%, 60%);
+}
+
+@keyframes rot {
+    0% { transform: rotate(0deg);   }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+@media (max-width: 850px) {
+	#controlsContainer {
+		flex-direction: column;
+	}
+	#controlsContainer>button {
+		margin: 20px 0;
+		font-size: 10pt;
+		width: 100px; height: 100px;
+	}
+	#controlsContainer>button:before {
+		top: -7px; left: -7px;
+		width: 110px; height: 110px;
+	}
+	#controlsContainer>button:after {
+		top: 4px; left: 4px;
+		width: 88px; height: 88px;
+	}
+}
+
+
+
+/*#controlsContainer>button {
+	position: relative;
+	margin: 0 20px;
+	width: 150px; height: 150px;
+	z-index: 2;
+
+	font-size: 14pt;
+	font-family: 'Monoton', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+
+	color: #FFFFFF;
+	border: none;
+	outline: none;
+	border-radius: 50px;
+}
+
+#controlsContainer>button {
+	background: linear-gradient(45deg, hsla(180, 60%, 50%, .9) 0%, hsla(30, 60%, 50%, .9) 100%);
+}
+
+#controlsContainer>button:hover {
+	animation-name: rot1;
+	animation-duration: 2s;
+}
+
+#controlsContainer>button:hover:before, #controlsContainer>button:hover:after {
+	animation-name: rot2;
+	animation-duration: 2s;
+}
+
+#controlsContainer>button:before, #controlsContainer>button:after {
+	content: '';
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	width: 100px; height: 100px;
+	z-index: -1;
+}
+
+#controlsContainer>button:before {
+	transform-origin: 75% 75%;
+	background: linear-gradient(90deg, #F7A5C9aa 0%, #FFC1B6aa 100%);
+	top: 5px; left: 5px;
+}
+#controlsContainer>button:after {
+	transform-origin: 25% 25%;
+	background: linear-gradient(90deg, #CBC0E2aa 0%, #96CAF1aa 100%);
+	bottom: 5px; right: 5px;
+}
+
+@keyframes rot1 {
+    0% { transform: rotate(0deg);   }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rot2 {
+    0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg);   }
+}*/
+
+

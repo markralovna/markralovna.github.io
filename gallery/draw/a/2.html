@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Grid Drawing</title>
+
+		<link rel="stylesheet" href="../estils/layout.css" />
+		<link rel="stylesheet" href="../estils/estetica.css" />
+		<link rel="stylesheet" href="../estils/shapes.css" />
+		<script src="../funcions.js"></script>
+		<script src="../../../recursos/llibreries/p5js/p5.js"></script>
+
+		<style>
+			input[type=range], button:before, button:after {
+				border-radius: 0;
+			}
+			input[type=range]::-webkit-slider-thumb { border-radius: 0; }
+			input[type=range]::-moz-range-thumb { border-radius: 0; }
+			input[type=range]::-ms-thumb { border-radius: 0; }
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div id="varsControllers">
+				<input type="range" min="5" max="50" step="1" value="30" onchange="updateCellSizeRatio(this)" /> <!-- <input type="range" min="0" max="10" step="1" value="2" onchange="updateCellSizeRatio(this)" /> -->
+			</div>
+			<div id="buttonsControllers">
+				<button onclick="clearCells()">Clean</button>
+			</div>
+			<div id="artworkSelector">
+				<button onclick="changeArwork(1)" class="circle"></button>
+				<button onclick="changeArwork(2)" class="square selected"></button>
+				<button onclick="changeArwork(3)" class="triangle"></button>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		const fillColorAlpha = .4;
+		var cells = [];
+		var magicNumber;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate(12);
+			colorMode(HSL);
+			noStroke();
+
+			magicNumber = gcd(width, height);
+
+			updateCellSizeRatio( { value: 30 } );
+		}
+
+		function draw() {
+			clearCanvas();
+			cells.forEach(cell => {
+				cell.draw();
+			});
+		}
+
+
+
+		function clearCells() {
+			cells.forEach(cell => {
+				cell.clear();
+			});
+		}
+
+		function resetCells(size, numCellsX, numCellsY) {
+			cells = [];
+			for (let c = 0; c < numCellsX; c++)
+				for (let r = 0; r < numCellsY; r++)
+					cells.push( new Cell(size, c, r) );
+		}
+
+		function updateCellSizeRatio(target) {
+			const size = 1 * width / target.value;//const size = magicNumber / target.value;
+			const numCellsX = width / size;
+			const numCellsY = height / size;
+			console.log(magicNumber, numCellsX, numCellsY);
+			resetCells(size, numCellsX, numCellsY);
+		}
+
+		function clearCanvas() {
+			background(12);
+		}
+
+		function gcd(a, b) {
+			a = Math.abs(a);
+			b = Math.abs(b);
+			if (b > a) {
+				var temp = a;
+				a = b;
+				b = temp; 
+			}
+			while (true) {
+				a %= b;
+				if (a === 0) { return b; }
+				b %= a;
+				if (b === 0) { return a; }
+			}
+		}
+
+
+
+		class Cell {
+			constructor (size, column, row) {
+				this.size = size;
+				this.position = createVector(
+					column * this.size,
+					row * this.size
+				);
+				this.colorHue = 0;
+				this.marked = false;
+			}
+
+			draw() {
+				this.update();
+				this.display();
+			}
+
+			update() {
+				this.colorHue = (this.colorHue + 1) % 360;
+				if ( this.hover && mouseIsPressed ) {
+					this.marked = true;
+					this.colorHue = 0;
+				};
+			}
+
+			clear() {
+				this.marked = false;
+			}
+			
+			get hover() {
+				return (
+					( mouseX > this.position.x ) &&
+					( mouseX < (this.position.x + this.size) ) &&
+					( mouseY > this.position.y ) &&
+					( mouseY < (this.position.y + this.size) )
+				);
+			}
+
+			display() {
+				if ( this.marked ) {
+					fill( this.colorHue, fillColor[1], fillColor[2], fillColorAlpha );
+					rect(this.position.x, this.position.y, this.size, this.size);
+				} else if ( this.hover ) {
+					fill( 24 );
+					rect(this.position.x, this.position.y, this.size, this.size);
+				}
+			}
+		}
+	</script>
+
+</html>

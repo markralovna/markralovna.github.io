@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Moving Fractal</title>
+
+		<!-- Estils -->
+		<link rel="stylesheet" href="estils/general.css">
+		<link rel="stylesheet" href="estils/disposicio.css">
+		<link rel="stylesheet" href="estils/elements.css">
+		
+		<!-- Scripts base p5js -->
+		<script src="js/p5.js"></script>
+		
+		<!-- Scripts base -->
+		<script src="js/interface.js"></script>
+		<script src="js/sketch.js"></script>
+		<script src="js/componentsMandala/Component.js"></script>
+		
+		<!-- ... -->
+		<script src="js/Suport/PopUp.js"></script>
+	</head>
+
+	<body>
+		<h1 id="title">Moving Fractal</h1>
+		<div id="controllersContainer">
+			<button id="layerButton" onclick="toogleSidebar(this, 'layersSidebar')">Layer</button>
+			<button id="propertiesButton" onclick="toogleSidebar(this, 'toolSidebar')">Properties</button>
+			<div id="layersSidebar">
+				<h2>Layers</h2>
+				<div class="button-row" style="display: none">
+					<span onclick="deleteElement()">Delete</span>
+					<span onclick="moveLayer(-1)">Up</span>
+					<span onclick="moveLayer(1)">Down</span>
+					<span onclick="duplicateElement()">Duplicate</span>
+				</div>
+				<ul id="layersContainer" class="scroll"></ul>
+				<div id="optionsContainer" class="scroll">
+					<button onclick="newLayer()">Add</button>
+					<button onclick="clearCanvas()">Clear</button>
+					<!-- <button onclick="loadExample()">Load Example</button> -->
+					<button onclick="importCreation()">Import</button>
+					<button onclick="exportCreation()">Export</button>
+				</div>
+			</div>
+			<div id="canvas" onclick="toogleSidebar(this, '')"></div>
+			<div id="toolSidebar">
+				<h2>Properties</h2>
+				<h3>Layer Properties</h3>
+				<div id="layerPropertiesContainer" class="scroll">
+					<p>No element selected</p>
+				</div>
+				<h3>Object Properties</h3>
+				<div id="objectPropertiesContainer" class="scroll">
+					<p>No element selected</p>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

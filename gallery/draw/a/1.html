@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Symmetrical Drawing</title>
+
+		<link rel="stylesheet" href="../estils/layout.css" />
+		<link rel="stylesheet" href="../estils/estetica.css" />
+		<link rel="stylesheet" href="../estils/shapes.css" />
+		<script src="../funcions.js"></script>
+		<script src="../../../recursos/llibreries/p5js/p5.js"></script>
+
+		<style>
+			button, button::before, button::after {
+				border-radius: 50px;
+			}
+			input[type=range] {
+				border-radius: 5px;
+			}
+			input[type=range]::-webkit-slider-thumb { border-radius: 50%; }
+			input[type=range]::-moz-range-thumb { border-radius: 50%; }
+			input[type=range]::-ms-thumb { border-radius: 50%; }
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div id="varsControllers">
+				<input type="range" id="inpSymmetries" min="1" max="24" step="1" />
+				<input type="range" id="inpAlfa" min="0" max=".5" step="0.01" />
+				<input type="range" id="inpSize" min="5" max="50" step="1" />
+			</div>
+			<div id="buttonsControllers">
+				<button onclick="clearCanvas()">Clean</button>
+				<button onclick="toogglePaintMode()">Switch mode</button>
+				<button onclick="resetSliders()">Reset slides</button>
+			</div>
+			<div id="artworkSelector">
+				<button onclick="changeArwork(1)" class="circle selected"></button>
+				<button onclick="changeArwork(2)" class="square"></button>
+				<button onclick="changeArwork(3)" class="triangle"></button>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		var iptSym, iptAlfa, iptSize;
+		var paintMode = false;
+		var lastPoint;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate(48);
+
+			initializeSliderVars();
+			resetSliders();
+
+			setStyle();
+
+			lastPoint = createVector( width * .5, height * .5 );
+		}
+
+		function draw() {
+			updateColor();
+			if (mouseIsPressed)
+				drawSymmetrically();
+			lastPoint = createVector( mouseX, mouseY );
+		}
+
+		function updateColor() {
+			var bg = color(12);
+			bg.setAlpha(iptAlfa.value);
+			background(bg);
+
+			fillColor[0]++;
+			if (fillColor[0] > 360) fillColor[0] = 0;
+			stroke(fillColor);
+		}
+
+		function drawSymmetrically() {
+			translate(width/2, height/2);
+			const x = mouseX - width * 0.5;
+			const y = mouseY - height * 0.5;
+			const lx = lastPoint.x - width * 0.5;
+			const ly = lastPoint.y - height * 0.5;
+			strokeWeight(iptSize.value);
+			for (var i = 0; i < iptSym.value; i++) {
+				push();
+				rotate(TWO_PI * i / iptSym.value);
+				if (paintMode) point(x, y);
+				else line(x, y, lx, ly);
+				pop();
+			}
+		}
+
+		function toogglePaintMode() {
+			paintMode = !paintMode;
+		}
+
+		function resetSliders() {
+			inpSymmetries.value = 8;
+			inpAlfa.value = .1;
+			inpSize.value = 10;
+		}
+
+		function initializeSliderVars() {
+			iptSym = document.getElementById('inpSymmetries');
+			iptAlfa = document.getElementById('inpAlfa');
+			iptSize = document.getElementById('inpSize');
+		}
+	</script>
+
+</html>

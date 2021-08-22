@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary21 | 23 - #264653, #2a9d8f, #e9c46a, #f4a261, #e76f51 | Lollipop</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+
+	<body></body>
+
+	<script>
+		const bgColor = 255;
+		const colors = [ '#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51' ];
+
+		var CANVAS_WIDTH, CANVAS_HEIGHT;
+		var sun;
+		var drawablePoints = [];
+
+		function setup() {
+			CANVAS_WIDTH = window.innerWidth;
+			CANVAS_HEIGHT = window.innerHeight;
+			
+			createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+			frameRate(24);
+
+			loadPlanets();
+			loadStyle();
+		}
+
+		function draw() {
+			sun.update();
+			drawablePoints.forEach(union => {
+				const pos = union.getPosition();
+				stroke( union.getColor() );
+				point(pos.x, pos.y);
+			});
+		}
+
+
+		function loadPlanets() {
+			sun = new Planet(1, 0, 60);
+			sun.setOrbitCenter( createVector(CANVAS_WIDTH * .5, CANVAS_HEIGHT * .5 ));
+			drawablePoints = [];
+
+			const n = colors.length;
+
+			const EARTH_RADIUS   =   200 ;	const EARTH_SPEED    =  .010 ;
+			const MOON_RADIUS    =   400 ;	const MOON_SPEED     =  .015 ;
+
+			const INCR_ANGLE = TAU/n;
+			const INCR_COLOR = 360/n;
+
+			var earth, moon, submoon;
+			var angle = 0;
+
+			for (let i = 0; i < n; i++) {
+				earth = new Planet(EARTH_RADIUS, EARTH_SPEED, colors[i]);
+				earth.setFase(angle);
+				sun.addSatellite( earth );
+
+				moon = new Planet(MOON_RADIUS, MOON_SPEED, colors[i]);
+				moon.setFase(angle);
+				earth.addSatellite( moon );
+
+				drawablePoints.push( moon );
+
+				angle += INCR_ANGLE;
+			}
+		}
+
+		function loadStyle() {
+			strokeWeight(50);
+			strokeJoin(MITER);
+			strokeCap(ROUND);
+			background(bgColor);
+			angleMode(RADIANS);
+			noFill();
+		}
+
+		class Planet {
+			constructor (orbitRadius, speed, color) {
+				this.orbitCenter = createVector(0, 0);
+				this.orbitRadius = orbitRadius;
+				this.speed = speed;
+				this.fase = 0;
+				this.color = color;
+				this.satellites = [];
+			}
+
+			addSatellite (planet) {
+				this.satellites.push(planet);
+			}
+
+			setOrbitCenter (pos) { this.orbitCenter = pos; }
+
+			setFase (f) { this.fase = f; }
+
+			getColor () {
+				return this.color;
+			}
+
+			getPosition () {
+				const x = this.orbitCenter.x + cos( this.fase ) * this.orbitRadius * 0.5;
+				const y = this.orbitCenter.y + sin( this.fase ) * this.orbitRadius * 0.5;
+				return createVector(x, y);
+			}
+
+			update () {
+				this.fase += this.speed;
+				if (this.fase >= TAU) this.fase = 0;
+				const p = this.getPosition();
+				this.satellites.forEach(satellite => {
+					satellite.setOrbitCenter(p);
+					satellite.update();
+				});
+			}
+
+		}
+
+	</script>
+
+</html>

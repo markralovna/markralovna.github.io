@@ -1,0 +1,289 @@
+/*@font-face {
+	font-family: RalewayLight;
+	src: url(../../../recursos/fonts/Raleway/Raleway-Light.ttf);
+}*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;900&display=swap');
+
+:root {
+	--primary-color: #F8F8F8AA;
+	--semi-background-color: #383838;
+	--background-color: #1F1F1F;
+
+	--rainbow-color-1:  hsla(45,   80%, 25%, .8);
+	--rainbow-color-2:  hsla(180,  80%, 25%, .8);
+	--rainbow-color-3:  hsla(315,  80%, 25%, .8);
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │              ...             │
+   └──────────────────────────────┘ */
+
+body { font-family: Nunito; }
+
+h1#gameTitle {
+	font-size: 36pt;
+	text-align: center;
+	background: linear-gradient(45deg, var(--rainbow-color-1) 10%, var(--rainbow-color-2) 50%, var(--rainbow-color-3) 90%);
+	width: max-content;
+	margin: 0 auto;
+	background-clip: border-box;
+	font-weight: 200;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 650px) {
+	h1#gameTitle {
+		font-size: 30pt;
+	}
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Sliders           │
+   └──────────────────────────────┘ */
+
+input[type=range] {
+	height: 5px;
+	-webkit-appearance: none;
+	width: 100%;
+	border-radius: 5px;
+	background: var(--rainbow-color-1);
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track, input[type=range]::-moz-range-track, /*input[type=range]::-ms-track,*/ input[type=range]:focus::-webkit-slider-runnable-track {
+	display: none;
+}
+
+input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb/*, input[type=range]::-ms-thumb*/ {
+	border: none;
+	-webkit-appearance: none;
+	height: 14px;
+	width: 14px;
+	margin-top: -5px;
+	border-radius: 50%;
+	background: var(--background-color);
+	border: 3px solid var(--rainbow-color-3);
+}
+
+input[type=range]:nth-child(1) {
+	background: var(--rainbow-color-1);
+	background: linear-gradient(to right, var(--rainbow-color-2), var(--rainbow-color-3));
+}
+input[type=range]:nth-child(2) {
+	background: var(--rainbow-color-2);
+	background: linear-gradient(to right, var(--rainbow-color-3), var(--rainbow-color-1));
+}
+input[type=range]:nth-child(3) {
+	background: var(--rainbow-color-3);
+	background: linear-gradient(to right, var(--rainbow-color-1), var(--rainbow-color-2));
+}
+
+input[type=range]:nth-child(1)::-webkit-slider-thumb, input[type=range]:nth-child(1)::-moz-range-thumb/*, input[type=range]:nth-child(1)::-ms-thumb*/ {
+	border-color: var(--rainbow-color-1);
+}
+
+input[type=range]:nth-child(2)::-webkit-slider-thumb, input[type=range]:nth-child(2)::-moz-range-thumb/*, input[type=range]:nth-child(2)::-ms-thumb*/ {
+	border-color: var(--rainbow-color-2);
+}
+
+input[type=range]:nth-child(3)::-webkit-slider-thumb, input[type=range]:nth-child(3)::-moz-range-thumb/*, input[type=range]:nth-child(3)::-ms-thumb*/ {
+	border-color: var(--rainbow-color-3);
+}
+
+input[type=range]:nth-child(1):hover::-webkit-slider-thumb, input[type=range]:nth-child(1):hover::-moz-range-thumb/*, input[type=range]:nth-child(1):hover::-ms-thumb*/ {
+	cursor: pointer;
+	background: var(--rainbow-color-1);
+}
+input[type=range]:nth-child(2):hover::-webkit-slider-thumb, input[type=range]:nth-child(2):hover::-moz-range-thumb/*, input[type=range]:nth-child(2):hover::-ms-thumb*/ {
+	cursor: pointer;
+	background: var(--rainbow-color-2);
+}
+input[type=range]:nth-child(3):hover::-webkit-slider-thumb, input[type=range]:nth-child(3):hover::-moz-range-thumb/*, input[type=range]:nth-child(3):hover::-ms-thumb*/ {
+	cursor: pointer;
+	background: var(--rainbow-color-3);
+}
+
+
+
+@media (max-width: 650px) {
+	input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+		height: 18px;
+		width: 18px;
+	}
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Buttons           │
+   └──────────────────────────────┘ */
+
+button {
+	padding: 15px;
+	font-size: 14pt;
+	border-radius: 100px;
+	color: var(--primary-color);
+	font-family: 'Raleway', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+	background-color: transparent;
+	border: 3px solid var(--rainbow-color-1);
+}
+
+
+
+/* Selector Jocs
+------------------------- */
+
+#gameSelector > button {
+	position: relative;
+	border: none;
+	margin: 15px 0;
+	background-color: var(--background-color);
+	z-index: 1;
+}
+
+#gameSelector > button::before, #gameSelector > button::after {
+	content: ' ';
+	position: absolute;
+	border-radius: 100px;
+}
+
+#gameSelector > button::before {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	background-color: var(--background-color);
+	z-index: -1;
+}
+
+#gameSelector > button::after {
+	width: calc( 100% + 6px);
+	height: calc( 100% + 6px);
+	top: -3px;
+	right: -3px;
+	background: var(--rainbow-color-1);
+	z-index: -2;
+}
+
+#gameSelector > button:nth-child(3n-2)::after { background: linear-gradient(to right, var(--rainbow-color-2), var(--rainbow-color-3)); }
+#gameSelector > button:nth-child(3n-1)::after { background: linear-gradient(to right, var(--rainbow-color-3), var(--rainbow-color-1)); }
+#gameSelector > button:nth-child(3n-0)::after { background: linear-gradient(to right, var(--rainbow-color-1), var(--rainbow-color-2)); }
+
+#gameSelector > button:hover::before {
+	opacity: .2;
+}
+
+@media (max-width: 650px) {
+	#gameSelector > button {
+		padding: 10px 5px;
+		margin: 3px;
+		margin-left: 15px;
+	}
+}
+
+
+
+/* Controls
+------------------------- */
+
+#gameControllers > button {
+	margin: 10px;
+	width: max-content;
+}
+
+#gameControllers > button:nth-child(3n-2) { border-color: var(--rainbow-color-1); }
+#gameControllers > button:nth-child(3n-1) { border-color: var(--rainbow-color-3); }
+#gameControllers > button:nth-child(3n-0) { border-color: var(--rainbow-color-2); }
+
+#gameControllers > button:hover:nth-child(3n-2) { background-color: var(--rainbow-color-1); }
+#gameControllers > button:hover:nth-child(3n-1) { background-color: var(--rainbow-color-3); }
+#gameControllers > button:hover:nth-child(3n-0) { background-color: var(--rainbow-color-2); }
+
+#gameControllers > button.pushed:nth-child(3n-2) { background-color: var(--rainbow-color-1); }
+#gameControllers > button.pushed:nth-child(3n-1) { background-color: var(--rainbow-color-3); }
+#gameControllers > button.pushed:nth-child(3n-0) { background-color: var(--rainbow-color-2); }
+
+
+#gameControllers > button.pushed {
+	opacity: .8;
+}
+
+#gameControllers > button:hover {
+	opacity: 1;
+}
+
+@media (max-width: 650px) {
+	#gameControllers > button {
+		padding: 10px 15px;
+		margin: 0;
+	}
+}
+
+
+
+
+
+/* ┌──────────────────────────────┐
+   │           Etiquetes          │
+   └──────────────────────────────┘ */
+
+#gameLabels {
+	text-align: center;
+	font-size: 18pt;
+	color: var(--primary-color);
+}
+
+#gameLabels > p > span:first-child {
+	font-weight: 900;
+}
+
+
+#gameLabels > p:nth-child(3n-2) > span:first-child { color: var(--rainbow-color-1); }
+#gameLabels > p:nth-child(3n-1) > span:first-child { color: var(--rainbow-color-2); }
+#gameLabels > p:nth-child(3n-0) > span:first-child { color: var(--rainbow-color-3); }
+
+@media (max-width: 650px) {
+	#gameLabels > p {
+		margin: 0;
+	}
+}
+
+
+
+
+
+/* ┌──────────────────────────────┐
+   │            Modals            │
+   └──────────────────────────────┘ */
+
+#dialog {
+	padding: 15px 75px;
+	color: var(--background-color);
+	background-color: var(--primary-color);
+	text-align: center;
+	border-radius: 5px;
+}
+
+#dialog.shown {
+	display: block;
+}
+
+#dialog > button {
+	padding: 6px 15px;
+	border-color: var(--rainbow-color-1);
+	background-color: var(--rainbow-color-1);
+	font-size: 14px;
+}
+
+#dialog > button:hover {
+	border-color: var(--rainbow-color-2);
+	background-color: var(--rainbow-color-2);
+}

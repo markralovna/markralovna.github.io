@@ -1,0 +1,32 @@
+# Arcade
+
+
+
+
+
+<n>FER UNA CONSOLA AMB ELS TIPICS JOCS RETRO</n>
+
+
+
+
+
+
+
+
+# ToDos
+
+* Fer Jocs
+    * [ ] 3 RATLLA
+    * [ ] BUSCAMINES
+    * [ ] SNAKE
+    * [ ] ...
+* <n>Fer una estètica. Document `/styles/estils.css`</n>
+
+
+
+
+ALGORISMICAMENT SEGUIM LA LOGICA. CADA JOC TÉ UN DRAW I UN SETUP.
+
+CADA COMPOMEMNT TÉ UN DRAW I UN SETUP. nORMALMENT EL DRAW TÉ UN UPDATE I UN DISPLAY.
+
+EL DRAW HA DE GESTIONAR UNA ITERNAIÓ MENTRE QUE EL UPDATE ACTUALITZA COSES I EL DISLAY DIBUIXA

@@ -1,0 +1,149 @@
+@font-face {
+	font-family: PoiretOne;
+	src: url(../../recursos/fonts/Poiret_One/PoiretOne-Regular.ttf);
+}
+
+:root {
+	--primary-color: #F8F8F8AA;
+	--background-color: #1f1f1f;
+	--primary-font: 'PoiretOne';
+}
+
+p, button, h1, h2, h3 {
+	font-family: var(--primary-font), 'Lato', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+
+
+#controllersContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 50px;
+	width: calc(100% - 100px);
+	height: calc(100% - 100px);
+}
+
+#controllersContainer>div>* {
+	display: block;
+	margin: 25px 0;
+	width: 100%;
+}
+
+#sliderContainer {
+	width: 250px;
+}
+
+#buttonContainer {
+	width: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+	#controllersContainer {
+		flex-direction: column;
+		margin: 20px;
+		width: calc(100% - 40px);
+		height: calc(100% - 40px);
+	}
+	#controllersContainer>div {
+		width: 100%;
+	}
+	#buttonContainer>* {
+		margin: 5px 10px !important;
+	}
+	#buttonContainer {
+		text-align: center;
+		display: inline-flex;
+		overflow-x: scroll;
+	}
+	#sliderContainer>* {
+		margin: 30px 0 !important;
+	}
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Button            │
+   └──────────────────────────────┘ */
+
+button {
+	position: relative;
+	margin: 25px;
+	padding: 10px 30px;
+	color: var(--primary-color);
+	background-color: transparent;
+	border: 1px solid #F8F8F870;
+	font-size: 11pt;
+	border-radius: 0px;
+	z-index: 2;
+}
+
+button:hover, button.selected, button:hover::before, button.selected::before, button:hover::after, button.selected::after, button:focus, button:active, button:focus::before, button:active::before, button:focus::after, button:active::after {
+	background: transparent;
+	border-color: #FFFFFF;
+	animation-name: animFrame;
+}
+button::before, button::after {
+	content: '';
+	position: absolute;
+	border: 1px solid transparent;
+	z-index: 0;
+	animation-duration: 3s;
+}
+button::before {
+	top: 4px; left: -4px; right: -4px; bottom: 4px;
+	border-color: #F8F8F820;
+}
+button::after {
+	top: -4px; left: 4px; right: 4px; bottom: -4px;
+	border-color: #F8F8F835;
+}
+
+button:focus, button:active {
+	outline: none;
+}
+
+@keyframes animFrame {
+	from { clip-path: polygon(100% 0, 100% 0, 100% 0, 0 100%, 0 100%, 0 100%); }
+	to   { clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0% 50%); }
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │           Sliders            │
+   └──────────────────────────────┘ */
+
+input[type=range] {
+	height: 2px;
+	-webkit-appearance: none;
+	margin-bottom: 25px;
+	width: 100%;
+	background: rgba(248, 248, 248, 0.75);
+	border-radius: 5px;
+}
+input[type=range]:focus, input[type=range]:active {
+	height: 4px;
+	outline: none;
+}
+input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+	border: 1px solid #f8f8f8;
+	height: 10px;
+	width: 10px;
+	background: var(--background-color);
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -5px;
+	border-radius: 0;
+	transform: rotate(45deg);
+}
+
+@media (max-width: 600px) {
+	input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+		height: 15px;
+		width: 15px;
+	}
+}

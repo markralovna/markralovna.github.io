@@ -1,0 +1,93 @@
+body {
+	margin: 0;
+	padding: 50px;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	overflow: hidden;
+}
+
+#defaultCanvas0, body {
+	position: absolute;
+	top: 0; left: 0;
+}
+
+#defaultCanvas0 {
+	z-index: -1;
+}
+
+body {
+	z-index: 0;
+}
+
+#app {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%; height: 100%;
+}
+
+#varsControllers, #buttonsControllers {
+	display: flex;
+	flex-direction: column;
+	width: 250px; height: 100%;
+}
+
+#varsControllers {
+	order: 1;
+}
+
+#buttonsControllers {
+	order: 3;
+}
+
+#varsControllers>*, #buttonsControllers>* {
+	width: 100%;
+}
+
+#artworkSelector {
+	order: 2;
+	display: flex;
+	align-items: flex-end;
+	height: 100%;
+}
+
+#artworkSelector button {
+	width: 30px;
+	height: 30px;
+	margin: 0 10px
+}
+
+@media (max-width: 650px) {
+	body {
+		padding: 30px;
+	}
+	#app {
+		flex-direction: column;
+	}
+	#buttonsControllers {
+		flex-direction: row;
+	}
+	#varsControllers, #buttonsControllers {
+		width: 100%;
+		height: max-content;
+	}
+	#buttonsControllers {
+		overflow-x: scroll;
+	}
+	
+	#artworkSelector {
+		display: none;
+	}
+}
+
+
+input, button {
+	margin: 15px 0;
+}
+
+@media (max-width: 650px) {
+	button {
+		margin: 0 10px;
+	}
+}

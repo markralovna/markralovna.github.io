@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Mar Kralovna</title>
+		<script src="recursos/llibreries/p5js/p5.js"></script>
+	</head>
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+		body, canvas {
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+		}
+		canvas {
+			z-index: -1;
+		}
+		body {
+			background: #1F1F1F;
+			overflow: hidden;
+		}
+		#firma {
+			width: 90%;
+			max-width: 800px;
+			stroke: #F8F8F8;
+			fill: transparent;
+			stroke-width: 0.5px;
+			stroke-dasharray: 1000;
+			stroke-dashoffset: 1000;
+			animation: drawText 60s linear forwards;
+		}
+		.centered {
+			margin: 0;
+			position: fixed;
+			transform: translate(-50%, -50%);
+			left: 50%; top: 50%;
+			text-align: center;
+		}
+		@keyframes drawText {
+			to { stroke-dashoffset: 0; }
+		}
+	</style>
+
+
+	<body onclick=" location.href = 'gallery' ">
+		<svg id="firma" class="centered" viewbox="0 0 200 50">
+			<!-- <text text-anchor="middle" x="100" y="40" font-family="Zen Loop" font-size="48px">Mar Kralovna</text> -->
+			<path stroke-linejoin="round" stroke-linecap="round" d="m 35,35 1.797286,-26.10158 6.466242,5.79813 c -2.144799,2.74843 -1.914079,5.35288 0.0548,7.85199 1.483218,2.68903 1.589589,6.15854 -0.03072,6.76957 -1.49209,-0.70805 -1.386909,-3.91265 0.03072,-6.76957 2.699186,-3.73628 1.399678,-5.82604 -0.05479,-7.85199 l 6.467619,-5.8128 1.87478,26.31801 m 4.513968,-15.68791 c 1.787702,-2.27542 4.471905,-4.00884 6.380722,-0.0789 l 0.09354,13.64874 c -0.374276,2.3849 1.4389,2.16816 2.287705,1.53408 m -2.348009,-9.3833 c -8.507009,0.71959 -8.549174,9.60239 -4.715595,9.86041 3.23228,0.21755 3.239803,-1.4329 4.775899,-2.54036 m 6.230768,2.50965 -0.09858,-17.94765 0.146965,2.47617 c 1.874558,-2.44805 3.429519,-2.92734 4.839017,-2.46444 2.329434,0.76504 2.04189,2.45969 1.923907,4.12807 m 14.21803,13.86792 -0.008,-26.31802 m 9.975062,0.0736 c -1.939396,1.26841 -2.889125,3.87062 -3.950754,7.26438 -0.266283,0.85124 -1.536894,3.02256 -1.973023,3.7844 -4.350212,3.04577 -5.418967,2.27496 -7.33887,1.47606 0.935161,-1.42818 2.067155,-3.10101 7.33887,-1.47606 1.77694,1.23173 3.579104,2.30792 4.628157,8.02829 l 1.405448,7.11118 m 4.755853,0.016 -0.0255,-18.00635 0.318,2.03781 c 3.84898,-3.70812 5.41013,-2.23871 6.32838,0.009 0.26585,0.65077 0.24081,2.1302 0.24081,2.1302 m 3.65075,-1.70237 c 1.06814,-1.74499 2.29635,-2.74381 3.81395,-2.55201 1.25083,0.15808 2.47845,1.11261 2.52137,2.81935 l 0.0454,13.29451 c 0.23151,2.03304 1.03685,2.26259 2.13937,1.55814 m -2.13937,-1.55814 c -2.40411,0.98007 -2.92954,2.23072 -5.31792,1.62974 -2.12436,-0.53454 -1.88779,-3.26181 -1.72426,-4.58556 0.37159,-3.00788 6.96607,-5.22082 6.96607,-5.22082 m 6.30185,10.21718 v -27.08104 m 4.69968,18.56897 c -0.0887,-3.5103 0.63823,-9.74017 4.14919,-9.68273 3.6722,0.0601 4.17374,6.59509 4.00611,10.26395 -0.13529,2.96123 -1.01109,7.96692 -3.97538,7.95494 -3.16818,-0.0128 -4.09992,-5.36896 -4.17992,-8.53616 z m 11.24616,-9.57978 4.5126,17.76445 4.33352,-17.64157 m 3.93138,17.98365 -0.0307,-18.08384 0.18571,1.94562 c 3.24099,-2.31016 6.03676,-3.36948 6.68543,1.60356 l 0.0615,14.44249 m 4.73314,-15.51963 c 1.21918,-1.49663 4.27474,-4.69783 6.31287,-0.37142 l 0.22285,1.66637 0.0468,12.13735 c -0.0808,2.03486 0.45948,2.21026 1.99905,1.62763 m -1.99905,-1.62763 c 0,0 -6.49517,4.60197 -7.25609,-0.34482 -0.72768,-4.73066 4.30919,-6.92858 7.00756,-7.54453" />
+		</svg>
+	</body>
+
+	<script>
+		const ratio = .7;
+		const innerSizeRatio = .62;
+		const maxItearions = 12;
+
+		var size, innerSize, position, iteracions, innerGrowingRatio;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate(24);
+			position = createVector(width * .5, height * .5);
+			size = height * .9;
+			innerSize = size * innerSizeRatio;
+			setupStyle();
+		}
+
+		function draw() {
+			clearBackground();
+			iteracions = map(mouseX, 0, width, 0, maxItearions);
+			const maxGrowingRatio = (size/innerSize) ** (1/iteracions);
+			innerGrowingRatio = map(mouseY, 0, height, 1, maxGrowingRatio);
+			drawArtwork();
+		}
+
+		function setupStyle() {
+			noFill();
+			stroke(124);
+			strokeWeight(1);
+			angleMode(RADIANS);
+		}
+
+		function clearBackground() {
+			background(31);
+		}
+
+		function drawArtwork() {
+			circle( position.x, position.y, size);
+			for (let i = 0; i < iteracions; i++) {
+				const s = innerSize * innerGrowingRatio ** i;
+				const x1 = position.x + ( s - size ) * .5;
+				const x2 = position.x - ( s - size ) * .5;
+				const y = position.y;
+				circle( x1, y, s);
+				circle( x2, y, s);
+			}
+		}
+
+		function drawStar(radius, position, numberNodes, seperationBetweenUnitedNodes) {
+			const ANGLE_INCR = TAU / numberNodes;
+			var a1 = 0;
+			var a2 = ANGLE_INCR * seperationBetweenUnitedNodes;
+			for (let i = 0; i < numberNodes * seperationBetweenUnitedNodes; i += seperationBetweenUnitedNodes) {
+				const p1 = createVector(cos(a1), sin(a1)).mult(radius).add(position);
+				const p2 = createVector(cos(a2), sin(a2)).mult(radius).add(position);
+				//this.colorHue = floor(map(noise(index * .01), 0, 1, colorHueMin, colorHueMax));
+				line(p1.x, p1.y, p2.x, p2.y);
+				a1 += ANGLE_INCR;
+				a2 += ANGLE_INCR;
+			}
+		}
+	</script>
+
+</html>

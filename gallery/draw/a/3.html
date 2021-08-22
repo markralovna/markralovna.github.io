@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Pyramid Drawing</title>
+
+		<link rel="stylesheet" href="../estils/layout.css" />
+		<link rel="stylesheet" href="../estils/estetica.css" />
+		<link rel="stylesheet" href="../estils/shapes.css" />
+		<script src="../funcions.js"></script>
+		<script src="../../../recursos/llibreries/p5js/p5.js"></script>
+
+		<style>
+			#buttonsControllers button:before, #buttonsControllers button:after {
+				clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+			}
+			input[type=range]::-webkit-slider-thumb { border-radius: 0; transform: rotate(45deg); width: 10px; height: 10px;  }
+			input[type=range]::-moz-range-thumb { border-radius: 0; transform: rotate(45deg); width: 10px; height: 10px; }
+			input[type=range]::-ms-thumb { border-radius: 0; transform: rotate(45deg); width: 10px; height: 10px; }
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div id="varsControllers">
+				<input id="inpLife" type="range" min="1" max="20" step="1" />
+				<input id="inpDensity" type="range" min="1" max="10" step="1" />
+				<input id="inpSize" type="range" min="1" max="5" step="1" />
+			</div>
+			<div id="buttonsControllers">
+				<button onclick="cleanNodes()">Clean</button>
+				<button onclick="toggleShowLine()">Show Line</button>
+				<button onclick="resetSliders()">Reset Sliders</button>
+			</div>
+			<div id="artworkSelector">
+				<button onclick="changeArwork(1)" class="circle"></button>
+				<button onclick="changeArwork(2)" class="square"></button>
+				<button onclick="changeArwork(3)" class="triangle selected"></button>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		var nodes = [];
+		const c = 5;
+
+		var inpLife, inpDensity, inpSize;
+
+		var showLine = true;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+
+			setStyle();
+			noFill();
+			
+			initializeSliderVars();
+			resetSliders();
+		}
+
+		function draw() {
+			clearCanvas();
+			if (mouseIsPressed)
+				for (let i = 0; i < inpDensity.value; i++)
+					nodes.push( new Node( createVector(mouseX, mouseY) ) );
+			nodes.forEach(node => {
+				node.draw();
+			});
+		}
+
+		function toggleShowLine() {
+			showLine = !showLine;
+		}
+
+		function cleanNodes() {
+			nodes = [];
+		}
+
+		function resetSliders() {
+			inpLife.value = 9;
+			inpDensity.value = 4;
+			inpSize.value = 2;
+		}
+
+		function initializeSliderVars() {
+			inpLife = document.getElementById('inpLife');
+			inpDensity = document.getElementById('inpDensity');
+			inpSize = document.getElementById('inpSize');
+		}
+
+		class Node {
+			constructor ( position ) {
+				this.alive = true;
+				this.initPos = position;
+				this.endPos = position.copy();
+				this.hueColor = random(0, 360);
+				this.vel = createVector( random(-c, c), random(-c, c) );
+				this.alpha = 1;
+			}
+
+			draw( ) {
+				if (this.alive) {
+					this.update();
+					this.display();
+				}
+			}
+
+			update( ) {
+				this.endPos.add( this.vel );
+				if ( this.alpha < 0 ) this.alive = false;
+				this.alpha -= inpLife.value/100;
+			}
+
+			display( ) {
+				stroke( this.hueColor, fillColor[1], fillColor[2], this.alpha );
+				if (showLine) {
+					strokeWeight(.5);
+					line(this.initPos.x, this.initPos.y, this.endPos.x, this.endPos.y);
+				}
+				strokeWeight(inpSize.value * c);
+				point(this.endPos.x, this.endPos.y);
+			}
+		}
+	</script>
+</html>

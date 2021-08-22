@@ -1,0 +1,270 @@
+button, label, li, div.button-row {
+	font-size: 14px;
+	color: rgb(248, 248, 248);
+	font-family: Lato, "Segoe UI Light", "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+label {
+	display: block;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 750px) {
+	label {
+		margin-bottom: 5px;
+	}
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Layers            │
+   └──────────────────────────────┘ */
+
+ul {
+	padding: 0;
+}
+li {
+	display: block;
+	border: none;
+	border-bottom: 1px solid rgba(248, 248, 248, 0.44);
+	background: rgba(0, 0, 0, 0);
+	text-align: center;
+	padding: 20px 30px;
+	margin: 0 auto;
+}
+li:hover, li.selected {
+	border-bottom-color: #f8f8f8;
+}
+li.selected {
+	background-color: #f8f8f822;
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │            Botons            │
+   └──────────────────────────────┘ */
+
+button, div.button-row {
+	color: rgb(248, 248, 248);
+	font-size: 14px;
+	width: 150px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(248, 248, 248, 0.44);
+	border-image: initial;
+	background: rgba(0, 0, 0, 0);
+	border-radius: 0px;
+	position: relative;
+	margin: 30px auto;
+	z-index: 5;
+}
+button::before, button::after, div.button-row::before, div.button-row::after {
+	content: " ";
+	position: absolute;
+	border: 1px rgba(248, 248, 248, 0.5) solid;
+	border-image: initial;
+	z-index: -1;
+}
+button::before, div.button-row::before {
+	top: 4px;
+	left: -4px;
+	right: -4px;
+	bottom: 4px;
+}
+button::after, div.button-row::after {
+	top: -4px;
+	left: 4px;
+	right: 4px;
+	bottom: -4px;
+}
+button:hover, button.selected, button:hover::before, button.selected::before, button:hover::after, button.selected::after {
+	border-color: rgb(248, 248, 248);
+}
+
+@media only screen and (min-width: 750px) {
+	button, div.button-row {
+		display: block;
+		padding: 15px 30px;
+	}
+}
+@media only screen and (max-width: 750px) {
+	button {
+		display: block;
+		width: 150px;
+		padding: 12px 20px;
+	}
+}
+
+div.button-row {
+	width: 100%;
+	padding: 0;
+}
+div.button-row>span {
+	display: inline-block;
+	width: 24%;
+	padding: 15px 0;
+	text-align: center;
+}
+div.button-row>span:hover {
+	text-decoration: underline;
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │           Sliders            │
+   └──────────────────────────────┘ */
+
+input[type=range] {
+	height: 2px;
+	-webkit-appearance: none;
+	margin-bottom: 25px;
+	width: 100%;
+	background: rgba(248, 248, 248, 0.75);
+}
+input[type=range]:focus {
+	outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track, input[type=range]::-moz-range-track, input[type=range]::-ms-track, input[type=range]:focus::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 2px;
+	cursor: pointer;
+	background: rgba(248, 248, 248, 0.75);
+	border: none;
+}
+input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+	border: 1px solid #f8f8f8;
+	height: 10px;
+	width: 10px;
+	background: #1f1f1f;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -5px;
+	border-radius: 0;
+	transform: rotate(45deg);
+}
+
+
+
+/* ┌──────────────────────────────┐
+   │           Checkbox           │
+   └──────────────────────────────┘ */
+
+[type=checkbox] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+[type=checkbox] {
+	width: 10px;
+	height: 10px;
+	border: solid 1px #f8f8f8;
+	margin-right: 8px;
+	margin: 0 auto;
+	display: block;
+	transform: rotate(45deg);
+}
+
+[type=checkbox]:checked::before {
+	content: "";
+	width: 10px;
+	height: 10px;
+	background-color: #f8f8f8;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+/* ┌──────────────────────────────┐
+   │            Promps            │
+   └──────────────────────────────┘ */
+
+div.promp {
+	position: absolute;
+	left: 30vw;
+	top: 20vh;
+	width: 40vw;
+	max-height: 60vh;
+	background-color: #1f1f1f;
+	padding: 25px;
+	overflow-y: scroll;
+}
+div.promp>h2 {
+	margin: 0;
+}
+div.promp>button.btn-close {
+	position: absolute;
+	border: none;
+	right: 10px;
+	top: 10px;
+	margin: 0;
+	width: auto;
+}
+div.promp>button.btn-close:hover {
+	border-radius: 2px;
+	background-color: rgba(248, 248, 248, 0.25);
+}
+div.promp>button.btn-close::before, div.promp>button.btn-close::after {
+	content: '';
+	border: none;
+}
+div.promp>button.btn-close::before {
+	content: 'x';
+}
+
+/* Estil Art Deco */
+
+div.promp {
+	border: 1px solid rgba(248, 248, 248, 0.25);
+}
+
+div.promp::before, div.promp::before(2), div.promp::before(3), div.promp::before(4) {
+	content: " ";
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	transform: rotate(45deg);
+	border: 1px solid lightcoral;
+}
+
+div.promp::before(1) { top: 0; left: 0; }
+div.promp::before(2) { top: 0; right: 0; }
+div.promp::before(3) { bottom: 0; left: 0; }
+div.promp::before(4) { bottom: 0; right: 0; }
+
+/*div.promp::before(5) {
+	content: " ";
+	grid-column: gap-start / gap-end;
+	grid-row: outer-start / outer-end;
+	border-top: 1px solid aquamarine;
+	border-bottom: 1px solid aquamarine;
+}
+
+div.promp::before(6) {
+	content: " ";
+	grid-column: gap-start / gap-end;
+	grid-row: inner-start / inner-end;
+	border-top: 1px solid aquamarine;
+	border-bottom: 1px solid aquamarine;
+}
+
+div.promp::before(7) {
+	content: " ";
+	grid-column: outer-start / outer-end;
+	grid-row: gap-start / gap-end;
+	border-left: 1px solid khaki;
+	border-right: 1px solid khaki;
+}
+
+div.promp::before(8) {
+	content: " ";
+	grid-column: inner-start / inner-end;
+	grid-row: gap-start / gap-end;
+	border-left: 1px solid khaki;
+	border-right: 1px solid khaki;
+}*/
