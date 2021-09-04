@@ -57,9 +57,8 @@ Root
 
 * [x] A `gallery\arcade`, <span class="pendent">UI/UX Etiquetes i botons</span>.
 * [x] A `gallery\arcade\scripts\games\Snake.js`, <span class="pendent">repassar jugabilitat i mòbil.</span>.
-* [ ] A `gallery\arcade\scripts\games\Snake.js`, <span class="pendent">QUE LES FLETXES FUNCIONIN NOMÉS CARREGAR LA PANTALLA SENSE HAVER DE FER CLICK.</span>.
-* [ ] A `gallery\arcade\scripts\games\MinesWeeper.js`, repassar.
-* [ ] A `gallery\arcade\scripts\games\MinesWeeper.js`, pantalla de premi.
+* [x] A `gallery\arcade\scripts\games\MinesWeeper.js`, repassar.
+* [x] A `gallery\arcade\scripts\games\MinesWeeper.js`, pantalla de premi.
 * [ ] A `gallery\school\scripts\algorithms\voronoi.js`, acabar.
 * [ ] A `gallery\school`, revisar que els draw/display siguin coherents.
 * [ ] A `gallery\arcade\scripts\games\Snake.js`, repassar disseny descendent.
