@@ -6,7 +6,7 @@ class MinesWeeper extends Game {
 		this.gameController = new MinesWeeperController();
 		const that = this;
 		this.inputs = [
-			{ label: 'Flag', callback: function(){ that.gameController.putFlag() }, pushable: true }
+			{ label: 'Flag', callback: function(){ that.gameController.toggleFlagMode() }, pushable: true }
 		];
 		this.events = [
 			{ event: 'click', callback: function(){ that.gameController.clicked() } }
@@ -22,22 +22,28 @@ class MinesWeeper extends Game {
 class MinesWeeperController extends GameController {
 	constructor () {
 		super();
-		this.flags = 0;
 		this.flagMode = false;
 		this.numCellsRow = 8;//ToDo: poder triar
+		this.totalMines = this.numCellsRow * this.numCellsRow;
 		this.numMines = floor( this.numCellsRow * this.numCellsRow * .15 );
 	}
 
-	starGame () {
-		this.reloadCells();
-		this.setMines();//ToDo: cridar després del primer clic
+	setup () {
+		noFill();
+		textSize( width / this.numCellsRow * .6 );
+		textAlign(CENTER, CENTER);
+		strokeJoin(ROUND);
+		strokeCap(ROUND);
+		textStyle(BOLD);
 	}
 
-	draw () {
-		this.drawCells();
+	update () {
+		// console.log('- Reveled mines: ', this.reveledCells, '\n- Flags: ', this.flags, '\n- Total mines: ', this.totalMines);
+		if ( this.reveledCells + this.flags >=  this.totalMines)
+			showModal('Congratulations', '', 'Restart ', this.starGame.bind(this) );
 	}
 
-	drawCells () {
+	display () {
 		noFill();
 		stroke(colors.m);
 		strokeWeight(10);
@@ -47,6 +53,13 @@ class MinesWeeperController extends GameController {
 				cell.draw();
 			});
 		});
+	}
+
+	starGame () {
+		this.flags = 0;
+		this.reveledCells = 0;
+		this.reloadCells();
+		this.setupMines();//ToDo: cridar després del primer clic
 	}
 
 	gameover() {
@@ -86,17 +99,19 @@ class MinesWeeperController extends GameController {
 		});
 	}
 
-	setMines () {
+	setupMines () {
 		for (var i = 0; i < this.numMines; i++) {
 			var minaPosada = false;
 			while ( !minaPosada ) {
 				const r = floor( random(0, this.numCellsRow) );
 				const c = floor( random(0, this.numCellsRow) );
-				var m = this.cells[r][c];
-				if ( !m.mine ) {
-					m.addMine();
+				var cell = this.cells[r][c];
+				if ( !cell.mine ) {
+					cell.addMine();
 					const that = this;
-					this.loopCellNeighbour(r, c, function(row, col){that.cells[row][col].addNeighbour()});
+					this.loopCellNeighbour(r, c, function(row, col){
+						that.cells[row][col].addNeighbour();
+					});
 					minaPosada = true;
 				}
 			}
@@ -107,19 +122,9 @@ class MinesWeeperController extends GameController {
 		return this.numMines - this.flags;
 	}
 
-	setup () {
-		noFill();
-		textSize( width / this.numCellsRow * .6 );
-		textAlign(CENTER, CENTER);
-		strokeJoin(ROUND);
-		strokeCap(ROUND);
-		textStyle(BOLD);
-	}
-
-	putFlag () {
+	toggleFlagMode () {
 		this.flagMode = !this.flagMode;
 	}
-
 
 	clicked () {
 		const c = floor(map( mouseX, 0, width,  0, this.numCellsRow ));
@@ -132,11 +137,15 @@ class MinesWeeperController extends GameController {
 
 	revealCell (row, col) {
 		const cell = this.cells[row][col];
-		var cellExploted = false;
-		cellExploted = cell.reveal();
-		if ( cellExploted ) this.gameover();
+		switch ( cell.reveal() ) {
+			case -1: this.gameover();        break;
+			case  1: this.reveledCells += 1; break;
+		}
 		const that = this;
-		if ( cell.neighbourMines == 0 ) this.loopCellNeighbour(row, col, function(r, c) { if (that.cells[r][c].covered) that.revealCell(r, c) })
+		if ( cell.neighbourMines == 0 )
+			this.loopCellNeighbour(row, col, function(r, c) {
+				if (that.cells[r][c].isCovered) that.revealCell(r, c);
+			});
 	}
 
 }
@@ -159,12 +168,13 @@ class MinesWeeperCell {
 	}
 
 	reveal() {
-		var mineExploted = false;
-		if ( !this.flag ) {
+		var res = 0;
+		if ( !this.flag && this.covered ) {
 			this.covered = false;
-			mineExploted = this.mine;
+			if ( this.mine ) res = -1;
+			else res = 1;
 		}
-		return mineExploted
+		return res;
 	}
 
 	addMine() {
@@ -188,6 +198,10 @@ class MinesWeeperCell {
 			( mouseY > this.position.y ) &&
 			( mouseY < (this.position.y + this.size) )
 		);
+	}
+	
+	get isCovered() {
+		return this.covered;
 	}
 	
 	get backgroundColor() {
