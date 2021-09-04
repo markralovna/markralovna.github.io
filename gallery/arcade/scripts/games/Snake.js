@@ -122,7 +122,7 @@ class SnakeCharacter {
 
 	updateDirection (direction) {
 		const s = this.speed;
-		this.positionGrid = createVector( round( this.positionGrid.x ), round( this.positionGrid.y ) );
+		this.positionGrid = createVector( round( this.positionGrid.x ), round( this.positionGrid.y ) );//ToDo: El moviment no sempre queda fluid
 		//ToDo: s'hauria de restringir fer un gir de 180º
 		switch (direction) {
 			case UP_ARROW:    this.direction = createVector( 0, -s); break;
@@ -169,7 +169,7 @@ class SnakeCharacter {
 	}
 
 	grow () {
-		this.tailLenght += 1;// ToDo: hauria de ser 1, però no creix prou
+		this.tailLenght += 1;
 	}
 }
 
@@ -187,7 +187,7 @@ class SnakeApple {
 	}
 
 	display () {
-		stroke(colors.m);
+		stroke([colors.m[0], colors.m[1], colors.m[2], .95]);
 		strokeWeight(this.size);
 		const p = this.pitch.col2pos( this.gridPosition.x, this.gridPosition.y );
 		point(p.x, p.y);
