@@ -82,14 +82,29 @@ function loadGameControls() {
 		p.appendChild(t);
 		gameLabelsEl.appendChild(p);
 	});
-	//gameScreenEl.replaceWith(gameScreenEl.cloneNode(true));//eliminem els eventlisteners
+	//gameScreenEl.replaceWith(gameScreenEl.cloneNode(true));// ToDo: eliminar els eventlisteners anteriors
 	selectedGame.events.forEach(event => {
 		gameScreenEl.addEventListener(event.event, event.callback);
 	});
+	gameScreenEl.focus()
 }
 
 function updateLabels() {
 	selectedGame.outputs.forEach(output => {
 		output.element.innerText = output.model();
+	});
+}
+
+function showModal(title, text, buttonText, buttonCallback ) {
+	const el = document.getElementById('dialog');
+	el.classList.add('shown');
+	document.getElementById('dialog-title').innerText = title;
+	document.getElementById('dialog-text').innerText = text;
+	const btn = document.getElementById('dialog-btn');
+	btn.innerText = buttonText;
+	btn.addEventListener('click', function() {
+		el.classList.remove('shown');
+		buttonCallback();
+		gameScreenEl.focus();
 	});
 }

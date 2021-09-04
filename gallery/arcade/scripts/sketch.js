@@ -30,24 +30,3 @@ function draw() {
 function clearCanvas() {
 	background(12);
 }
-
-function showModal(title, text, buttonText, buttonCallback ) {
-	const el = document.getElementById('dialog');
-	el.classList.add('shown');
-	document.getElementById('dialog-title').innerText = title;
-	document.getElementById('dialog-text').innerText = text;
-	const btn = document.getElementById('dialog-btn');
-	btn.innerText = buttonText;
-
-
-
-	btn.addEventListener('click', function() {
-		el.classList.remove('shown');
-		buttonCallback();
-	});
-
-
-
-
-
-}
