@@ -14,7 +14,6 @@ function setup() {
 	colorMode(HSL);
 
 	algorithms.push( new BezierController() );
-	algorithms.push( new PoissonController() );
 	algorithms.push( new VoronoiController() );
 
 	modifyDOM2SelectedAlgorithm(0);

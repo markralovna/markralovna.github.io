@@ -32,5 +32,10 @@ class AlgorithmController {
 
 class Algorithm {
 	setup () {}
-	draw () {}
+	draw () {
+		this.display();
+		this.update();
+	}
+	display () {}
+	update () {}
 }

@@ -5,9 +5,7 @@ class VoronoiController extends AlgorithmController {
 		this.info.shortName = 'Voronoi';
 		this.info.name = 'Voronoi Diagram';
 		this.info.infolink = 'https://en.wikipedia.org/wiki/Voronoi_diagram';
-		this.cols = 5;
-		this.rows = 5;
-		this.algorithm = new Voronoi( this.cols, this.rows );
+		this.algorithm = new Voronoi( );
 		const that = this;
 		/*this.steps = [
 			{
@@ -30,48 +28,21 @@ class VoronoiController extends AlgorithmController {
 	}
 
 	draw () {
-		this.drawGird();
 		this.algorithm.draw();
-	}
-
-	drawGird () {
-		setColor(315, .05, STROKE, LINE);
-		const colWidth = width / this.cols;
-		var x = 0;
-		for (var c = 0; c < this.cols; c++) {
-			line(x, 0, x, height);
-			x += colWidth;
-		}
-		const rowHeight = height / this.rows;
-		var y = 0;
-		for (var c = 0; c < this.cols; c++) {
-			line(0, y, width, y);
-			y += rowHeight;
-		}
 	}
 }
 
 
 
 class Voronoi extends Algorithm {
-	constructor ( cols, rows ) {
+	constructor ( ) {
 		super();
 		this.cells = [ ];
 		this.t = .3;
-		const colWidth = width/cols;
-		const rowHeight = height/rows;
-		for (let c = 0; c < cols; c++)
-			for (let r = 0; r < rows; r++) {
-				const x = (random(0, 1) + c) * colWidth;
-				const y = (random(0, 1) + r) * rowHeight;
-				this.cells.push( new VoronoiCell( createVector( x, y ) ) );
-			}
-		//this.nodes = [];
+		makePoissonDistribution(100, C * .1).forEach(v => {
+			this.cells.push( new VoronoiCell(v) );
+		});
 	}
-
-	/*setup(){
-		angleMode(RADIANS);
-	}*/
 
 	setRadius (t) {
 		this.t = t * .01;
@@ -244,7 +215,24 @@ function getAngleFromPoint(center, point) {
 	return alpha;
 }
 
-
+function makePoissonDistribution( numberOfNodes, distanceBetweenNodes ) {
+	nodes = [];
+	for (let i = 0; i < numberOfNodes; i++) {
+		const node = createVector(0, 0);
+		var aviablePosition = false;
+		while ( !aviablePosition ) {
+			node.x = random( 0, width);
+			node.y = random( 0, height);
+			aviablePosition = true;
+			nodes.forEach(other => {
+				const d = dist( other.x, other.y, node.x, node.y );
+				if ( d < distanceBetweenNodes ) aviablePosition = false;
+			});
+		}
+		nodes.push( node );
+	}
+	return nodes;
+}
 
 //Code heavily taken from Example Code and Explanations by Paul Bourke at http://paulbourke.net/geometry/pointlineplane/
 //
