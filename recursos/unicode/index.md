@@ -19,16 +19,13 @@
 ```
 
 ```
-     ████████        ████████        ████████        ████████        ████████        ████████     
-   ███      ███    ███      ███    ███      ███    ███      ███    ███      ███    ███      ███   
- ██            ████            ████            ████            ████            ████            ██ 
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
-██              ██              ██              ██              ██              ██              ██
+┌┐ __    __    __    __    __    __ 
+|//  \\//  \\//  \\//  \\//  \\//  \\
+||    ||    ||    ||    //    ||    ||
+││    ││    ││====││    \\    ││====││
+└┘    └┘    └┘    └┘    └┘    ││    └┘
+                              ││      
+                              └┘      
 ```
 
 ## Títols
@@ -63,7 +60,11 @@
 ༻ 𝓞𝓫𝓻𝓪 𝓭'𝓪𝓻𝓽 𝓭𝓮𝓵 𝓭𝓲𝓪 ༺
 ```
 
-#### ...
+# Encapçalaments i divisors
+
+[Crèdits](https://aminoapps.com/c/btsarmy/page/blog/text-dividers-headers/qkwD_qkLFRu5BDXo863wZn7Wnk582Ngn0mR)
+
+## Encapçalaments
 
 ```
    .❀。• *₊°。 ❀°。
@@ -885,7 +886,9 @@ __________________________________________
 ⋅•⋅⊰∙∘☽༓☾∘∙⊱⋅•⋅
 ```
 
-[Més separadors](https://aminoapps.com/c/btsarmy/page/blog/text-dividers-headers/qkwD_qkLFRu5BDXo863wZn7Wnk582Ngn0mR)
+```
+:black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: :black_small_square: :black_medium_square: 
+```
 
 ## Tipografies
 
