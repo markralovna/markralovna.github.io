@@ -1,0 +1,87 @@
+:root {
+	--note-box-color: #ffb300;
+	--warning-box-color: #ff9900;
+	--info-box-color: #00aaff;
+	--success-box-color: #63ce00;
+	--danger-box-color: #bd0000;
+	--magic-box-color: #ca5efc;
+}
+
+.caixa {
+	padding: 3mm;
+	margin: 2mm;
+	border-left: 2.5px solid 
+}
+blockquote, .caixa {
+	margin-left: 2.5em;
+}
+
+.caixa.destacat {
+	border-color: var(--note-box-color);
+} .caixa.exemple {
+	border-color: var(--warning-box-color);
+} .caixa.exercici {
+	border-color: var(--warning-box-color);
+} .caixa.info {
+	border-color: var(--info-box-color);
+} .caixa.consell {
+	border-color: var(--success-box-color);
+} .caixa.advertencia {
+	border-color: var(--danger-box-color);
+} .caixa.recurs {
+	border-color: var(--magic-box-color);
+}
+.caixa.destacat strong, .caixa.destacat h2, .caixa.destacat h3, .caixa.destacat h4, .caixa.destacat li::marker { color: var(--note-box-color)} 
+.caixa.exemple strong, .caixa.exemple h2, .caixa.exemple h3, .caixa.exemple h4, .caixa.exemple li::marker { color: var(--warning-box-color)}
+.caixa.exercici strong, .caixa.exercici h2, .caixa.exercici h3, .caixa.exercici h4, .caixa.exercici li::marker { color: var(--warning-box-color)}
+.caixa.info strong, .caixa.info h2, .caixa.info h3, .caixa.info h4, .caixa.info ol>li::marker { color: var(--info-box-color);}
+.caixa.consell strong, .caixa.consell h2, .caixa.consell h3, .caixa.consell h4, .caixa.consell li::marker { color: var(--success-box-color);}
+.caixa.advertencia strong, .caixa.advertencia h2, .caixa.advertencia h3, .caixa.advertencia h4, .caixa.advertencia li::marker { color: var(--danger-box-color);}
+.caixa.recurs strong, .caixa.recurs h2, .caixa.recurs h3, .caixa.recurs h4, .caixa.recurs li::marker { color: var(--magic-box-color);}
+
+
+
+div.taulaVeritat + table {
+	text-align: center;
+	width: max-content;
+	margin: 0 auto;
+} div.taulaVeritat + table td:last-child, div.taulaVeritat + table th:last-child {
+	border-left: 2px solid var(--ink-color);
+}
+
+div.taulaComptabilitat+table {
+	width: max-content;
+	margin: 0 auto;
+} div.taulaComptabilitat+table th {
+	text-align: center;
+	border-top: none;
+	border-bottom: 1px solid var(--ink-color);
+} div.taulaComptabilitat + table th:nth-child(3) {
+	border-bottom: none;
+} div.taulaComptabilitat + table td {
+	border-top: none;
+} div.taulaComptabilitat + table td:nth-child(1), div.taulaComptabilitat + table td:nth-child(5) {
+	text-align: end;
+} div.taulaComptabilitat + table td:nth-child(1)::after, div.taulaComptabilitat + table td:nth-child(5)::after {
+	content: ' €';
+} div.taulaComptabilitat + table td:nth-child(3) {
+	padding-top: 30px;
+	font-style: italic;
+}
+
+
+
+div.geDiagramContainer, iframe {
+	margin: 0 auto;
+}
+
+iframe {
+	display:block;
+}
+
+
+
+.notaMaria {
+	color: #0080ff;
+	font-family:"Segoe Print"
+}
