@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -47,7 +48,7 @@
 		#marc {
 			height: 90vh;
 		}
-		#marc>path, #marc>rect {
+		#marc > path, #marc > rect {
 			fill: none;
 			stroke: #F8F8F8;
 			stroke-width: 0.05px;
@@ -66,9 +67,12 @@
 	</style>
 	
 	<style>
-		#marc>path, #marc>rect {
+		#marc {
+			stroke-dasharray: 200;
+			stroke-dashoffset: 200;
 			animation-name: animFrame;
-			animation-duration: 3s;
+			animation-duration: 15s;
+			animation-fill-mode: forwards;
 		}
 		#container {
 			animation-name: animText;
@@ -96,36 +100,31 @@
 			to   { width: 100%; left: 0;   }
 		}
 		@keyframes animFrame {
-			from { clip-path: circle(29.3% at 50% 50%); }
-			to   { clip-path: circle(70.7% at 50% 50%); }
+			to { stroke-dashoffset: 0; }
 		}
 	</style>
 
 	<body>
 
 		<svg id="marc" class="centered" xmlns="http://www.w3.org/2000/svg" width="600" height="825" viewBox="0 0 32 40" >
-
-			<!-- Diamants (superior i inferior) -->
-			<path d="  m  15 1      l  1  -1     l  1  1     l -1  1     l -1 -1  " />
-			<path d="  m  15 41     l  1  -1     l  1  1     l -1  1     l -1 -1  " />
-
-			<!-- sldfjslkdfjslkdflskdfj -->
-			<path d="  m  14 1      l  2   2     l  2 -2                          " />
-			<path d="  m  14 41     l  2  -2     l  2  2                          " />
-			<path d="  m  12 3      l  2   2     l  2 -2     l  2  2     l  2 -2  " />
-			<path d="  m  12 39     l  2  -2     l  2  2     l  2 -2     l  2  2  " />
-
-			<!-- Marcs (rectangles discontinus) -->
-			<path d="  m  0  1      l  14  0     m  4   0    l  14 0     l  0  40     l -14 0     m -4 0     l -14 0     l  0 -40  " />
-			<path d="  m  2  2      l  11  0     m  6   0    l  11 0     l  0  38     l -11 0     m -6 0     l -11 0     l  0 -38  " />
-			<path d="  m  1  3      l  11  0     m  8   0    l  11 0     l  0  36     l -11 0     m -8 0     l -11 0     l  0 -36  " />
-			<path d="  m  4 5       l  7  0      m  10  0    l  7 0      l  0  32     l -7 0     m -10 0     l -7  0     l  0 -32  " />
-
-			<!-- Rectangles del marc interior -->
-			<rect x="3"      y="4"      width="1"     height="1" />
-			<rect x="28"     y="4"      width="1"     height="1" />
-			<rect x="3"      y="37"     width="1"     height="1" />
-			<rect x="28"     y="37"     width="1"     height="1" />
+			<g id="marc-inner-stripes">
+				<path d="  m  11  5     l -8  0      l  0  -1     l  1  0     l  0  34     l -1  0     l  0 -1     l  8  0  " />
+				<path d="  m  21  37    l  8  0      l  0   1     l -1  0     l  0 -34     l  1  0     l  0  1     l -8  0  " />
+			</g>
+			<g id="marc-middle-stripes">
+				<path d="  m  2  21     l  0 -19     l  11 0  " />
+				<path d="  m  2  21     l  0  19     l  11 0  " />
+				<path d="  m  30 21     l  0 -19     l -11 0  " />
+				<path d="  m  30 21     l  0  19     l -11 0  " />
+			</g>
+			<g id="marc-outer-stripes">
+				<path d="  m  16  3      l  2   2      l  2  -2      l  11  0      l  0   36     l -11  0      l -2  -2      l -4   4      l -14  0      l  0  -40      l  14  0     l  2   2  " />
+				<path d="  m  16  39     l -2  -2      l -2   2      l -11  0      l  0  -36     l  11  0      l  2   2      l  4  -4      l  14  0      l  0   40     l -14  0      l -2  -2  " />
+			</g>
+			<g id="marc-diamonds">
+				<path d="  m  15 1      l  1  -1     l  1  1     l -1  1     l -1 -1  " />
+				<path d="  m  17 41     l -1   1     l -1 -1     l  1 -1     l  1  1  " />
+			</g>
 		</svg>
 
 		<div id="container" class="centered">
