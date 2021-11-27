@@ -48,10 +48,23 @@
 		#marc {
 			height: 90vh;
 		}
-		#marc > path, #marc > rect {
+		#marc > path, #marc > rect, #marc > use {
 			fill: none;
 			stroke: #F8F8F8;
 			stroke-width: 0.05px;
+		}
+
+		#marc > use.mirrorXY {
+			transform-origin: 50% 50%;
+			transform: rotate(180deg);
+		}
+		#marc > use.mirrorX {
+			transform-origin: 50% 50%;
+			transform: scale(-1,1);
+		}
+		#marc > use.mirrorY {
+			transform-origin: 50% 50%;
+			transform: scale(1,-1);
 		}
 
 		@media (max-width: 700px) {
@@ -67,13 +80,6 @@
 	</style>
 	
 	<style>
-		#marc {
-			stroke-dasharray: 200;
-			stroke-dashoffset: 200;
-			animation-name: animFrame;
-			animation-duration: 15s;
-			animation-fill-mode: forwards;
-		}
 		#container {
 			animation-name: animText;
 			animation-duration: 5s;
@@ -99,32 +105,68 @@
 			from { width:  10%; left: 45%; }
 			to   { width: 100%; left: 0;   }
 		}
-		@keyframes animFrame {
-			to { stroke-dashoffset: 0; }
-		}
 	</style>
 
 	<body>
 
-		<svg id="marc" class="centered" xmlns="http://www.w3.org/2000/svg" width="600" height="825" viewBox="0 0 32 40" >
-			<g id="marc-inner-stripes">
-				<path d="  m  11  5     l -8  0      l  0  -1     l  1  0     l  0  34     l -1  0     l  0 -1     l  8  0  " />
-				<path d="  m  21  37    l  8  0      l  0   1     l -1  0     l  0 -34     l  1  0     l  0  1     l -8  0  " />
-			</g>
-			<g id="marc-middle-stripes">
-				<path d="  m  2  21     l  0 -19     l  11 0  " />
-				<path d="  m  2  21     l  0  19     l  11 0  " />
-				<path d="  m  30 21     l  0 -19     l -11 0  " />
-				<path d="  m  30 21     l  0  19     l -11 0  " />
-			</g>
-			<g id="marc-outer-stripes">
-				<path d="  m  16  3      l  2   2      l  2  -2      l  11  0      l  0   36     l -11  0      l -2  -2      l -4   4      l -14  0      l  0  -40      l  14  0     l  2   2  " />
-				<path d="  m  16  39     l -2  -2      l -2   2      l -11  0      l  0  -36     l  11  0      l  2   2      l  4  -4      l  14  0      l  0   40     l -14  0      l -2  -2  " />
-			</g>
-			<g id="marc-diamonds">
-				<path d="  m  15 1      l  1  -1     l  1  1     l -1  1     l -1 -1  " />
-				<path d="  m  17 41     l -1   1     l -1 -1     l  1 -1     l  1  1  " />
-			</g>
+		<svg id="marc" class="centered" xmlns="http://www.w3.org/2000/svg" width="600" height="825" viewBox="0 0 32 42" >
+
+				<path
+					id="marc-inner-stripes"
+					d="  m  11  5     l -8  0      l  0  -1     l  1  0     l  0  34     l -1  0     l  0 -1     l  8  0  "
+					stroke-dashoffset="60"
+					stroke-dasharray="60"
+				>
+					<animate id="aaa" attributeName="stroke-dashoffset" begin="0" from="60" to="0" dur="5s" fill="freeze" />
+				</path>
+
+				<path
+					id="marc-middle-stripes"
+					d="  m  2  21     l  0 -19     l  11 0  "
+					stroke-dashoffset="30"
+					stroke-dasharray="30"
+				>
+					<animate id="bbb" attributeName="stroke-dashoffset" begin="aaa.end" from="30" to="0" dur="3s" fill="freeze" />
+				</path>
+
+				<path
+					id="marc-entrecreuades-stripes-inner"
+					d="  m  16  3     l  2   2     l  2  -2     l  11  0     l  0   18  "
+					stroke-dashoffset="50"
+					stroke-dasharray="50"
+				>
+					<animate id="ccc" attributeName="stroke-dashoffset" begin="ddd.end" from="50" to="0" dur="4s" fill="freeze" />
+				</path>
+
+				<path
+					id="marc-entrecreuades-stripes-outter"
+					d="  m  16  3     l -2  -2     l -14   0     l 0   20  "
+					stroke-dashoffset="50"
+					stroke-dasharray="50"
+				>
+					<animate id="ccc" attributeName="stroke-dashoffset" begin="ddd.end" from="50" to="0" dur="4.5s" fill="freeze" />
+				</path>
+
+				<path
+					id="marc-diamond"
+					d="  m  15 1      l  1  -1     l  1  1     l -1  1     l -1 -1  "
+					stroke-dashoffset="6"
+					stroke-dasharray="6"
+				>
+					<animate id="ddd" attributeName="stroke-dashoffset" begin="bbb.end" from="6" to="0" dur="1s" fill="freeze" />
+				</path>
+
+				<use xlink:href="#marc-inner-stripes"                 class="mirrorXY" />
+				<use xlink:href="#marc-middle-stripes"                class="mirrorX"  />
+				<use xlink:href="#marc-middle-stripes"                class="mirrorXY" />
+				<use xlink:href="#marc-middle-stripes"                class="mirrorY"  />
+				<use xlink:href="#marc-entrecreuades-stripes-inner"   class="mirrorX"  />
+				<use xlink:href="#marc-entrecreuades-stripes-inner"   class="mirrorY"  />
+				<use xlink:href="#marc-entrecreuades-stripes-inner"   class="mirrorXY" />
+				<use xlink:href="#marc-entrecreuades-stripes-outter"  class="mirrorX"  />
+				<use xlink:href="#marc-entrecreuades-stripes-outter"  class="mirrorY"  />
+				<use xlink:href="#marc-entrecreuades-stripes-outter"  class="mirrorXY" />
+				<use xlink:href="#marc-diamond"                       class="mirrorXY" />
 		</svg>
 
 		<div id="container" class="centered">
