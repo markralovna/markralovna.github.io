@@ -1,0 +1,31 @@
+body {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	overflow: hidden;
+	margin: 0;
+}
+
+#app {
+	padding: 100px;
+	height: calc( 100% - 200px );
+	background-color: #1F1F1F;
+}
+
+#text {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+h1, h2, p {
+	color: #F8F8F8;
+	font-family: 'Raleway', 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+p {
+	font-size: 22pt;
+}

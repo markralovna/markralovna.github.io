@@ -18,7 +18,8 @@ I was born, I went to school, some years later I graduated from university and I
 | Moving Fractals     | [/fract](./gallery/fract)        | Same as [/draw](./gallery/draw), but better                                      |       95 % |
 | Synesthesia         | [/sine](./gallery/sine)          |                                                                                  |        2 % |
 | The Magic School    | [/school](./gallery/school)      | I'm unable to understand an algorithm until I try to implement it by myself      |       80 % |
-|                     | [/arcade](./gallery/arcade)      |                                                                                  |       10 % |
+| Essential Arcade    | [/arcade](./gallery/arcade)      | A teacher of mine told the best way to learn game development is copying games   |       30 % |
+| Animated Writing    | [/write](./gallery/write)        | I have something to say                                                          |       15 % |
 
 \* Every project contains a file called `docs.md` in the root folder containing the information for understanging the project.
 
