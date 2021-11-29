@@ -1,11 +1,11 @@
 {
 	"title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
-	"customCss": "h1, p { color: #F0F }",
+	"customCss": "@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Major+Mono+Display&display=swap'); h1 { font-family: 'Major Mono Display', monospace; text-transform: capitalize; } p { font-family: 'Anonymous Pro', monospace; } h1, p { color: #F0F8; text-align: center } p > strong { color: #0FF8; font-weight: 400; } p { overflow: hidden; border-right: .15em solid orange; white-space: nowrap; margin: 0 auto; letter-spacing: .15em; animation:  typing 6s steps(40, end), blink-caret .75s step-end infinite; } @keyframes typing { from { width: 0 } to { width: 100% } } @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #FF08; } } #app { background: linear-gradient(45deg, #280028, #282800, #002828); animation: gradient 8s infinite; background-size: 400% 400%; } @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }",
 	"customJs": "console.log('Hola')",
 	"pages": [
-		"<p>Ea nostrum iste aliquam corporis, fugiat pariatur consequatur quasi doloribus, praesentium dolorum accusamus assumenda laboriosam, nam repellendus recusandae delectus! Voluptatem nihil esse incidunt, repellendus quaerat quos, ex labore ratione, omnis laboriosam iure? Cum sed modi quam veniam!</p>",
-		"<p>Dolor placeat, dignissimos veniam ipsam maiores accusantium facilis quas vitae veritatis molestiae. Ullam dicta debitis dolores explicabo soluta repellendus esse ipsam rerum. Animi cumque illo ducimus reprehenderit rem dicta debitis eum nostrum dolor eius quod assumenda iste, delectus deleniti esse molestiae quas laborum ex maiores!</p>",
-		"<p>Cupiditate nulla, perferendis veniam consequuntur cum ab ad similique iusto mollitia beatae repudiandae debitis deleniti voluptates itaque sint asperiores corrupti, exercitationem provident ipsa iure temporibus incidunt doloremque! Cupiditate, et obcaecati. Dolore fuga, veritatis iste ipsam sunt, minima, qui recusandae quis quidem unde rerum perferendis voluptatum!</p>",
-		"<p>Autem eligendi est minima reiciendis libero explicabo, a fuga neque culpa obcaecati optio aut doloremque praesentium eius assumenda nisi? Voluptatem omnis illum consequatur ipsum dolorum tempora unde deleniti commodi magni quae molestias voluptatum eligendi, culpa expedita atque cupiditate incidunt laborum corporis inventore et! Esse, veritatis?</p>"
+		"<p>Ea nostrum iste <strong>aliquam corporis</strong>, fugiat</p>",
+		"<p>Dolor placeat, <strong>dignissimos veniam</strong> ipsam</p>",
+		"<p><strong>Cupiditate</strong> nulla, perferendis</p>",
+		"<p>Autem <strong>eligendi est minima</strong> rei<strong>cie</strong>ndis libero</p>"
 	]
 }
