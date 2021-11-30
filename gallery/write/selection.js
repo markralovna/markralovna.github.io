@@ -1,19 +1,28 @@
 // http://127.0.0.1:5500/gallery/write/?t=ipsum
 
-const textFileName = new URL( window.location.href ).searchParams.get("t");
-const textFilePath = `./texts/${textFileName}.json`;
-
 var selectedText;
-ajax( textFilePath, resp => {
-	setSelectedText( JSON.parse( resp ) );
+const textFolderName = new URL( window.location.href ).searchParams.get("t");
+
+loadFile( "info.json", resp => {
+	selectedText = JSON.parse( resp );
+} );
+loadFile( "style.css", resp => {
+	document.getElementById( 'text-custom-css' ).innerHTML = resp;
+} );
+loadFile( "logic.js",  resp => {
+	document.getElementById( 'text-custom-js' ).innerHTML  = resp;
+} );
+loadFile( "content.html", resp => {
+	document.getElementById('text').innerHTML = resp;
+	selectedText['pages'] = document.querySelectorAll( "#text > div.page" );
+	displayPage( 0 );
 } );
 
-function setSelectedText( obj ) {
-	selectedText = obj;
-	currentPage = -1;
-	updateDomText( `<h1>${obj.title}</h1>` );
-	document.getElementById( 'text-custom-css' ).innerHTML = obj.customCss;
-	document.getElementById( 'text-custom-js' ).innerHTML = obj.customJs;
+function loadFile(fileName, callback) {
+	const textFilePath = `./texts/${textFolderName}/${fileName}`;
+	ajax( textFilePath,  resp => {
+		callback( resp );
+	} );
 }
 
 function ajax(path, callback) {
@@ -29,10 +38,13 @@ function ajax(path, callback) {
 	a.send(null);
 }
 
-function updateDomText ( newText ) {
-	document.getElementById('text').innerHTML = newText;
+function displayPage ( pageInx ) {
+	const className = "shown";
+	const e = document.querySelector( "#text > div.page.shown" );
+	if (e) e.classList.remove( className );
+	selectedText['pages'][pageInx].classList.add( className );
 }
 
 function display404Error ( ) {
-	updateDomText( `<h1>404</h1>` );
+	document.getElementById('text').innerHTML = "<h1>404</h1>";
 }

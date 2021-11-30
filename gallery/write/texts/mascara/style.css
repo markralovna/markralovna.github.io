@@ -1,0 +1,9 @@
+h1, p {
+	text-align: center;
+}
+
+h1 {
+	font-size: 4em;
+	text-transform: uppercase;
+	font-weight: 300;
+}

@@ -39,7 +39,3 @@ function disablePassPageListeners ( ) {
 		enabledPassPageListeners = true;
 	}, 500 );
 }
-
-function displayPage ( pageInx ) {
-	updateDomText( selectedText.pages[pageInx] );
-}
