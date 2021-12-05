@@ -1,0 +1,67 @@
+@font-face {
+	font-family: PoiretOne;
+	src: url(../../recursos/fonts/Poiret_One/PoiretOne-Regular.ttf);
+}
+
+:root {
+	--primary-color: #F8F8F8AA;
+	--background-color: #1f1f1f;
+	--primary-font: 'PoiretOne';
+}
+
+#app, body, #buttonRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+body, button {
+	font-family: "PoiretOne";
+	color: var(--primary-color);
+}
+
+body {
+	position: fixed;
+	top: 0; left: 0; bottom: 0; right: 0;
+	margin: 0;
+	padding: 50px 100px;
+	flex-direction: row;
+	background-color: var(--background-color);
+}
+
+#app {
+	flex-direction: column;
+	width: 100%;
+}
+
+h1 {
+	text-align: center;
+	font-size: 2.5em;
+	margin: 0;
+}
+
+svg.responsive {
+	margin: 25px auto;
+	width: 90%;
+}
+
+#buttonRow > button {
+	margin: 0 15px;
+	background-color: transparent;
+	border-radius: 0;
+	border: 1px solid var(--primary-color);
+	padding: 10px 20px;
+	font-size: 1.25em;
+	border-left: none;
+	border-right: none;
+}
+
+#buttonRow > button.cube         { border-color: hsla( var(--cube-color),         85%, 65%, .8 ); }
+#buttonRow > button.tetrahedron  { border-color: hsla( var(--tetrahedron-color),  85%, 65%, .8 ); }
+#buttonRow > button.octahedron   { border-color: hsla( var(--octahedron-color),   85%, 65%, .8 ); }
+#buttonRow > button.icosahedron  { border-color: hsla( var(--icosahedron-color),  85%, 65%, .8 ); }
+#buttonRow > button.dodecahedron { border-color: hsla( var(--dodecahedron-color), 85%, 65%, .8 ); }
+
+#buttonRow > button:hover {
+	border-color: var(--primary-color)
+}

@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+		<script src="./sketch.js"></script>
+		<link rel="stylesheet" href="./app.css">
+		<link rel="stylesheet" href="./sketch.css">
+
 		<title>Metatron's Cube</title>
-
-		<link rel="stylesheet" href="estils.css">
-		
-		<script src="js/p5js/p5.js"></script>
-
-		<script src="js/sketch.js"></script>
-		
-		<script src="js/Solids/Solid.js"></script>
-		<script src="js/Solids/Cube.js"></script>
-		<script src="js/Solids/Tetrahedron.js"></script>
-		<script src="js/Solids/Octahedron.js"></script>
-		<script src="js/Solids/Icosahedron.js"></script>
-		<script src="js/Solids/Dodecahedron.js"></script>
-		<script src="js/Metatron.js"></script>
 	</head>
 
 	<body>
-		<div id="container">
-			<div id="solidView"><h2>...</h2></div>
-			<div id="solidMenu"></div>
+		<div id="app">
+			<h1>Metatron's Cube</h1>
+			<svg id="draw" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewbox="0 0 600 600">
+				<g id="draw-metatron"></g>
+				<g id="draw-solid"></g>
+			</svg>
+			<div id="buttonRow"></div>
 		</div>
 	</body>
 

@@ -1,0 +1,73 @@
+circle, line {
+	stroke-opacity: 1;
+	stroke: var(--primary-color);
+}
+
+circle {
+	fill: transparent;
+	stroke-width: 1px;
+}
+
+line {
+	stroke-width: 0.4px;
+	stroke-linecap: round;
+}
+
+path {
+	stroke-linejoin: round;
+}
+
+circle.offsetAnimation {
+	transform: rotate( calc( 60deg * var(--n) ) );
+	transform-box: fill-box;
+	transform-origin: center center;
+	stroke: hsla( calc( 60 * var(--n) ), 85%, 65%, .6);
+}
+
+.offsetAnimation {
+	stroke-dasharray: 500;
+	stroke-dashoffset: 500;
+}
+
+path.solid {
+	stroke-width: 6px;
+	fill: transparent;
+	animation: fadeAnimation 2s;
+}
+
+@keyframes fadeAnimation {
+	from {opacity: 0;}
+	to {opacity: 100%;}
+}
+
+
+
+
+
+:root {
+	--cube-color: 110;
+	--tetrahedron-color: 0;
+	--octahedron-color: 280;
+	--icosahedron-color: 210;
+	--dodecahedron-color: 25;
+}
+
+path.solid.cube {
+	stroke: hsla( var(--cube-color), 85%, 65%, .6);
+}
+
+path.solid.tetrahedron {
+	stroke: hsla( var(--tetrahedron-color), 85%, 65%, .6);
+}
+
+path.solid.octahedron {
+	stroke: hsla( var(--octahedron-color), 85%, 65%, .6);
+}
+
+path.solid.icosahedron {
+	stroke: hsla( var(--icosahedron-color), 85%, 65%, .6);
+}
+
+path.solid.dodecahedron {
+	stroke: hsla( var(--dodecahedron-color), 85%, 65%, .6);
+}
