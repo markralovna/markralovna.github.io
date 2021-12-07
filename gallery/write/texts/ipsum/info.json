@@ -1,3 +1,4 @@
 {
-	"title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit"
+	"title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
+	"animations": [ "TxtRotate", "MultilineTypewriter" ]
 }

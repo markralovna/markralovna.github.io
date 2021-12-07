@@ -5,6 +5,7 @@ const textFolderName = new URL( window.location.href ).searchParams.get("t");
 
 loadFile( "info.json", resp => {
 	selectedText = JSON.parse( resp );
+	appendAnimationScripts ( );
 } );
 loadFile( "style.css", resp => {
 	document.getElementById( 'text-custom-css' ).innerHTML = resp;
@@ -47,4 +48,33 @@ function displayPage ( pageInx ) {
 
 function display404Error ( ) {
 	document.getElementById('text').innerHTML = "<h1>404</h1>";
+}
+
+function appendAnimationScripts ( ) {
+	selectedText.animations.forEach(animationName => {
+		const path = `./animations/${animationName}.js`;
+		document.head.appendChild( createScriptEl ( path ) );
+	});
+}
+
+function createScriptEl ( scriptSrc ) {
+	const el = document.createElement( "SCRIPT" );
+	el.src = scriptSrc;
+	return el;
+}
+
+function injectCss ( code ) {
+	document.getElementById( 'text-custom-css' ).innerHTML += code;
+}
+
+
+
+
+
+setTimeout( initAnims, 500 );
+
+function initAnims () {
+	selectedText.animations.forEach( animationName => {
+		eval(`new ${animationName}()`);
+	} );
 }

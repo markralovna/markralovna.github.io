@@ -1,3 +1,4 @@
 {
-	"title": "Màscara"
+	"title": "Màscara",
+	"animations": [ "TxtRotate", "MultilineTypewriter" ]
 }
