@@ -3,7 +3,9 @@ const n = 6;
 const PI = 3.141592;
 const TAU = PI * 2;
 
-window.onload = function() {
+window.addEventListener( 'load', initMetatron );
+
+function initMetatron() {
 	drawElement = document.getElementById('draw');
 	drawMetaElement = drawElement.getElementById('draw-metatron');
 	initVars();
@@ -38,7 +40,8 @@ function initButtons ( ) {
 		buttonEl = document.createElement("button");
 		buttonEl.innerText = solid.name;
 		buttonEl.classList.add( s );
-		buttonEl.onclick = ev => { displaySolid( s ); }
+		buttonEl.addEventListener( 'click', ev => { displaySolid( s ); } );
+		buttonEl.addEventListener( 'click', ev => { toggleSelectedSolid( s ); } );
 		cont.appendChild( buttonEl );
 	});
 }
@@ -128,10 +131,6 @@ const solids = {
 	cube: {
 		name: "Cube",
 		points: [ [3,2],[4,2],[5,2],[0,0],[3,2],[2,2],[1,2],[0,2],[5,2],[0,0],[1,2] ]
-	},
-	tetrahedron: {
-		name: "Tetrahedron",
-		points: [ [0,2],[2,2],[4,2],[0,2],[0,0],[4,2],[2,2],[0,0] ]
 	},
 	tetrahedron: {
 		name: "Tetrahedron",

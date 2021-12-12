@@ -10,7 +10,7 @@ import { OrbitControls } from './lib/OrbitControls.js';
 
 var scene = new THREE.Scene();
 window.scene = scene;
-var camera = new THREE.PerspectiveCamera( 2, window.innerWidth / window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 2, 1, 1, 1000 );
 
 
 /* ┌──────────────────────────────┐
@@ -18,9 +18,9 @@ var camera = new THREE.PerspectiveCamera( 2, window.innerWidth / window.innerHei
    └──────────────────────────────┘ */
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setClearColor( 0x080808 );
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+renderer.setClearColor( 0x1F1F1F );
+renderer.setSize( 600, 600 );
+document.getElementById( "wrapper" ).appendChild( renderer.domElement );
 
 
 /* ┌──────────────────────────────┐
@@ -152,4 +152,19 @@ if (window.MODE_DEBUG) {
 		scene.add( line );
 		renderer.render( scene, camera );
 	});*/
+}
+
+
+
+
+
+
+solids.cube.initView = [ 39.177, 38.133, 39.177 ];
+solids.tetrahedron.initView = [ 0, 200/3, 0 ];
+solids.octahedron.initView = [ 100/3, 100/3, 100/3 ];
+solids.icosahedron.initView = [ 0, 63.025, 31.512 ];
+
+window.setCameraToSolid = function ( newSolid ) {
+	const v = solids[newSolid].initView;
+	camera.position.set( v[0], v[1], v[2] );
 }

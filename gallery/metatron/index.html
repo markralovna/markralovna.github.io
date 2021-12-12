@@ -11,15 +11,28 @@
 		<link rel="stylesheet" href="./sketch.css">
 
 		<title>Metatron's Cube</title>
+
+
+
+		<link rel="stylesheet" href="../poli/styles.css">
+		
+		<script src="../poli/js/lib/three.js" type="module"></script>
+		<script src="../poli/js/sketch.js" type="module"></script>
+		<script src="../poli/js/interficie.js"></script>
+
+
+
 	</head>
 
 	<body>
 		<div id="app">
 			<h1>Metatron's Cube</h1>
-			<svg id="draw" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewbox="0 0 600 600">
-				<g id="draw-metatron"></g>
-				<g id="draw-solid"></g>
-			</svg>
+			<div id="wrapper">
+				<svg id="draw" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewbox="0 0 600 600">
+					<g id="draw-metatron"></g>
+					<g id="draw-solid"></g>
+				</svg>
+			</div>
 			<div id="buttonRow"></div>
 		</div>
 	</body>

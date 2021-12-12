@@ -1,11 +1,8 @@
 window.MODE_DEBUG = false;
 
-window.onload = function() {
-	window.loadSolid('./models/icosahedron.glb');
-};
-
 function toggleSelectedSolid( newSolid ) {
-	const p = './models/' + newSolid + '.glb';
+	const p = '../poli/models/' + newSolid + '.glb';
 	window.scene.remove(window.solid);
+	window.setCameraToSolid(newSolid);
 	window.loadSolid(p);
 }

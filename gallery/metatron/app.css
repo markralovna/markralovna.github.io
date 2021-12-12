@@ -40,9 +40,23 @@ h1 {
 	margin: 0;
 }
 
-svg.responsive {
+#wrapper {
 	margin: 25px auto;
 	width: 90%;
+	position: relative;
+	max-width: max-content;
+}
+
+#wrapper > svg.responsive {
+	z-index: 2;
+	max-width: 100%;
+	position: relative;
+}
+
+#wrapper > canvas {
+	z-index: 3;
+	max-width: 100%;
+	opacity: .5;
 }
 
 #buttonRow > button {
