@@ -1,5 +1,5 @@
-import { GLTFLoader } from './lib/GLTFLoader.js';
-import { OrbitControls } from './lib/OrbitControls.js';
+import { GLTFLoader } from '../lib/GLTFLoader.js';
+import { OrbitControls } from '../lib/OrbitControls.js';
 
 
 /* ╔════════════════════════════════════════════════╗

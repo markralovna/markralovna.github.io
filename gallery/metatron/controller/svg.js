@@ -10,7 +10,6 @@ function initMetatron() {
 	drawMetaElement = drawElement.getElementById('draw-metatron');
 	initVars();
 	initSvg();
-	initButtons();
 }
 
 function initVars ( ) {
@@ -31,19 +30,6 @@ function initSvg ( ) {
 	drawLinesBetweenCircles( createOffsetAnimation( "l",  "ar2.end" ) );
 
 	drawElement.classList.add( "responsive" );
-}
-
-function initButtons ( ) {
-	const cont = document.getElementById("buttonRow");
-	Object.keys(solids).forEach(s => {
-		const solid = solids[s];
-		buttonEl = document.createElement("button");
-		buttonEl.innerText = solid.name;
-		buttonEl.classList.add( s );
-		buttonEl.addEventListener( 'click', ev => { displaySolid( s ); } );
-		buttonEl.addEventListener( 'click', ev => { toggleSelectedSolid( s ); } );
-		cont.appendChild( buttonEl );
-	});
 }
 
 function displaySolid ( solidName ) {
@@ -123,27 +109,6 @@ function createOffsetAnimation ( id, begin ) {
 
 function createFadeAnimation ( id, begin ) {
 	return createAnimation ( id, "stroke-opacity", begin, "0", "1" );
-}
-
-
-
-const solids = {
-	cube: {
-		name: "Cube",
-		points: [ [3,2],[4,2],[5,2],[0,0],[3,2],[2,2],[1,2],[0,2],[5,2],[0,0],[1,2] ]
-	},
-	tetrahedron: {
-		name: "Tetrahedron",
-		points: [ [0,2],[2,2],[4,2],[0,2],[0,0],[4,2],[2,2],[0,0] ]
-	},
-	octahedron: {
-		name: "Octahedron",
-		points: [ [0,2],[2,2],[4,2],[0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[0,2] ]
-	},
-	icosahedron: {
-		name: "Icosahedron",
-		points: [ [0,2],[2,2],[4,2],[0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[0,2],[2,2],[3,1],[5,1],[1,1],[3,1] ]
-	},
 }
 
 function drawSolid ( name ) {
