@@ -14,7 +14,6 @@ I was born, I went to school, some years later I graduated from university and I
 | Recursive Geometry  | [/geo](./gallery/geo)            | Sacred geometry grinds on its own, but if it is recursive, it grinds more        |      100 % |
 | Symmetrical Drawing | [/draw](./gallery/draw)          | A tool to draw relaxing mandalas                                                 |      100 % |
 | Metatron's Cube     | [/metatron](./gallery/metatron)  | Meta                                                                             |      100 % |
-| Platonic solids     | [/poli](./gallery/poli)          |                                                                                  |       60 % |
 | Moving Fractals     | [/fract](./gallery/fract)        | Same as [/draw](./gallery/draw), but better                                      |       95 % |
 | Synesthesia         | [/sine](./gallery/sine)          |                                                                                  |        2 % |
 | The Magic School    | [/school](./gallery/school)      | I'm unable to understand an algorithm until I try to implement it by myself      |       80 % |
@@ -40,11 +39,11 @@ Root
 │   ├── geo
 │   ├── draw
 │   ├── metatron
-│   ├── poli
 │   ├── fract
 │   ├── sine
 │   ├── school
-│   └── arcade
+│   ├── arcade
+│   └── write
 ├── me
 │   ├── AdM
 │   └── CV
