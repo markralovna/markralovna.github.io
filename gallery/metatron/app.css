@@ -67,19 +67,14 @@ h1 {
 	margin: 0 15px;
 	background-color: transparent;
 	border-radius: 0;
-	border: 1px solid var(--primary-color);
+	border: 2px solid hsla( var(--solid-color), 85%, 65%, .4 );
 	padding: 10px 20px;
 	font-size: 1.25em;
 	border-left: none;
 	border-right: none;
+	border-radius: 2px;
 }
 
-#buttonRow > button.cube         { border-color: hsla( var(--cube-color),         85%, 65%, .8 ); }
-#buttonRow > button.tetrahedron  { border-color: hsla( var(--tetrahedron-color),  85%, 65%, .8 ); }
-#buttonRow > button.octahedron   { border-color: hsla( var(--octahedron-color),   85%, 65%, .8 ); }
-#buttonRow > button.icosahedron  { border-color: hsla( var(--icosahedron-color),  85%, 65%, .8 ); }
-#buttonRow > button.dodecahedron { border-color: hsla( var(--dodecahedron-color), 85%, 65%, .8 ); }
-
 #buttonRow > button:hover {
-	border-color: var(--primary-color)
+	border-color: hsla( var(--solid-color), 85%, 65%, .8 );
 }

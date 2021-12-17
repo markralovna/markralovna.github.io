@@ -32,13 +32,6 @@ function initSvg ( ) {
 	drawElement.classList.add( "responsive" );
 }
 
-function displaySolid ( solidName ) {
-	const cont = drawElement.getElementById( "draw-solid" );
-	while (cont.lastChild)
-		cont.removeChild(cont.lastChild);
-	cont.appendChild( drawSolid( solidName ) )
-}
-
 function drawCricleOfCircles ( l, anim ) {
 	for (var i = 0; i < n; i++) {
 		const p = findCircleCoords( i, l );
@@ -112,14 +105,14 @@ function createFadeAnimation ( id, begin ) {
 }
 
 function drawSolid ( name ) {
-	const p = solids[name].points;
+	const p = solids[name].metatronPoints;
 	var d = `m ${q(p[0]).x} ${q(p[0]).y}`;
 	for (let i = 1; i < p.length; i++) {
 		const p1 = q(p[i]);
 		const p2 = q(p[i-1]);
 		d += ` l ${p1.x-p2.x} ${p1.y-p2.y}`;
 	}
-	return createSvgPath ( d, [ "solid", name ] );
+	return createSvgPath ( d, [ "solid", `solid-${name}`, name ] );
 }
 
 function q ( z ) {
