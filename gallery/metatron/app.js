@@ -10,7 +10,7 @@ function initButtons ( ) {
 		buttonEl = document.createElement("button");
 		buttonEl.innerText = solid.name;
 		buttonEl.classList.add( `solid-${s}` );
-		buttonEl.addEventListener( 'click', ev => { toggleSvgSolid( s ); } );
+		// buttonEl.addEventListener( 'click', ev => { toggleSvgSolid( s ); } );
 		buttonEl.addEventListener( 'click', ev => { toggleThreeSolid( s ); } );
 		cont.appendChild( buttonEl );
 	});
@@ -24,10 +24,11 @@ function toggleSvgSolid ( solidName ) {
 }
 
 function toggleThreeSolid( newSolid ) {
-	const p = './models/' + newSolid + '.glb';
-	window.scene.remove(window.solid);
+	const p = `./models/${newSolid}.glb`;
+	window.scene.remove(window.line);
 	window.setCameraToSolid(newSolid);
 	window.loadSolid(p);
+	window.lineBasicMaterial.color = new THREE.Color( `hsl(${solids[newSolid].colorHue}, 80%, 60%)` );
 }
 
 function insertCssColorvars ( ) {
