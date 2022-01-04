@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 3 - Space</title>
+
+		<script src="../p5.js"></script>
+	</head>
+
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+
+	<body></body>
+
+	<script>
+		const bgColor = [0, 90, 10];
+		const n = 1000;
+		var stars = [];
+
+		function setup() {			
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate(24);
+			colorMode(HSL);
+			for (let i = 0; i < n; i++) stars.push( new Star() );
+		}
+
+		function draw() {
+			background( bgColor );
+			stars.forEach(star => {
+				star.update();
+				star.display();
+			});
+			bgColor[0] = ( bgColor[0] + 1 ) % 360;
+		}
+
+		class Star {
+			constructor ( ) {
+				this.posX = random( 0, window.innerWidth );
+				this.posY = random( 0, window.innerHeight );
+				this.color = color( random( 0, 360 ), 100, 90 );
+				this.strokeWeight = random( 0, 4 );
+				this.speed = random( .25, 1.5 );
+			}
+			update () {
+				this.posY += this.speed;
+				if ( this.posY >= window.innerHeight ) this.posY = 0;
+			}
+			display () {
+				stroke( this.color );
+				strokeWeight(this.strokeWeight);
+				point( this.posX, this.posY );
+			}
+		}
+
+	</script>
+
+</html>
