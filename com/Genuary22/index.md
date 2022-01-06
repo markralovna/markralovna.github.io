@@ -34,36 +34,36 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 
 ## Prompts
 
-| Dia |                                    Premisa                                    |   Obra Resultant   | Títol | Estat |
-|-----|-------------------------------------------------------------------------------|--------------------|-------|-------|
-|   1 | Draw 10.000 of something                                                      | [](1.html)         | Patró de triangles | Falta polir detalls |
-|   2 | Dithering                                                                     | [](  .html)        |  |  |
-|   3 | Space                                                                         | [](3.html)         |  | Fet |
-|   4 | The next next Fidenza                                                         | [](4.html)         | Fidenza amb línies d'alta transparència | Penjat! |
-|   5 | Destroy a square                                                              | [](  .html)        |  |  |
-|   6 | Trade styles with a friend                                                    | [](  .html)        |  |  |
-|   7 | Sol LeWitt Wall Drawing                                                       | [](  .html)        |  |  |
-|   8 | Single curve only                                                             | [](  .html)        |  |  |
-|   9 | Architecture                                                                  | [](  .html)        |  |  |
-|  10 | Machine learning, wrong answers only                                          | [](  .html)        |  |  |
-|  11 | No computer                                                                   | [](  .html)        |  |  |
-|  12 | Packing (squares, circles, any shape…)                                        | [](  .html)        |  |  |
-|  13 | 80x800                                                                        | [](  .html)        |  |  |
-|  14 | Something you'd never make                                                    | [](  .html)        |  |  |
-|  15 | Sand                                                                          | [](  .html)        |  |  |
-|  16 | Color gradients gone wrong                                                    | [](  .html)        |  |  |
-|  17 | 3 colors                                                                      | [](  .html)        |  |  |
-|  18 | VHS                                                                           | [](  .html)        |  |  |
-|  19 | Use text/typography                                                           | [](  .html)        |  |  |
-|  20 | Make a sea of shapes                                                          | [](  .html)        |  |  |
-|  21 | Combine two (or more) of your pieces from previous days to make a new piece   | [](  .html)        |  |  |
-|  22 | Make something that will look completely different in a year                  | [](  .html)        |  |  |
-|  23 | Abstract vegetation                                                           | [](  .html)        |  |  |
-|  24 | Create your own pseudo-random number generator and visually check the results | [](  .html)        |  |  |
-|  25 | Perspective                                                                   | [](  .html)        |  |  |
-|  26 | Airport carpet                                                                | [](  .html)        |  |  |
-|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             | [](  .html)        |  |  |
-|  28 | Self portrait                                                                 | [](  .html)        |  |  |
-|  29 | Isometric perspective                                                         | [](  .html)        |  |  |
-|  30 | Organic looking output using only rectangular shapes                          | [](  .html)        |  |  |
-|  31 | Negative space                                                                | [](  .html)        |  |  |
+| Dia |                                    Premisa                                    |  Estat  |
+|-----|-------------------------------------------------------------------------------|---------|
+|   1 | Draw 10.000 of something                                                      | Fet!    |
+|   2 | Dithering                                                                     |         |
+|   3 | Space                                                                         | Fet!    |
+|   4 | The next next Fidenza                                                         | Penjat! |
+|   5 | Destroy a square                                                              | Penjat! |
+|   6 | Trade styles with a friend                                                    | ...     |
+|   7 | Sol LeWitt Wall Drawing                                                       | ...     |
+|   8 | Single curve only                                                             |         |
+|   9 | Architecture                                                                  |         |
+|  10 | Machine learning, wrong answers only                                          |         |
+|  11 | No computer                                                                   |         |
+|  12 | Packing (squares, circles, any shape…)                                        |         |
+|  13 | 80x800                                                                        |         |
+|  14 | Something you'd never make                                                    |         |
+|  15 | Sand                                                                          |         |
+|  16 | Color gradients gone wrong                                                    |         |
+|  17 | 3 colors                                                                      |         |
+|  18 | VHS                                                                           |         |
+|  19 | Use text/typography                                                           |         |
+|  20 | Make a sea of shapes                                                          |         |
+|  21 | Combine two (or more) of your pieces from previous days to make a new piece   |         |
+|  22 | Make something that will look completely different in a year                  |         |
+|  23 | Abstract vegetation                                                           |         |
+|  24 | Create your own pseudo-random number generator and visually check the results |         |
+|  25 | Perspective                                                                   |         |
+|  26 | Airport carpet                                                                |         |
+|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             |         |
+|  28 | Self portrait                                                                 |         |
+|  29 | Isometric perspective                                                         |         |
+|  30 | Organic looking output using only rectangular shapes                          |         |
+|  31 | Negative space                                                                |         |
