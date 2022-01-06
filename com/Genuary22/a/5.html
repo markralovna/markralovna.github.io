@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 5 - Destroy a square</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		var aaa;
+
+		function setup( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 48 );
+			loadStyle( );
+			aaa = new Square( window.innerWidth, window.innerHeight );
+		}
+
+		function draw( ) {
+			clearCanvas( );
+			aaa.display( );
+			aaa.update( );
+		}
+
+		function loadStyle( ) {
+			noFill( );
+			stroke( 248 );
+			colorMode( HSL );
+			strokeWeight( 2 );
+			rectMode(CENTER);
+		}
+
+		function clearCanvas( ) {
+			background( 12 );
+		}
+
+		function strokeStyle( colorHueValue, strokeWeightValue ) {
+			stroke( colorHueValue, 100, 50, .6 );
+			strokeWeight( strokeWeightValue );
+		}
+
+		class Square {
+			constructor ( w, h ) {
+				this.size = w * .45;
+				this.pos = createVector( w * .5, h * .5 );
+				this.particles = this.bbb();
+			}
+			bbb ( ) {
+				const ccc = [];
+				const s = this.size * .5;
+				for (let i = 0; i < this.size; i++) {
+					ccc.push( new Particle ( this.pos.x - s + i, this.pos.y - s ) );
+					ccc.push( new Particle ( this.pos.x - s, this.pos.y - s + i ) );
+					ccc.push( new Particle ( this.pos.x - s + i, this.pos.y + s ) );
+					ccc.push( new Particle ( this.pos.x + s, this.pos.y - s + i ) );
+				}
+				return ccc;
+			}
+			display ( ) {
+				if ( MODE_DEBUG ) {
+					strokeStyle( 0, 2 );
+					rect( this.pos.x, this.pos.y, this.size, this.size );
+				}
+				this.particles.forEach(particle => {
+					particle.display();
+				});
+			}
+			update ( ) {
+				this.particles.forEach(particle => {
+					particle.update();
+				});
+			}
+		}
+
+		const s = 300;
+		class Particle {
+			constructor ( x, y ) {
+				this.pos = createVector( x, y );
+				this.speed = random(-.5, .5);
+			}
+			display ( ) {
+				if ( MODE_DEBUG ) strokeStyle( 120, 8 );
+				point( this.pos.x, this.pos.y );
+			}
+			update ( ) {
+				const a = noise(this.pos.x/s, this.pos.y/s) * TAU * s;
+				this.pos.x += cos(a) * this.speed;
+				this.pos.y += sin(a) * this.speed;
+			}
+		}
+	</script>
+</html>

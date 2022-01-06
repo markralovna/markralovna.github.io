@@ -54,8 +54,10 @@
 		function createGridCopy( original, col, row ) {
 			const el = original.cloneNode(true);
 			const px = col * 2.3;
-			const py = row * 3;
+			const py = row * 2.3;
+			const c = px * py * .79;
 			el.setAttributeNS( null, 'transform', `translate( ${px}, ${py} )` );
+			el.setAttributeNS( null, 'fill', `hsl( ${c}, 90%, 60% )` );
 			return el;
 		}
 	</script>
