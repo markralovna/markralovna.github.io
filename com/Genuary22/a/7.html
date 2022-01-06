@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 7 - Sol LeWitt Wall Drawing</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+
+		// One Wall, One Work | Sol LeWitt, Wall Drawing #815, March 1997
+		// https://www.artnet.com/galleries/krakow-witkin-gallery/one-wall-one-work-sol-lewitt-1
+
+		const ITERATIONS = 4;
+		const START_RADIUS_RATIO = .2;
+		const BASE_PLOGON_NODES = 8;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			noFill();
+			stroke( 248 );
+			strokeWeight( 0.5 );
+			angleMode( RADIANS );
+			noLoop();
+		}
+
+		function draw() {
+			background( 12 );
+			const center = createVector( width * .5, height * .5 );
+			const radius = window.innerHeight * START_RADIUS_RATIO;
+			var points = [];
+			for (let i = 1; i <= ITERATIONS; i++)
+				points = points.concat( makeMetatron( center, BASE_PLOGON_NODES, radius * i ) );
+			points = noisePoints( points );
+			joinPoints( points );
+		}
+
+		function makeMetatron( center, n, radius ) {
+			const r = [];
+			if (MODE_DEBUG) {
+				stroke( 150, 0, 150 );
+				strokeWeight( 2 );
+				circle( center.x, center.y, radius );
+			}
+			for (let i = 0; i < 8; i++) {
+				const a = TAU / n * i;
+				const x = center.x + cos(a) * radius * .5;
+				const y = center.y + sin(a) * radius * .5;
+				if (MODE_DEBUG) {
+					stroke( 150, 150, 0 );
+					strokeWeight( 12 );
+					point( x, y );
+				}
+				r.push( createVector( x, y ) );
+			}
+			return r;
+		}
+
+		function joinPoints( points ) {
+			if (MODE_DEBUG) {
+				stroke( 0, 150, 150 );
+				strokeWeight( 1 );
+			}
+			points.forEach( p1 => {
+				points.forEach( p2 => {
+					line( p1.x, p1.y, p2.x, p2.y );
+				} );
+			} );
+		}
+
+		function noisePoints( points ) {
+			points.forEach( point => {
+				point.x = point.x + random( width * .1, width * -.1 );
+				point.y = point.y + random( width * .1, width * -.1 );
+			});
+			return points;
+		}
+	</script>
+</html>

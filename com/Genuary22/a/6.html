@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 6 - Trade styles with a friend</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BACKGROUND_COLOR = "#3b3b3b";
+		const NOISE_SCALE = 3000;
+		const NUMBER_OF_PARTICLES = 25;
+		const PARTICLES_STROKE_MIN = 2;
+		const PARTICLES_STROKE_MAX = 4;
+		const colors = [ '#ffee38', '#e61700', '#0008e6' ];
+		
+		const particles = [];
+
+		function setup( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 48 );
+			noFill( );
+			rectMode(CENTER);
+			background( BACKGROUND_COLOR );
+			for (let i = 0; i < NUMBER_OF_PARTICLES; i++)
+				for (let j = 0; j < NUMBER_OF_PARTICLES; j++)
+					particles.push( new Particle ( i / NUMBER_OF_PARTICLES * width, j / NUMBER_OF_PARTICLES * height ) );
+		}
+
+		function draw( ) {
+			particles.forEach( particle => {
+				particle.update();
+				particle.display();
+			});
+		}
+
+		function randomOfArray( array ) {
+			const ind = floor( random( 0, array.length ) );
+			return array[ind];
+		}
+
+		class Particle {
+			constructor ( x, y ) {
+				this.pos = createVector( x, y );
+				this.speed = random(-.5, .5);
+				this.color = randomOfArray( colors );
+				this.strokeWeight = random( PARTICLES_STROKE_MIN, PARTICLES_STROKE_MAX );
+			}
+			display ( ) {
+				stroke( this.color );
+				strokeWeight( this.strokeWeight );
+				point( this.pos.x, this.pos.y );
+			}
+			update ( ) {
+				const a = noise(this.pos.x/NOISE_SCALE, this.pos.y/NOISE_SCALE) * TAU * NOISE_SCALE;
+				this.pos.x += cos(a) * this.speed;
+				this.pos.y += sin(a) * this.speed;
+			}
+		}
+	</script>
+</html>
