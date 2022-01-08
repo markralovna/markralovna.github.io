@@ -41,10 +41,10 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |   3 | Space                                                                         | Fet!    |
 |   4 | The next next Fidenza                                                         | Penjat! |
 |   5 | Destroy a square                                                              | Penjat! |
-|   6 | Trade styles with a friend                                                    | ...     |
-|   7 | Sol LeWitt Wall Drawing                                                       | ...     |
-|   8 | Single curve only                                                             |         |
-|   9 | Architecture                                                                  |         |
+|   6 | Trade styles with a friend                                                    | Penjat! |
+|   7 | Sol LeWitt Wall Drawing                                                       | Penjat! |
+|   8 | Single curve only                                                             | ...     |
+|   9 | Architecture                                                                  | ...     |
 |  10 | Machine learning, wrong answers only                                          |         |
 |  11 | No computer                                                                   |         |
 |  12 | Packing (squares, circles, any shape…)                                        |         |
