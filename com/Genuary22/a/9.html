@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 9 - Architecture</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			noLoop( );
+			angleMode( RADIANS );
+			colorMode( HSL );
+			background( 12 );
+			stroke( 248 );
+			noFill( );
+		}
+		
+		function draw() {
+			const radius = ( width > height ? height : width ) * .8;
+			const dome = new Dome( createVector( width * .5, height * .5 ), radius );
+			dome.display();
+		}
+		
+		function gradientCircle( px, py, radius ) {
+			for (let i = 0; i < radius; i++) {
+				stroke( map( i, 0, radius, 60, 12 ) );
+				circle( px, py, radius-i );
+			}
+		}
+
+		function strokeStyle( colorHueValue, strokeWeightValue ) {
+			stroke( colorHueValue, 100, 50, .6 );
+			strokeWeight( strokeWeightValue );
+		}
+
+		class Dome {
+			constructor( pos, radius ) {
+				this.pos = pos;
+				this.radius = radius;
+				this.lenght = radius * .5; // this.lenght = random( .1, .8 ) * radius;
+				this.branches = floor( random( 3, 6 ) );
+				this.angleBetweenBranches = random( 0, TAU );
+			}
+
+			display() {
+				if ( MODE_DEBUG ) {
+					strokeStyle( 60, 10 );
+					circle( this.pos.x, this.pos.y, this.radius );
+				}
+				else
+					gradientCircle( this.pos.x, this.pos.y, this.radius );
+
+				strokeWeight( 3 );
+				if (MODE_DEBUG) strokeStyle( 300, 4 );
+				
+				translate( this.pos.x, this.pos.y );
+				for ( var i = 0; i < this.branches*2; i++ ) {
+					push( );
+					rotate( TAU * i * 0.5 / this.branches );
+					this.displayBranch( this.lenght, this.branches );
+					pop( );
+				}
+			}
+
+			displayBranch(l, branches) {
+				const a = this.angleBetweenBranches;
+				line(0, 0, 0, l);
+				translate(0, l);
+				var angle = (branches -1) * a * -0.5;
+				for (let b = 0; b < branches; b++) {
+					push();
+					rotate(angle);
+					if (branches > 1)
+						this.displayBranch(l * 0.65, branches-1);
+					pop();
+					angle += a;
+				}
+			}
+
+		}
+	</script>
+</html>

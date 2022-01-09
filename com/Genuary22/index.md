@@ -43,9 +43,9 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |   5 | Destroy a square                                                              | Penjat! |
 |   6 | Trade styles with a friend                                                    | Penjat! |
 |   7 | Sol LeWitt Wall Drawing                                                       | Penjat! |
-|   8 | Single curve only                                                             | ...     |
-|   9 | Architecture                                                                  | ...     |
-|  10 | Machine learning, wrong answers only                                          |         |
+|   8 | Single curve only                                                             | Penjat! |
+|   9 | Architecture                                                                  | Penjat! |
+|  10 | Machine learning, wrong answers only                                          | ...     |
 |  11 | No computer                                                                   |         |
 |  12 | Packing (squares, circles, any shape…)                                        |         |
 |  13 | 80x800                                                                        |         |

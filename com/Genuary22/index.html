@@ -29,19 +29,12 @@
 		* { padding: 0; margin: 0; }
 
 		body {
+			display: grid;
 			position: fixed;
 			top: 0; left: 0; bottom: 0; right: 0;
 			padding: 50px 100px;
 			max-width: 1000px;
 			margin: 0 auto;
-		}
-		body {
-			display: grid;
-			grid-template-columns: 65% 35%;
-			grid-template-rows: max-content auto max-content;
-			grid-template-areas: "header header" "bbb aaa" "mmm mmm";
-			column-gap: 60px;
-			row-gap: 30px;
 		}
 		h1 { grid-area: header; }
 		#info { grid-area: aaa; }
@@ -71,6 +64,29 @@
 
 		#info-link {
 			float: inline-end;
+		}
+
+		@media ( orientation: landscape ) {
+			body {
+				grid-template-columns: 65% 35%;
+				grid-template-rows: max-content auto max-content;
+				grid-template-areas: "header header" "bbb aaa" "mmm mmm";
+				column-gap: 60px;
+				row-gap: 30px;
+			}
+		}
+		@media ( orientation: portrait ) {
+			body {
+				grid-template-columns: 100%;
+				grid-template-rows: max-content auto auto max-content;
+				grid-template-areas: "header" "bbb" "aaa" "mmm";
+				row-gap: 20px;
+			}
+		}
+		@media ( max-device-width: 750px ) {
+			body {
+				padding: 25px 50px;
+			}
 		}
 	</style>
 	<body>
