@@ -7,4 +7,5 @@ const artworks = [
 	{ day: 7, prompt: "Sol LeWitt Wall Drawing", title: "Metatron Joining", info: "<p>Inspired by <a href=\"https://www.artnet.com/galleries/krakow-witkin-gallery/one-wall-one-work-sol-lewitt-1\">One Wall, One Work | Sol LeWitt, Wall Drawing #815, March 1997</a>.</p><p>Sightly irregular concentric polygons where each vertex is joined to every vertex.</p>" },
 	{ day: 8, prompt: "Single curve only", title: "Bezier", info: "<p>Bezier curve visual implementation.</p>" },
 	{ day: 9, prompt: "Architecture", title: "Domes", info: "<p>Recursive mirrored trees</p>" },
+	{ day: 10, prompt: "Machine learning, wrong answers only", title: "Machine copying human", info: "<p></p>" },
 ];

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 10 - Machine learning, wrong answers only</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const n = 15;
+		let lastPoint;
+		const lastPoints = [ ];
+		const color = [ 0, 100, 50, .8 ];
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate(24);
+			colorMode( HSL );
+			angleMode( RADIANS );
+			lastPoint = createVector( mouseX, mouseY );
+			for (let i = 0; i < n; i++) lastPoints.push( createVector( 0, 0 ) );
+			background( 12 );
+		}
+
+		function draw() {
+			drawLayout();
+			strokeWeight( 8 );
+			drawColor();
+			drawPaint();
+			drawDuplicated();
+		}
+
+		function drawLayout() {
+			stroke( 248 );
+			strokeWeight( 6 );
+			background( "#0C0C0C10" );
+			line( width * .5, 0, width * .5, height );
+		}
+
+		function drawPaint() {
+			line( mouseX, mouseY, lastPoint.x, lastPoint.y );
+			lastPoint = createVector( mouseX, mouseY );
+		}
+
+		function drawDuplicated() {
+			lastPoints.push( lastPoint );
+			translate( width, height );
+			rotate( PI );
+			line( lastPoints[0].x, lastPoints[0].y, lastPoints[1].x, lastPoints[1].y );
+			lastPoints.shift();
+		}
+
+		function drawColor() {
+			stroke( color );
+			color[0] = ( color[0] + 1 ) % 360;
+		}
+	</script>
+</html>

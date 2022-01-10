@@ -37,7 +37,7 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 | Dia |                                    Premisa                                    |  Estat  |
 |-----|-------------------------------------------------------------------------------|---------|
 |   1 | Draw 10.000 of something                                                      | Fet!    |
-|   2 | Dithering                                                                     |         |
+|   2 | Dithering                                                                     | En curs |
 |   3 | Space                                                                         | Fet!    |
 |   4 | The next next Fidenza                                                         | Penjat! |
 |   5 | Destroy a square                                                              | Penjat! |
@@ -45,9 +45,9 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |   7 | Sol LeWitt Wall Drawing                                                       | Penjat! |
 |   8 | Single curve only                                                             | Penjat! |
 |   9 | Architecture                                                                  | Penjat! |
-|  10 | Machine learning, wrong answers only                                          | ...     |
-|  11 | No computer                                                                   |         |
-|  12 | Packing (squares, circles, any shape…)                                        |         |
+|  10 | Machine learning, wrong answers only                                          | En curs |
+|  11 | No computer                                                                   | En curs |
+|  12 | Packing (squares, circles, any shape...)                                      | ...     |
 |  13 | 80x800                                                                        |         |
 |  14 | Something you'd never make                                                    |         |
 |  15 | Sand                                                                          |         |

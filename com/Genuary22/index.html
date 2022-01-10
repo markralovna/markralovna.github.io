@@ -40,6 +40,13 @@
 		#info { grid-area: aaa; }
 		#artwork { grid-area: bbb;}
 		nav { grid-area: mmm; }
+		
+		#info > * {
+			margin-bottom: 10px;
+		}
+		h3 {
+			font-weight: 300;
+		}
 
 		#menu {
 			list-style-type: none;
@@ -94,8 +101,8 @@
 		<iframe id="artwork" src="#"></iframe>
 		<div id="info">
 			<h2 id="info-title"></h2>
-			<p id="info-prompt"></p>
-			<p id="info-info"></p>
+			<h3 id="info-prompt"></h3>
+			<div id="info-info"></div>
 			<p><a href="#" id="info-link" target="_BLANK">Full screen</a></p>
 		</div>
 		<nav><ul id="menu"></ul></nav>
