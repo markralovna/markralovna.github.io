@@ -45,10 +45,10 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |   7 | Sol LeWitt Wall Drawing                                                       | Penjat! |
 |   8 | Single curve only                                                             | Penjat! |
 |   9 | Architecture                                                                  | Penjat! |
-|  10 | Machine learning, wrong answers only                                          | En curs |
-|  11 | No computer                                                                   | En curs |
-|  12 | Packing (squares, circles, any shape...)                                      | ...     |
-|  13 | 80x800                                                                        |         |
+|  10 | Machine learning, wrong answers only                                          | Penjat! |
+|  11 | No computer                                                                   | Penjat! |
+|  12 | Packing (squares, circles, any shape...)                                      | Fet!    |
+|  13 | 80x800                                                                        | ...     |
 |  14 | Something you'd never make                                                    |         |
 |  15 | Sand                                                                          |         |
 |  16 | Color gradients gone wrong                                                    |         |

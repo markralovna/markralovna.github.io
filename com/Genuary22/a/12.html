@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 12 - Packing (squares, circles, any shape...)</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const NUMBER_ITEMS = 150;
+		let ROTATES;
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			noLoop( );
+			angleMode( HSL );
+			aaa( );
+			ROTATES = floor( random( 1, 4 ) ) * 4;
+			RATIO = random( .01, .25 );
+		}
+
+		function aaa() {
+			colorMode( HSL );
+			background( 12 );
+			noStroke( );
+		}
+
+		function draw() {
+			const s = width * RATIO;
+			for (let i = 0; i < floor( width / s ); i++)
+				for (let j = 0; j < floor( height / s ); j++) {
+					const x = s * i * 2;
+					const y = s * j * 2;
+					drawSun( createVector( x, y ), s );
+				}
+		}
+
+		function eqTriangle( posX, posY, radius ) {
+			const p = [];
+			for (let i = 0; i < 3; i++) {
+				const a = TAU / 3 * i;
+				const x = posX + cos(a) * radius * .25;
+				const y = posY + sin(a) * radius * .25;
+				p.push( createVector( x, y ) );
+			}
+			triangle( p[0].x, p[0].y, p[1].x, p[1].y, p[2].x, p[2].y );
+		}
+
+		function drawSun( pos, radius ) {
+			const a = TAU / ROTATES * .5;
+			fillPerlinColor( pos );
+			circle( pos.x, pos.y, radius );
+			push();
+			translate( pos.x, pos.y );
+			for (let i = 0; i < ROTATES; i++) {
+				rotate( a );
+				eqTriangle( radius * .8, 0, radius );
+				rotate( a );
+				circle( radius, 0, radius * .2 );
+			}
+			pop();
+		}
+
+		const s = 800;
+		const color = [ 0, 100, 50 ];
+		function fillPerlinColor( pos ) {
+			const hue = noise( pos.x / s, pos.y / s ) * s;
+			color[0] = floor( hue % 360 );
+			fill( color );
+		}
+	</script>
+</html>

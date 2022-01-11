@@ -8,4 +8,6 @@ const artworks = [
 	{ day: 8, prompt: "Single curve only", title: "Bezier", info: "<p>Bezier curve visual implementation.</p>" },
 	{ day: 9, prompt: "Architecture", title: "Domes", info: "<p>Recursive mirrored trees</p>" },
 	{ day: 10, prompt: "Machine learning, wrong answers only", title: "Machine copying human", info: "<p></p>" },
+	{ day: 11, prompt: "No computer", title: "", info: "<p>This used to be my favorite toy when I was a child.</p>" },
+	{ day: 10, prompt: "Packing (squares, circles, any shape...)", title: "Suns", info: "<p>Not really packing but I still like the result.</p>" },
 ];
