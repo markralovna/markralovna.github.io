@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 13 - 80x800</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+		canvas {
+			margin: 0;
+			position: fixed;
+			left: 50%; top: 50%;
+			transform: translate( -50%, -50% );
+		}
+	</style>
+	<body></body>
+	<script>
+		function setup() {
+			createCanvas( 800, 80 );
+			noLoop( );
+			background( 12 );
+			strokeWeight( 4 );
+		}
+
+		function draw() {
+			const n = floor( random( 1, 5 ) );
+			stroke( 248 );
+			drawRandomLineOfLines( );
+			fill( 248 );
+			for ( let i = 0; i < n; i++ ) drawRandomLineOfCircles( );
+			fill( 12 );
+			for ( let i = 0; i < n; i++ ) drawRandomLineOfCircles( );
+			noStroke( );
+			drawRandomLineOfRombes( );
+		}
+
+		function drawRandomLineOfLines() {
+			const n = floor( random( 0, 3 ) );
+			for (let i = 0; i < n; i++) {
+				const y = height / n * ( i + .5 );
+				line( 0, y, width, y );
+			}
+		}
+
+		function drawRandomLineOfCircles() {
+			const n = floor( random( 0, 10 ) );
+			const y = height * .5;
+			const r = height * random( .2, .8 );
+			for (let i = 0; i < n; i++) {
+				const x = width / n * ( i + .5 );
+				circle( x, y, r );
+			}
+		}
+
+		function drawRandomLineOfRombes() {
+			const n = floor( random( 0, 5 ) );
+			const y = height * .5;
+			const r = height * random( .2, .8 );
+			for (let i = 0; i < n; i++) {
+				const x = width / n * ( i + .5 );
+				rombe( x, y, r );
+			}
+		}
+
+		function rombe( posX, posY, r ) {
+			beginShape();
+			for ( let i = 0; i < 4; i++ ) {
+				const a = HALF_PI * i;
+				const x = posX + cos( a ) * r * .5;
+				const y = posY + sin( a ) * r * .5;
+				vertex( x, y );
+			}
+			endShape();
+		}
+	</script>
+</html>
