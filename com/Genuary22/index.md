@@ -47,10 +47,10 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |   9 | Architecture                                                                  | Penjat! |
 |  10 | Machine learning, wrong answers only                                          | Penjat! |
 |  11 | No computer                                                                   | Penjat! |
-|  12 | Packing (squares, circles, any shape...)                                      | Fet!    |
-|  13 | 80x800                                                                        | ...     |
-|  14 | Something you'd never make                                                    |         |
-|  15 | Sand                                                                          |         |
+|  12 | Packing (squares, circles, any shape...)                                      | Penjat! |
+|  13 | 80x800                                                                        | Penjat! |
+|  14 | Something you'd never make                                                    | Penjat! |
+|  15 | Sand                                                                          | ...     |
 |  16 | Color gradients gone wrong                                                    |         |
 |  17 | 3 colors                                                                      |         |
 |  18 | VHS                                                                           |         |

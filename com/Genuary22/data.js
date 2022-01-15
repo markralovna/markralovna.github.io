@@ -11,4 +11,6 @@ const artworks = [
 	{ day: 11, prompt: "No computer", title: "", info: "<p>This used to be my favorite toy when I was a child.</p>" },
 	{ day: 12, prompt: "Packing (squares, circles, any shape...)", title: "Suns", info: "<p>Circles with a random number of triangles surrounding them and a little circle in each triangle.</p><p>The colors are HSL and the hue comes from perlin noise.</p><p>Not really packing but I still like the result.</p>" },
 	{ day: 13, prompt: "800x80", title: "Suns", info: "<p>Random generated patterns.</p>" },
+	{ day: 14, prompt: "800x80", title: "Bracelet", info: "<p>Random generated patterns.</p>" },
+	{ day: 15, prompt: "Something you'd never make", title: "Bracelet", info: "<p>Quite common, but I had never done it.</p><p>The colors are the ones of my bedroom's walls ^^</p>" },
 ];

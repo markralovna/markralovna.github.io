@@ -21,22 +21,44 @@
 	</style>
 	<body></body>
 	<script>
+		const colors = [ [35, 90, 60], [330, 90, 60], [190, 90, 60], [80, 80, 60] ];
 		function setup() {
-			createCanvas(window.innerWidth, window.innerHeight);
-			frameRate(24);
-			loadStyle();
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop(); // frameRate(24);
+			colorMode( HSL );
+			angleMode( radians )
+			noFill();
 		}
 
 		function draw() {
-			// ...
+			const d = random( .001, .005 ) * height;
+			drawBackground( d );
+			translate( width * .5, height * .5 );
+			drawCircle( d );
 		}
 
-		function loadStyle() {
-			// ...
+		function drawBackground( d ) {
+			for ( let j = 0; j < height; j += d ) {
+				stroke( randomOfArray( colors ) );
+				strokeWeight( random( 20, 50 ) / d );
+				line( 0, j, width, j );
+			}
 		}
 
-		function clearCanvas() {
-			// ...
+		function drawCircle( d ) {
+			const r = random( .3, .8 ) * width / 2;
+			const da = d / ( TAU * 15 );
+			for  (let a = 0; a < PI; a += da ) {
+				stroke( randomOfArray( colors ) );
+				strokeWeight( random( 20, 50 ) / d );
+				const x = cos(a) * r;
+				const y = sin(a) * r;
+				line( x, y, x, -y );
+			}
+		}
+
+		function randomOfArray( array ) {
+			return array[ floor( random( 0, array.length ) ) ];
 		}
 	</script>
 </html>
