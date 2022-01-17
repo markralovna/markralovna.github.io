@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 15 - Sand</title>
+		
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const colors = [ [ 39, 64, 44 ], [ 42, 72, 45 ], [ 44, 83, 47 ], [ 45, 93, 48 ], [ 46, 99, 50 ] ];
+
+		const tileStrokeColor = [0, 0, 97 ];
+		let tileStrokeSize;
+		const s = 500; // const s = random( 100, 1000 ); // ToDo: fer aleatori
+		
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+			colorMode( HSL );
+			initParticles( floor( random( 1, 50 ) * width ) );
+			const s = random( .05, .1 ) * width;
+			tileStrokeSize = s * .05;
+			initBackground( s );
+		}
+
+		function draw() {
+			tiles.forEach( tile => tile.display() );
+			particles.forEach( particle => {
+				particle.update();
+				particle.display();
+			});
+		}
+
+		const tiles = [];
+		function initBackground( size ) {
+			for ( let x = 0; x < width; x += size )
+				for ( let y = 0; y < height; y += size )
+					tiles.push( new Tile( x, y, size ) );
+		}
+
+		const particles = [];
+		function initParticles( n ) {
+			for (let i = 0; i < n; i++) particles.push( new SandGrain() );
+		}
+
+		function randomOfArray( array ) {
+			return array[ floor( random( 0, array.length ) ) ];
+		}
+
+		function setGradient(x, y, w, h, c1, c2, axis) {
+			// https://p5js.org/examples/color-linear-gradient.html
+			for (let i = y; i <= y + h; i++) {
+				let inter = map(i, y, y + h, 0, 1);
+				let c = lerpColor(c1, c2, inter);
+				stroke(c);
+				line(x, i, x + w, i);
+			}
+		}
+
+		class SandGrain {
+			constructor () {
+				this.pos = createVector( random( 0, window.innerWidth ), random( 0, window.innerHeight ) );
+				this.color = randomOfArray( colors );
+				this.speed = random( 1, 5 );
+				this.size = random( 1, 3 );
+			}
+			update () {
+				const a = noise( this.pos.x/s, this.pos.y/s ) * TAU;
+				this.pos.x += cos(a) * this.speed;
+				this.pos.y += sin(a) * this.speed;
+			}
+			display () {
+				stroke( this.color );
+				strokeWeight( this.size );
+				point( this.pos.x, this.pos.y );
+			}
+		}
+
+		class Tile {
+			constructor ( posX, posY, sideSize ) {
+				this.pos = createVector( posX, posY );
+				this.sideSize = sideSize;
+				this.color1 = color( random( 225, 250 ), random( 60, 90 ), random( 40, 50 ) );
+				this.color2 = color( random( 225, 250 ), random( 60, 90 ), random( 40, 50 ) );
+				this.gradientAngle = random( 0, TAU );
+			}
+			display () {
+				noFill();
+				setGradient( this.pos.x, this.pos.y, this.sideSize, this.sideSize, this.color1, this.color2 );
+				strokeWeight( tileStrokeSize ); stroke( tileStrokeColor );
+				rect( this.pos.x, this.pos.y, this.sideSize, this.sideSize );
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 18 - VHS</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		// Idea: https://www.istockphoto.com/es/vector/hologr%C3%A1fico-geom%C3%A9trico-en-estilo-synthwave-efecto-glitch-vhs-retro-vaporwave-vector-gm1130710421-299135404
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+		}
+
+		function draw() {
+			drawRandomSlots( );
+			blendMode( ADD );
+			drawAaa( );
+			blendMode( LIGHTEST  );
+			drawCmkNoise( );
+		}
+
+		function drawRandomSlots( ) {
+			colorMode( RGB );
+			let y = 0;
+			while ( y < height ) {
+				const h = random( .05, .3 ) * height;
+				const c = randomRGbGradient( );
+				setGradient( 0, y, width, h, c[0], c[1] );
+				y += h;
+			}
+		}
+
+		function drawAaa( ) {
+			noFill();
+			stroke( random( 100, 200 ), random( 100, 200 ), random( 100, 200 ), 125 );
+			strokeWeight( 70 );
+			circle( width * .5, height * .5, width * .6 );
+		}
+
+		function setGradient( x, y, w, h, c1, c2 ) {
+			// https://p5js.org/examples/color-linear-gradient.html
+			for (let i = x; i <= x + w; i++) {
+				let inter = map(i, x, x + w, 0, 1);
+				let c = lerpColor(c1, c2, inter);
+				stroke(c);
+				line(i, y, i, y + h);
+			}
+		}
+
+		function randomRGbGradient( ) {
+			const color1 = [ 0, 0, 0 ];
+			color1[0] = random( 50, 200 );
+			color1[1] = random( 50, 200 );
+			color1[2] = random( 50, 200 );
+			const color2 = [...color1];
+			const ri = floor( random( 0, 3 ) );
+			color1[ri] = 255;
+			color2[ri] = 100;
+			return [ color( color1 ), color(color2) ];
+		}
+
+		function drawCmkNoise( ) {
+			const s = width * .08;
+			colorMode( HSL );
+			for ( let i = 0; i < width; i += s )
+				for ( let j = 0; j < height; j += s ) {
+					fillRandomCmy( );
+					rect( i, j, s, s );
+				}
+		}
+
+		function fillRandomCmy( ) {
+			const c = 60 * ( floor( random(0, 3) ) * 2 + 1 );
+			fill( c, 100, 50, .1 );
+		}
+	</script>
+</html>
