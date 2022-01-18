@@ -16,4 +16,5 @@ const artworks = [
 	{ day: 16, prompt: "Color gradients gone wrong", title: "", info: "<p>Just a happy accident.</p><p>It happens while I was making the artwork of day one. I tried to multiply the <code>i</code> times the <code>j</code> in a pixel grid, and the resultant hue color was this strange pattern.</p><p>I don't understand it, but I love it.</p>" },
 	{ day: 17, prompt: "3 colors", title: "CMY in orbits", info: "<p>Orbits in orbits.</p><p>There are three planets orbiting the same sun. Each planet has a moon whose trajectory keeps drawn in the artwork. The radius of the orbits and its speed is random, but all the planets and all the moons need to have the same speed between them.</p>" },
 	{ day: 18, prompt: "VHS", title: "Broken CMY", info: "<p>Crazy lack of ideas, I'm too young for VHS nostalgia.</p><p>Anyway, I programmed a random stripes of random gradients with a random grid of yellow, magenta and cyan squares above.</p><p>Pretty proud.</p>" },
+	{ day: 19, prompt: "Use text/typography", title: "Damaged graffiti", info: "<p>Drawing Text, pixel looping, threshold, particles, perlin noise and flow fields.</p>" },
 ];

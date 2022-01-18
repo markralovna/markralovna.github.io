@@ -53,9 +53,9 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |  15 | Sand                                                                          | Penjat! |
 |  16 | Color gradients gone wrong                                                    | Penjat! |
 |  17 | 3 colors                                                                      | Penjat! |
-|  18 | VHS                                                                           | Fet!    |
-|  19 | Use text/typography                                                           | ...     |
-|  20 | Make a sea of shapes                                                          |         |
+|  18 | VHS                                                                           | Penjat! |
+|  19 | Use text/typography                                                           | Fet!    |
+|  20 | Make a sea of shapes                                                          | ...     |
 |  21 | Combine two (or more) of your pieces from previous days to make a new piece   |         |
 |  22 | Make something that will look completely different in a year                  |         |
 |  23 | Abstract vegetation                                                           |         |
