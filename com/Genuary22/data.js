@@ -17,4 +17,6 @@ const artworks = [
 	{ day: 17, prompt: "3 colors", title: "CMY in orbits", info: "<p>Orbits in orbits.</p><p>There are three planets orbiting the same sun. Each planet has a moon whose trajectory keeps drawn in the artwork. The radius of the orbits and its speed is random, but all the planets and all the moons need to have the same speed between them.</p>" },
 	{ day: 18, prompt: "VHS", title: "Broken CMY", info: "<p>Crazy lack of ideas, I'm too young for VHS nostalgia.</p><p>Anyway, I programmed a random stripes of random gradients with a random grid of yellow, magenta and cyan squares above.</p><p>Pretty proud.</p>" },
 	{ day: 19, prompt: "Use text/typography", title: "Damaged graffiti", info: "<p>Drawing Text, pixel looping, threshold, particles, perlin noise and flow fields.</p>" },
+	{ day: 20, prompt: "Make a sea of shapes", title: "Geosea", info: "<p>As always, perlin noise and flow fields.</p>" },
+	{ day: 21, prompt: "Combine two (or more) of your pieces from previous days to make a new piece", title: "Colorfully smoke", info: "<p>I combined the high transparency lines of <em>day 4</em> with the rotations of <em>day 6</em>.</p>" },
 ];

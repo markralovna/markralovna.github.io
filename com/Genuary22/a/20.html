@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 20 - Make a sea of shapes</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const s = 700;
+		
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+			colorMode( HSL );
+			initParticles( floor( random( .5, 5 ) * width ) );
+			fill( 0, 100, 100, 1 );
+			strokeWeight( 4 );
+			const s = random( .05, .1 ) * width;
+			tileStrokeSize = s * .05;
+		}
+
+		function draw() {
+			particles.forEach( particle => {
+				particle.update();
+				particle.display();
+			});
+		}
+
+		const particles = [];
+		function initParticles( n ) {
+			for (let i = 0; i < n; i++) particles.push( new Polygon() );
+		}
+
+		function randomOfArray( array ) {
+			return array[ floor( random( 0, array.length ) ) ];
+		}
+
+		function polygon( posX, posY, radius, n, rotation ) {
+			beginShape();
+			for (let i = 0; i <= n; i++) {
+				const a = TAU / n * i + rotation;
+				const x = posX + cos(a) * radius * .5;
+				const y = posY + sin(a) * radius * .5;
+				vertex( x, y );
+			}
+			endShape();
+		}
+
+
+		const colors = [ [ 333, 93, 56 ], [ 276, 91, 38 ], [ 258, 86, 34 ], [ 229, 83, 60 ], [ 194, 85, 62 ] ];
+		class Polygon {
+			constructor () {
+				this.pos = createVector( random( -50, width + 50 ), random( -50, height + 50 ) );
+				this.color = randomOfArray( colors );
+				this.radius = random( .05, .25 ) * width;
+				this.speed = this.radius * 1.2;
+				this.n = floor( random( 3, 8 ) );
+				this.rotation = 0;
+			}
+			update () {
+				this.rotation = noise( this.pos.x / s, this.pos.y / s ) * TAU;
+				this.pos.x += cos( this.rotation ) * this.speed;
+				this.pos.y += sin( this.rotation ) * this.speed;
+			}
+			display () {
+				stroke( this.color );
+				polygon( this.pos.x, this.pos.y, this.radius, this.n, this.rotation );
+			}
+		}
+	</script>
+</html>
