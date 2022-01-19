@@ -1,12 +1,16 @@
 # Mar Kralovna
 
-I was born, I went to school, some years later I graduated from university and I lost myself. Now, I'm just trying to create new things.
+This is Mar. Web developer in the morning, student in the afternoon and artist attempt in the night.
+
+This rep is where I save the staff I do in my free time.
+
+I don't know what you are doing here but feel free to explore my code.
 
 ## Projects
 
 ### Lab ([/gallery](./gallery))
 
-~~Some "projects" I did for fun during the last year of university~~ *My shitty Lab*
+Apps on my own.
 
 |        Title        |               Path               |                                     Subtitle                                     |  Progress  |
 |---------------------|----------------------------------|----------------------------------------------------------------------------------|------------|
@@ -22,15 +26,16 @@ I was born, I went to school, some years later I graduated from university and I
 
 \* Every project contains a file called `docs.md` in the root folder containing the information for understanging the project.
 
-### Comunity ([/com](./com))
+### Community ([/com](./com))
 
-~~This is where I save the projects where I save the atworks I made for contest or challenges.~~ *Trying to do cool things*
+Internet challenges
 
 |        Title        |               Path               |                                     Subtitle                                     |  Progress  |
 |---------------------|----------------------------------|----------------------------------------------------------------------------------|------------|
-| Genuary21           | [/Genuary21](./com/Genuary21)    | <span class="pendent">El subreddit generative ha proposat un repte...    </span> |        2 % |
+| Genuary21           | [/Genuary21](./com/Genuary21)    | [Genuary](genuary.art)                                                           |        2 % |
+| Genuary22           | [/Genuary21](./com/Genuary22)    | [Genuary](genuary.art)                                                           |       66 % |
 
-## Sitemap
+## File tree
 
 ```css
 Root
@@ -48,12 +53,13 @@ Root
 │   ├── AdM
 │   └── CV
 ├── com
-│   └── Genuary21
+│   ├── Genuary21
+│   └── Genuary22
 └── recursos
     └── ...
 ```
 
-## Roadmap
+## ToDo...
 
 * [x] A `gallery\arcade`, <span class="pendent">UI/UX Etiquetes i botons</span>.
 * [x] A `gallery\arcade\scripts\games\Snake.js`, <span class="pendent">repassar jugabilitat i mòbil.</span>.
