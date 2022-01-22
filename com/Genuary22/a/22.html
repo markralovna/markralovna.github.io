@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 22 - Make something that will look completely different in a year</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const API_PATH = "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json&origin=*";
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			noStroke( );
+			colorMode( HSL );
+			blendMode( LIGHTEST );
+			background( 12 );
+		}
+
+		function draw() {
+			readTextFile( API_PATH, response => drawFromData( JSON.parse( response ).query.statistics ) );
+		}
+
+		function drawFromData( data ) {
+			const pos = createVector( width * .5, height * .5 );
+			const color = [ 0, 100, 90, .2 ];
+
+			const radius1 = width * .3;
+			const radius2 = radius1 * ( data.admins / data.activeusers ) * 100;
+			const n = abs( floor( sin( data.articles ) * 9 ) ) + 3;
+			const color1 = [ data.edits  % 360, color[1], color[2], color[3] ];
+			const color2 = [ data.images % 360, color[1], color[2], color[3] ];
+			const color3 = [ data.pages  % 360, color[1], color[2], color[3] ];
+
+			drawConcentricCircles( radius1 * 2, pos, color3, 3 );
+			drawFlower( radius1, pos, color1, n, 0 );
+			drawFlower( radius2, pos, color2, n, TAU / n );
+		}
+
+		function drawFlower( radius, pos, color, n, rotation ) {
+			const da = TAU / n;
+			fill( color );
+			for ( let a = rotation; a < TAU + rotation; a += da ) {
+				const x = pos.x + cos( a ) * radius * .5;
+				const y = pos.y + sin( a ) * radius * .5;
+				circle( x, y, radius );
+			}
+		}
+
+		function drawConcentricCircles( radius, pos, color, n ) {
+			fill( color );
+			const dr = radius / n;
+			for ( let r = 0; r <= radius; r += dr )
+				circle( pos.x, pos.y, r );
+		}
+
+		function readTextFile( path, callback ) {
+			const c = new XMLHttpRequest();
+			c.overrideMimeType("application/json");
+			c.open("GET", path, true);
+			c.onreadystatechange = ev => {
+				if ( c.readyState === 4 && c.status == "200" )
+					callback( c.responseText );
+			}
+			c.send( null );
+		}
+	</script>
+</html>
