@@ -1,3 +1,5 @@
+// This sketch borrows heavily from https://processing.org/examples/tree.html 
+
 class Tree {
 
 	constructor(positionX, positionY, maxHeight, steps) {

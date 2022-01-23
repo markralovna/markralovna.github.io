@@ -1,3 +1,5 @@
+// // This sketch borrows heavily from the tutorials by https://github.com/processing/p5.js-sound
+
 const AUDIO_SOURCE_MIC = 1024; const AUDIO_SOURCE_FILE = 1025; const AUDIO_SOURCE_OSC = 1026;
 
 const MODE_DEBUG = false;

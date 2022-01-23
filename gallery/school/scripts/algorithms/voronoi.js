@@ -58,7 +58,7 @@ class Voronoi extends Algorithm {
 }
 
 
-
+// This program borrows heavily from https://www.khanacademy.org/computer-programming/building-a-voronoi-diagram/5209320543617024
 class VoronoiCell {
 	constructor (position) {
 		this.position = position;

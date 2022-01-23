@@ -1,6 +1,6 @@
 class TxtRotate extends Anim {
 
-	// From: https://codepen.io/CheeseTurtle/pen/jzdgI
+	// This sketch borrows heavily from https://codepen.io/CheeseTurtle/pen/jzdgI
 
 	setAttributes() {
 		this.props = [ 'data-rotate', 'data-period' ];

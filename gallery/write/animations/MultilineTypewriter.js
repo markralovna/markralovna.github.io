@@ -1,6 +1,6 @@
 class MultilineTypewriter extends Anim {
 
-	// https://codepen.io/daviddcarr/pen/XVyQMM
+	// This sketch borrows heavily from https://codepen.io/daviddcarr/pen/XVyQMM
 
 	setAttributes() {
 		this.props = [ 'data-texts' ];
