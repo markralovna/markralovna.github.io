@@ -55,14 +55,14 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |  17 | 3 colors                                                                      | Penjat! |
 |  18 | VHS                                                                           | Penjat! |
 |  19 | Use text/typography                                                           | Penjat! |
-|  20 | Make a sea of shapes                                                          | Fet!    |
-|  21 | Combine two (or more) of your pieces from previous days to make a new piece   | Fet!    |
-|  22 | Make something that will look completely different in a year                  | ...     |
-|  23 | Abstract vegetation                                                           |         |
-|  24 | Create your own pseudo-random number generator and visually check the results |         |
-|  25 | Perspective                                                                   |         |
-|  26 | Airport carpet                                                                |         |
-|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             |         |
+|  20 | Make a sea of shapes                                                          | Penjat! |
+|  21 | Combine two (or more) of your pieces from previous days to make a new piece   | Penjat! |
+|  22 | Make something that will look completely different in a year                  | Penjat! |
+|  23 | Abstract vegetation                                                           | Penjat! |
+|  24 | Create your own pseudo-random number generator and visually check the results | Fet!    |
+|  25 | Perspective                                                                   | Fet!    |
+|  26 | Airport carpet                                                                | ...     |
+|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             | ...     |
 |  28 | Self portrait                                                                 |         |
 |  29 | Isometric perspective                                                         |         |
 |  30 | Organic looking output using only rectangular shapes                          |         |

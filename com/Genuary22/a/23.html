@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 23 - Abstract vegetation</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		// This sketch borrows heavily from https://wangyasai.github.io/Perlin-Noise/
+
+		const s = 2500; // const s = random( 100, 1000 ); // ToDo: fer aleatori
+		
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+			colorMode( HSL );
+			initParticles( );
+			drawSky( );
+		}
+
+		function draw() {
+			particles.forEach( particle => {
+				particle.update();
+				particle.display();
+			});
+		}
+
+		const particles = [];
+		function initParticles( ) {
+			for ( let w = 0; w < width; w++ ) particles.push( new GrassLeave( w ) );
+		}
+
+		function randomOfArray( array ) {
+			return array[ floor( random( 0, array.length ) ) ];
+		}
+
+		function drawSky( ) {
+			background( 248 );
+			// for (let j = 0; j < height; j++) {
+			// 	stroke( 0 );
+			// 	line( 0, j, width, j );				
+			// }
+		}
+
+		function drawFlower( x, y, s ) {
+			strokeWeight( random( .5, 3 ) );
+			stroke( random( 0, 360 ), 90, 40, .8 );
+			const n = floor( random( 4, 12 ) );
+			const da = TAU / n;
+			for (let a = 0; a < TAU; a += da ) {
+				const px = x + cos( a ) * s * .5;
+				const py = y + sin( a ) * s * .5;
+				line( x, y, px, py );
+			}
+		}
+
+		class GrassLeave {
+			constructor ( w ) {
+				this.pos = createVector( w, height );
+				this.color = color( random( 70, 140 ), random( 30, 70 ), random( 20, 40 ) );
+				this.speed = random( 1, 5 );
+				this.size = random( .5, 8 );
+				this.death = false;
+			}
+			update () {
+				if ( !this.death ) {
+					const a = noise( this.pos.x/s, this.pos.y/s ) * TAU;
+					this.pos.x += cos(a) * this.speed;
+					this.pos.y += sin(a) * this.speed;
+					if ( random( 0, 25 ) < 1 ) this.death = true;
+				}
+			}
+			display () {
+				if ( !this.death ) {
+					stroke( this.color );
+					strokeWeight( this.size );
+					point( this.pos.x, this.pos.y );
+					if ( random( 0, 500 ) < 1 ) drawFlower( this.pos.x, this.pos.y, this.size * 5 );
+				}
+			}
+		}
+	</script>
+</html>
