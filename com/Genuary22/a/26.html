@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 26 - Airport carpet</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			colorMode( HSL );
+			noFill( );
+		}
+
+		function draw() {
+			const hue = random( 0, 360 );
+			const radius = random( .05, .2 ) * width;
+			background( [ hue, 60, 95 ] );
+			for ( let col = 0; col < width + radius; col += radius )
+				for ( let row = 0; row < height + radius; row += radius ) {
+					strokeWeight( random( .05, .2 ) * radius );
+					stroke( randomColorShadow( hue ) );
+					fill( randomColorShadow( hue ) );
+					const r = radius * random( 0.9, 1.1 );
+					circle( col, row, r );
+				}
+		}
+
+		function randomColorShadow( originalHue ) {
+			const hue = originalHue + random( -5, 5 );
+			const sat = random( 60, 100 );
+			const lig = random( 70, 80 );
+			return [ hue, sat, lig ];
+		}
+	</script>
+</html>

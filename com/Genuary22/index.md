@@ -59,11 +59,11 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |  21 | Combine two (or more) of your pieces from previous days to make a new piece   | Penjat! |
 |  22 | Make something that will look completely different in a year                  | Penjat! |
 |  23 | Abstract vegetation                                                           | Penjat! |
-|  24 | Create your own pseudo-random number generator and visually check the results | Fet!    |
-|  25 | Perspective                                                                   | Fet!    |
-|  26 | Airport carpet                                                                | ...     |
+|  24 | Create your own pseudo-random number generator and visually check the results | Penjat! |
+|  25 | Perspective                                                                   | Penjat! |
+|  26 | Airport carpet                                                                | Fet!    |
 |  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             | ...     |
-|  28 | Self portrait                                                                 |         |
+|  28 | Self portrait                                                                 | ...     |
 |  29 | Isometric perspective                                                         |         |
 |  30 | Organic looking output using only rectangular shapes                          |         |
 |  31 | Negative space                                                                |         |
