@@ -61,9 +61,9 @@ El subreddit [r/generative](https://www.reddit.com/r/generative), ha creat un se
 |  23 | Abstract vegetation                                                           | Penjat! |
 |  24 | Create your own pseudo-random number generator and visually check the results | Penjat! |
 |  25 | Perspective                                                                   | Penjat! |
-|  26 | Airport carpet                                                                | Fet!    |
-|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             | ...     |
-|  28 | Self portrait                                                                 | ...     |
-|  29 | Isometric perspective                                                         |         |
+|  26 | Airport carpet                                                                | Penjat! |
+|  27 | `#2E294E` `#541388` `#F1E9DA` `#FFD400` `#D90368`                             | Penjat! |
+|  28 | Self portrait                                                                 | Penjat! |
+|  29 | Isometric perspective                                                         | Penjat! |
 |  30 | Organic looking output using only rectangular shapes                          |         |
 |  31 | Negative space                                                                |         |

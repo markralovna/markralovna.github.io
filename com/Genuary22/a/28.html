@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 28 - Self portrait</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body, canvas, svg {
+			margin: 0;
+			position: absolute;
+			left: 50%; top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		body {
+			width: max-content;
+			height: max-content;
+		}
+		svg {
+			width: 1000px;
+			z-index: 10;
+			display: none;
+		}
+		canvas {
+			z-index: 5;
+		}
+	</style>
+	<body>
+		<svg viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+			<path id="cara" d="M425.157,87C464.16,86.2 491.246,110.701 504,157.353C517.295,205.984 508.891,220.516 506,243.095C502.879,267.476 501.844,291.314 494,304.693C486.656,317.218 470.864,338.962 426,346C383.751,352.628 338.959,269.29 336,242.095C332.822,212.886 331.118,194.051 343,155.353C352.382,124.796 374.167,88.046 425.157,87Z" style="fill:white;stroke:black;stroke-width:2px;"/>
+			<g id="ulleres">
+				<g id="vidres">
+					<path id="R" d="M434,175C442.428,167.04 497.263,156.678 508,178C513.403,188.73 510.311,212.703 508,217C505.689,221.297 487.472,254.452 445,222C416.306,200.075 424.5,183.973 434,175Z" style="fill:url(#_Linear1);stroke:black;stroke-width:2px;"/>
+					<g id="E" transform="matrix(-0.973801,0.227402,0.227402,0.973801,772.45,-91.7836)">
+						<path d="M433.026,175.227C441.454,167.267 490.219,157.296 500.956,178.618C506.359,189.348 502.585,210.4 500.274,214.697C497.963,218.994 488.9,256.173 446.429,223.72C417.734,201.795 423.526,184.201 433.026,175.227Z" style="fill:url(#_Linear2);stroke:black;stroke-width:2px;"/>
+					</g>
+				</g>
+				<g id="montura">
+					<g transform="matrix(1.5,0,0,0.669406,-283,70.1681)">
+						<path d="M534,183.5C534,182.672 533.7,182 533.331,182L530.669,182C530.3,182 530,182.672 530,183.5L530,186.5C530,187.328 530.3,188 530.669,188L533.331,188C533.7,188 534,187.328 534,186.5L534,183.5Z" style="stroke:black;stroke-width:1.72px;"/>
+					</g>
+					<g transform="matrix(1,0,0,1,0,14)">
+						<path d="M401.601,175.413L402.601,169.656C409.408,163.643 416.214,162.436 423.021,169.224L425.157,173.413" style="fill:none;stroke:black;stroke-width:2px;"/>
+					</g>
+					<path d="M380,174.413L448,168.413" style="fill:none;stroke:black;stroke-width:2px;"/>
+				</g>
+			</g>
+			<defs>
+				<linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-15.2344,-122,56.1635,-7.01327,417.836,272)"><stop offset="0" style="stop-color:white;stop-opacity:1"/><stop offset="0.43" style="stop-color:rgb(255,255,192);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(161,255,56);stop-opacity:1"/></linearGradient>
+				<linearGradient id="_Linear2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-12.9078,-122.268,-56.2869,5.9422,428.049,273.613)"><stop offset="0" style="stop-color:white;stop-opacity:1"/><stop offset="0.43" style="stop-color:rgb(255,255,192);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(161,255,56);stop-opacity:1"/></linearGradient>
+			</defs>
+		</svg>
+	</body>
+	<script>
+		const MODE_DEBUG = false;
+
+		const hair = [];
+
+		function setup() {
+			createCanvas( 640, 640 ); // createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( ); 
+			setupStyle( );
+			initHair( );
+		}
+
+		function setupStyle() {
+			colorMode( HSL );
+			background( 12 );
+			noFill( );
+		}
+
+		function draw() {
+			drawHair( );
+		}
+
+		function initHair() {
+			const initPoint = createVector( width * .5, height * .4 );
+			const n = MODE_DEBUG ? 10 : 5000;
+			const radius = width * .3;
+			const anchorLenght = 400;
+			const da = PI / n;
+			for ( let a = PI; a < TAU; a += da ) hair.push( new Hair( posFromPointAngleLength( initPoint, a, radius ) ) );
+		}
+
+		function drawHair() {
+			hair.forEach( h => h.display() );
+		}
+
+		function strokeStyle( colorHueValue, strokeWeightValue ) {
+			stroke( colorHueValue, 100, 50, .6 );
+			strokeWeight( strokeWeightValue );
+		}
+
+		function posFromPointAngleLength( position, angle, length ) {
+			return createVector(
+				position.x + cos( angle ) * length,
+				position.y + sin( angle ) * length 
+			);
+		}
+
+		function getNoiseFromPos( position, mult ) {
+			return noise( position.x, position.y ) * mult;
+		}
+
+		function getNoiseColorShadow( colorHue, noisePoistion ) {
+			return [
+				colorHue + getNoiseFromPos( noisePoistion, 60 ),
+				random( 65, 95 ),
+				random( 65, 95 ) 
+			];
+		}
+
+		const s = 25;
+		const ANGLE = 1.4;
+		class Hair {
+			constructor ( initPoint ) {
+				this.pos = initPoint;
+				this.color = getNoiseColorShadow( 300, initPoint );
+				this.speed = random( 1, 5 );
+				this.length = random( .1, .4 ) * height;
+				this.size = random( 1, 3 );
+			}
+			display () {
+				if ( MODE_DEBUG ) this.displayHelper( );
+				else
+					for ( let i = 0; i < this.length; i++ ) this.draw( );
+			}
+			draw ( ) {
+				stroke( this.color );
+				strokeWeight( this.size );
+				const a = noise( this.pos.x/s, this.pos.y/s ) * ANGLE + ( PI - ANGLE ) * .5;
+				this.pos.x += cos(a) * this.speed;
+				this.pos.y += sin(a) * this.speed;
+				point( this.pos.x, this.pos.y );
+			}
+			displayHelper () {
+				// ... 
+			}
+		}
+	</script>
+</html>

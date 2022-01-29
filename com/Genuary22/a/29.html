@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 29 - Isometric perspective</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setupStyle( );
+			colorMode( HSL );
+			noFill( );
+		}
+
+		function draw() {
+			if ( MODE_DEBUG ) drawAxis( );
+			const n = floor( random( .1, .5 ) * width );
+			for ( let i = 0; i < n; i ++ ) drawRandomPrism( );
+		}
+
+		function drawRandomPrism( ) {
+			stroke( random( 0, 360 ), random( 80, 95 ), random( 50, 70 ), .6 );
+			strokeWeight( random( 1, 5 ) );
+			const x = random( .2, .8  ) * width;
+			const y = random( .3, .7  ) * height;
+			const w = random( .1, .25 ) * width;
+			const l = random( .1, .25 ) * height;
+			const h = random( .1, .25 ) * height;
+			const di = random( .005, .025 ) * height;
+			for ( let i = 0; i < h; i += di ) isometricSquare( x, y + i, w, l );
+		}
+
+		function setupStyle( ) {
+			colorMode( HSL );
+			background( 12 );
+		}
+
+		function drawAxis() {
+			const origin = createVector( width * .5, height * .5 );
+			strokeStyle( 60, 20 );
+			point( origin.x, origin.y );
+			const l = width * .4;
+			for ( let i = 0; i < 3; i++ ) {
+				strokeStyle( 120 * i, 6 );
+				const p = posFromPointAngleLength( origin, axisAngle( i ), l );
+				line( origin.x, origin.y, p.x, p.y );
+			}
+		}
+
+		function posFromPointAngleLength( position, angle, length ) {
+			return createVector(
+				position.x + cos( angle ) * length,
+				position.y + sin( angle ) * length 
+			);
+		}
+
+		function strokeStyle( colorHueValue, strokeWeightValue ) {
+			stroke( colorHueValue, 100, 50, .6 );
+			strokeWeight( strokeWeightValue );
+		}
+
+		function axisAngle( axisNumber ) {
+			return TAU / 3 * ( axisNumber + 0.25);
+		}
+
+		function isometricSquare( x, y, w, h ) {
+			const p1 = posFromPointAngleLength( createVector( x, y ), axisAngle( 1 ), -w );
+			const p2 = posFromPointAngleLength( p1, axisAngle( 0 ), -h );
+			const p3 = posFromPointAngleLength( p2, axisAngle( 1 ), w );
+			beginShape();
+				vertex( x, y );
+				vertex( p1.x, p1.y );
+				vertex( p2.x, p2.y );
+				vertex( p3.x, p3.y );
+			endShape( CLOSE );
+			if ( MODE_DEBUG ) {
+				strokeWeight( 1 );
+				rect( x, y, w, h );
+			}
+		}
+	</script>
+</html>

@@ -24,9 +24,9 @@ const artworks = [
 	{ day: 24, prompt: "Create your own pseudo-random number generator and visually check the results", title: "TimeXylophone", info: "<p> I made a pseudo random generator using the current timestamp. However, the calls are successive, and there's not much difference between them...</p>" },
 	{ day: 25, prompt: "Perspective", title: "Explote", info: "<p>This artwork was inspired by <a href=\"https://wangyasai.github.io/Stars-Emmision/\">Yasai's Stars Emmision</a>. The algorithm has no secrets.</p>" },
 	{ day: 26, prompt: "Airport carpet", title: "Random circles", info: "" },
-	{ day: 27, prompt: "<code>#2E294E</code> <code>#541388</code> <code>#F1E9DA</code> <code>#FFD400</code> <code>#D90368</code>", title: "Orbins in Orbints II", info: "" },
-	// { day: 28, prompt: "Self portrait", title: "", info: "" },
-	// { day: 29, prompt: "Isometric perspective", title: "", info: "" },
+	{ day: 27, prompt: "<code>#2E294E</code> <code>#541388</code> <code>#F1E9DA</code> <code>#FFD400</code> <code>#D90368</code>", title: "<p>Orbins in Orbints II</p>", info: "" },
+	{ day: 28, prompt: "Self portrait", title: "Me on my back", info: "<p>I tried to simulate my chaotic fantasy hair.</p>" },
+	{ day: 29, prompt: "Isometric perspective", title: "Neon City", info: "" },
 	// { day: 30, prompt: "Organic looking output using only rectangular shapes", title: "", info: "" },
 	// { day: 31, prompt: "Negative space", title: "", info: "" },
 ];
