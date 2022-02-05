@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary22 | 30 - Organic looking output using only rectangular shapes</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const spirals = [ ];
+		const color = [ 0, 95, 60, .8 ];
+		const HUE_MIN   = 180;
+		const HUE_RANGE = 120;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 ); 
+			setupStyle( );
+			initSpirals( );
+		}
+
+		function setupStyle() {
+			colorMode( HSL );
+			background( 12 );
+			noFill( );
+			strokeWeight( 1 );
+		}
+
+		function initSpirals() {
+			const center = createVector( 0, 0 );
+			const size = width * .5;
+			const n = 5;
+			for (let i = 0; i < n; i++)
+				spirals.push( new Spiral( center, size, HALF_PI ) );
+		}
+
+		function draw() {
+			translate( width * .5, height * .5 );
+			spirals.forEach( ( spiral, i ) => {
+				const a = TAU / spirals.length * i;
+				color[0] = HUE_RANGE / spirals.length * i + HUE_MIN;
+				stroke( color );
+				push();
+				rotate( a );
+				spiral.draw();
+				pop();
+			} );
+		}
+
+		function getNoiseColorShadow( colorHue ) {
+			return [
+				colorHue + random( -60, 60 ),
+				random( 65, 95 ),
+				random( 65, 95 ) 
+			];
+		}
+
+		function polygon( posX, posY, radius, n, rotation ) {
+			beginShape();
+			for (let i = 0; i <= n; i++) {
+				const a = TAU / n * i + rotation;
+				const x = posX + cos(a) * radius * .5;
+				const y = posY + sin(a) * radius * .5;
+				vertex( x, y );
+			}
+			endShape();
+		}
+
+		class Spiral {
+			constructor ( pos, maxSize, rotation ) {
+				this.pos = pos.copy();
+				this.maxSize = maxSize;
+				this.angle = 0;
+				this.size = 1;
+				this.rotation = rotation;
+			}
+			draw () {
+				this.update();
+				this.display();
+			}
+			update () {
+				if ( this.size < this.maxSize ) {
+					const speed = this.size * .05;
+					this.angle += .1;
+					this.pos.x += cos( this.angle ) * speed;
+					this.pos.y += sin( this.angle ) * speed;
+					this.size  += speed;
+				}
+			}
+			display () {
+				if ( this.size < this.maxSize )
+					polygon( this.pos.x, this.pos.y, this.size, 4, this.angle );
+			}
+		}
+	</script>
+</html>
