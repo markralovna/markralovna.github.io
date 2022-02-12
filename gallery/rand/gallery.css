@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+:root {
+	--bg-color: #F8F8F8;
+	--fg-color: #121212;
+}
+
+* { padding: 0; margin: 0; }
+
+body {
+	font-family: 'Raleway', sans-serif;
+	color: var(--fg-color);
+	background-color: var( --bg-color );
+}
+h1 {
+	font-size: 2.5em;
+	text-align: center;
+}
+h1, #info-title {
+	font-family: 'DM Mono', monospace;
+}
+
+body {
+	display: grid;
+	position: fixed;
+	top: 0; left: 0; bottom: 0; right: 0;
+	padding: 50px 100px;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+h1 { grid-area: header; }
+#info { grid-area: card; }
+#artwork { grid-area: preview;}
+nav { grid-area: menu; }
+
+#info > *, #info-info > p {
+	margin-bottom: 10px;
+}
+
+#menu {
+	list-style-type: none;
+	display: flex;
+	overflow-x: scroll;
+}
+#menu > li {
+	padding: 10px 15px;
+	min-width: 70px;
+	text-align: center;
+}
+#menu > li:hover {
+	cursor: pointer;
+	background-color: #4442;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+#info-link {
+	float: inline-end;
+}
+
+#info-controls > input {
+	/* ... */
+}
+
+@media ( orientation: landscape ) {
+	body {
+		grid-template-columns: 65% 35%;
+		grid-template-rows: max-content auto max-content;
+		grid-template-areas: "header header" "preview card" "menu menu";
+		column-gap: 60px;
+		row-gap: 30px;
+	}
+}
+@media ( orientation: portrait ) {
+	body {
+		grid-template-columns: 100%;
+		grid-template-rows: max-content auto auto max-content;
+		grid-template-areas: "header" "preview" "card" "menu";
+		row-gap: 20px;
+	}
+}
+@media ( max-device-width: 750px ) {
+	body {
+		padding: 25px 50px;
+	}
+}
