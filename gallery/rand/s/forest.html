@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Magic Forest</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&space_beween_trees=32&noise_scale=100&angle=2&lenght_multiplier=5
+
+		const hairBrushes = [ ];
+
+		function setup( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 48 );
+			setStyle( );
+			loadBrushes( values['space_beween_trees'] );
+		}
+
+		function draw( ) {
+			hairBrushes.forEach( b => {
+				b.update( );
+				b.display( );
+			} );
+		}
+
+		function setStyle( ) {
+			background( 12 );
+			colorMode( HSL );
+			noFill( );
+			stroke( 0, 60, 60 );
+			angleMode( RADIANS );
+			strokeWeight( .1 );
+			smooth( );
+		}
+
+		function loadBrushes( dx ) {
+			const colorHue = random( 0, 360 );
+			for ( let x = 0; x < width; x += dx )
+				hairBrushes.push( new HairBrush( x ) );
+		}
+
+		class HairBrush {
+			constructor ( posX ) {
+				this.pos = createVector( posX, height * random( .90, .96 ) );
+				this.color = color( random( 0, 360 ), 60, 60 );
+				this.speed = random( -.5, 0 );
+				this.width = random( .05, .1 ) * width * values['lenght_multiplier'];
+				this.length = random( .5, 2 ) * height;
+			}
+			update () {
+				if ( this.alive ) {
+					const a = noise( this.pos.x/values['noise_scale'], this.pos.y/values['noise_scale'] ) * values['angle'] + ( PI - values['angle'] ) * .5;
+					this.pos.y += this.speed;
+
+					const u = p5.Vector.fromAngle( a + PI, this.width );
+					this.pos2 = u.add( this.pos );
+
+					this.length--;
+				}
+			}
+			display () {
+				if ( this.alive ) {
+					stroke( this.color );
+					line( this.pos.x, this.pos.y, this.pos2.x, this.pos2.y );
+				}
+			}
+			get alive () {
+				return this.length > 0;
+			}
+		}
+	</script>
+</html>

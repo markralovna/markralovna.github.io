@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>...</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&cell_size=50&circle_cells=2&base_color_hue=60&concentric_ratio=5&random_difficulty=5
+
+		const MODE_DEBUG = false;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			blendMode( LIGHTEST );
+			colorMode( HSL );
+		}
+
+		function draw() {
+			background( 12 );
+			noFill( );
+			values['cell_size'] = width * random( .05, .1 );
+			drawRandomCircles( );
+			if ( MODE_DEBUG ) displayGrid( );
+		}
+
+		function drawRandomCircles( ) {
+			const s = values['cell_size'];
+			for ( let x = s; x < width + s; x += s )
+				for ( let y = s; y < height + s; y += s )
+					drawRandomCricle( x, y );
+		}
+
+		function drawRandomCricle( posX, posY ) {
+			if ( random( values['random_difficulty'] ) < 1 ) {
+				stroke( randomColor( ) );
+				const radius = values['circle_cells'] * values['cell_size'];
+				const r = random( .005, .01 ) * values['concentric_ratio'];
+				posX -= radius * .5;
+				posY -= radius * .5;
+				concentricCircles( posX, posY, radius, r );
+			}
+		}
+
+		function randomColor( ) {
+			const color = [ 0, 90, 60, .8 ];
+			color[0] = values['base_color_hue'] + random( -40, 40 );
+			return color;
+		}
+
+		function concentricCircles( posX, posY, radius, concentricRatio ) {
+			const dr = radius * concentricRatio;
+			for ( let r = .1; r <= radius; r += dr )
+				circle( posX, posY, r );
+		}
+
+		function displayGrid( ) {
+			stroke( '#FF00FF90' );
+			strokeWeight( 4 );
+			for ( let x = 0; x < width; x += values['cell_size'] )
+				line( x, 0, x, height );
+			for ( let y = 0; y < height; y += values['cell_size'] )
+				line( 0, y, width, y );
+		}
+	</script>
+</html>
