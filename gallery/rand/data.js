@@ -25,11 +25,20 @@ const artworks = {
 		title: "Concentric circles Pattern",
 		date: 1644602400,
 		parms: [
-			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "base_color_hue", min: 40, max: 320 },
 			{ key: "cell_size", min: 60, max: 300 },
 			{ key: "concentric_ratio", min: 1, max: 10 },
 			{ key: "random_difficulty", min: 1, max: 10 },
 			{ key: "circle_cells", min: 1, max: 5 } 
+		],
+		info: ""
+	},
+	bezier: {
+		title: "",
+		date: 0,
+		parms: [
+			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "noise_increment_divider", min: 10, max: 1000 } 
 		],
 		info: ""
 	} 

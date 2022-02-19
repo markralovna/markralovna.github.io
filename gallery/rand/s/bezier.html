@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>...</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&base_color_hue=300&noise_increment_divider=200
+
+		const MODE_DEBUG = false;
+
+		let t = 0;
+		let dt = 0;
+		const suns = [];
+		const color = [ 0, 80, 50, .1 ];
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			frameRate( 48 );
+			colorMode( HSL );
+			angleMode( radians );
+			initOrbits( );
+			setupStyle( );
+		}
+
+		function setupStyle( ) {
+			stroke( 248 );
+			strokeWeight( 2 );
+			noFill( );
+			cleanCanvas( );
+			dt = 1 / values['noise_increment_divider'];
+		}
+
+		function draw() {
+			if ( MODE_DEBUG ) cleanCanvas( );
+			stroke( randomColor() );
+			suns.forEach( ( sun, i ) => sun.update( ) );
+			curve(
+				suns[0].p.x, suns[0].p.y,
+				suns[1].p.x, suns[1].p.y,
+				suns[2].p.x, suns[2].p.y,
+				suns[3].p.x, suns[3].p.y 
+			);
+			t += dt;
+		}
+
+		function cleanCanvas() {
+			background( 12 );
+		}
+
+		function initOrbits() {
+			for ( let i = 0; i < 4; i++ ) {
+				const sun = new Sun( createVector( width * .5, height * .5 ) );
+				const planet = new Planet( random( .01, .2 ) * i * width, random( .001, .01 ) );
+				sun.addSatellite( planet );
+				const moon = new Planet( random( .1, .4 ) * width, random( .005, .05 ) );
+				planet.addSatellite( moon );
+				suns.push( sun );
+			}
+		}
+
+		function strokeStyle( colorHueValue, strokeWeightValue ) {
+			stroke( colorHueValue, 100, 50, .4 );
+			strokeWeight( strokeWeightValue );
+		}
+
+		function randomColor( ) {
+			return [
+				values['base_color_hue'] + noise( t ) * 60,
+				color[1] + noise( t ) * 20,
+				color[2] + noise( t ) * 20,
+				color[3]
+			];
+		}
+
+		class Sun {
+			constructor( pos ) {
+				this.pos = pos;
+				this.satellites = [];
+			}
+			display( ) {
+				if ( MODE_DEBUG ) {
+					strokeStyle( 60, 20 );
+					point( this.pos.x, this.pos.y );
+				}
+				this.satellites.forEach( satellite => satellite.display() );
+			}
+			update( ) {
+				this.satellites.forEach( satellite => satellite.update( this.pos ) );
+			}
+			addSatellite( satellite ) {
+				this.satellites.push( satellite );
+				satellite.setParent( this );
+			}
+			get p ( ) {
+				if ( this.lastGeneration ) return this.pos;
+				else return this.satellites[0].p;
+			}
+		}
+		class Planet extends Sun {
+			constructor( radius, angularSpeed ) {
+				super( createVector( 0, 0 ) );
+				this.radius = radius;
+				this.angularSpeed = angularSpeed;
+				this.f = 0;
+			}
+			display( ) {
+				if ( MODE_DEBUG ) this.displayDebug();
+				else if ( this.lastGeneration ) line( this.pos.x, this.pos.y, this.lastPoint.x, this.lastPoint.y );
+				this.lastPoint = createVector( this.pos.x, this.pos.y );
+				this.satellites.forEach( satellite => satellite.display( ) );
+			}
+			update( ) {
+				this.f += this.angularSpeed;
+				this.pos.x = this.parent.pos.x + cos( this.f ) * this.radius * .5;
+				this.pos.y = this.parent.pos.y + sin( this.f ) * this.radius * .5;
+				this.satellites.forEach( satellite => satellite.update( ) );
+			}
+			displayDebug( ) {
+				strokeStyle( 180, 6 );
+				circle( this.parent.pos.x, this.parent.pos.y, this.radius );
+				strokeStyle( 300, 4 );
+				line( this.pos.x, this.pos.y, this.parent.pos.x, this.parent.pos.y );
+				strokeStyle( 60, 20 );
+				point( this.pos.x, this.pos.y );
+			}
+			setParent( parent ) {
+				this.parent = parent;
+				this.update();
+				this.lastPoint = this.pos;
+			}
+			get lastGeneration ( ) {
+				return this.satellites.length == 0;
+			}
+			get p ( ) {
+				if ( this.lastGeneration ) return this.pos;
+				else return this.satellites[0].p;
+			}
+		}
+	</script>
+</html>
