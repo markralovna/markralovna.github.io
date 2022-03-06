@@ -34,11 +34,35 @@ const artworks = {
 		info: ""
 	},
 	bezier: {
-		title: "",
-		date: 0,
+		title: "Orbiting bezier",
+		date: 1645214400,
 		parms: [
 			{ key: "base_color_hue", min: 60, max: 300 },
 			{ key: "noise_increment_divider", min: 10, max: 1000 } 
+		],
+		info: ""
+	},
+	cave: {
+		title: "Cave",
+		date: 1645909200,
+		parms: [
+			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "stroke_weight", min: 1, max: 2 },
+			{ key: "dx_quotient", min: 100, max: 300 },
+			{ key: "noise_factor", min: 100, max: 300 },
+			{ key: "count", min: 3, max: 12 } 
+		],
+		info: ""
+	},
+	perlin_spiral_bezier: {
+		title: "Perlin Spiral Bezier",
+		date: 1646602200,
+		parms: [
+			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "noise_factor", min: 100, max: 300 },
+			{ key: "polygon_vertices", min: 128, max: 2048 },
+			{ key: "anchor_angle_increment", min: 0, max: 1.5 },
+			{ key: "bezier_vertices", min: 3, max: 9 },
 		],
 		info: ""
 	} 
