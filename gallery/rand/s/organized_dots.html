@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Organized Dots</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&n_factor=4&layers=16&dr=4
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			background( 12 );
+			noFill( 4 );
+			stroke( 248 );
+			strokeWeight( 4 );
+		}
+
+		function draw() {
+			const center = createVector( width * .5, height * .5 );
+			const layers = values['layers'];
+			const nFactor = floor( values['n_factor'] ) * 2;
+			const dr = width * values['dr'] * .01;
+			for ( let i = 0; i < layers; i++ ) {
+				const n = floor( random( 2, 8 ) ) * nFactor;
+				const r = width * .3 + dr * i;
+				drawBracelet( center, r, n, circle, 5 );				
+			}
+		}
+
+		function drawBracelet( pos, dim, n, shape, size ) {
+			const da = TAU / n;
+			for ( let a = 0; a < TAU; a += da ) {
+				const x = pos.x + sin( a ) * dim * .5;
+				const y = pos.y + cos( a ) * dim * .5;
+				shape( x, y, size );
+			}
+		}
+	</script>
+</html>

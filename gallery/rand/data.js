@@ -65,5 +65,15 @@ const artworks = {
 			{ key: "bezier_vertices", min: 3, max: 9 },
 		],
 		info: ""
+	},
+	organized_dots: {
+		title: "Organized Dots",
+		date: 1647462600,
+		parms: [
+			{ key: "n_factor", min: 2, max: 5 },
+			{ key: "layers", min: 3, max: 16 },
+			{ key: "dr", min: 1, max: 5 } 
+		],
+		info: ""
 	} 
 };
