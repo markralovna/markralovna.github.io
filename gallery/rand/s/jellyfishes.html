@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Jellyfishes</title>
+
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&number_jellyfish=32&displacement_noise=1&noise_scale=400
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop();
+			angleMode( RADIANS );
+			noFill();
+			colorMode( HSL );
+			strokeWeight( .5 );
+			blendMode( LIGHTEST );
+		}
+
+		function draw() {
+			background( 12 );
+			for ( let i = 0; i < values['number_jellyfish']; i++ ) {
+				stroke( c() );
+				const x = random( .1, .9 ) * width;
+				const y = random( .1, .9 ) * height;
+				const d = random( .25, .23 ) * width;
+				drawJellyfish( x, y, d );
+			}
+		}
+
+		function drawJellyfish( posX, posY, dim ) {
+			const da = .01;
+			for ( let a = 0; a < TAU; a+= da ) {
+				const x = posX + dim * cos( a ) * .5;
+				const y = posY + dim * sin( a ) * .5;
+				const n = perlin( x, y ) * dim * values['displacement_noise'];
+				line( posX, posY, x + n, y + n );
+			}
+		}
+
+		function perlin( p1, p2 ) {
+			const s = 1 / values['noise_scale'];
+			return noise( p1 * s, p1 * s ) - 0.5;
+		}
+
+		function c( ) {
+			const color = [ 0, 90, 60, .5 ];
+			color[0] = random( 0, 360 );
+			return color;
+		}
+	</script>
+</html>
