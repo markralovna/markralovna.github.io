@@ -34,7 +34,8 @@ h1 { grid-area: header; }
 nav { grid-area: menu; }
 
 #info > *, #info-info > p {
-	margin-bottom: 10px;
+	margin: 25px 0;
+	line-height: 1.5;
 }
 
 #menu {
@@ -62,8 +63,27 @@ iframe {
 	float: inline-end;
 }
 
-#info-controls > input {
-	/* ... */
+#info-controls {
+	column-count: 2;
+	column-gap: 20px;
+}
+#info-controls > div {
+	margin-bottom: 10px;
+	break-inside: avoid-column;
+}
+#info-controls label {
+	display: block;
+	color: #444;
+	font-size: .8em;
+}
+#info-controls input {
+	width: 100%;
+}
+
+code {
+	background-color: #88888860;
+	padding: 2px 5px;
+	border-radius: 5px;
 }
 
 @media ( orientation: landscape ) {

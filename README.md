@@ -23,6 +23,7 @@ Apps on my own.
 | The Magic School    | [/school](./gallery/school)      | I'm unable to understand an algorithm until I try to implement it by myself      |       80 % |
 | Essential Arcade    | [/arcade](./gallery/arcade)      | A teacher of mine told the best way to learn game development is copying games   |       30 % |
 | Animated Writing    | [/write](./gallery/write)        | I have something to say                                                          |       15 % |
+| Random Artworks     | [/rand](./gallery/rand)          | <span class="pendent">...</span>                                                 |       90 % |
 
 \* Every project contains a file called `docs.md` in the root folder containing the information for understanging the project.
 
@@ -61,6 +62,11 @@ Root
 
 ## ToDo...
 
+* [ ] A `gallery\rand`, millorar el hover dels botons
+* [ ] A `gallery\rand`, destacar el botó de l'artwork actiu
+* [ ] A `gallery\rand`, posar descripcions a cada artwork
+* [ ] A `gallery\rand`, arreglar les dates
+* [ ] A `gallery\rand`, posar noms més explícits a les etiquetes dels `args`.
 * [x] A `gallery\arcade`, <span class="pendent">UI/UX Etiquetes i botons</span>.
 * [x] A `gallery\arcade\scripts\games\Snake.js`, <span class="pendent">repassar jugabilitat i mòbil.</span>.
 * [x] A `gallery\arcade\scripts\games\MinesWeeper.js`, repassar.
