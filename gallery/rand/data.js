@@ -77,8 +77,8 @@ const artworks = {
 		info: ""
 	},
 	jellyfishes: {
-		title: "jellyfishes",
-		date: 1647783000000,
+		title: "Jellyfishes",
+		date: 1647783000,
 		parms: [
 			{ key: "number_jellyfish", min: 5, max: 15 },
 			{ key: "displacement_noise", min: 1, max: 2 },

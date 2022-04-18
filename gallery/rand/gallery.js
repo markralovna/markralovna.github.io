@@ -26,7 +26,7 @@ function openArtwork( artworkKey ) {
 	e( "info-date" ).innerText = d( artwork.date );
 	e( "info-info" ).innerHTML = artwork.info;
 	// e( "info-info" ).innerHTML = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ad sint, porro voluptas adipisci doloribus <strong>pariatur fugiat ullam</strong> quas iure cupiditate dolore quis, vitae, numquam voluptatum. Molestiae sed, ad velit nostrum nemo <code>aspernatur</code> sint <code>consectetur</code>, labore laboriosam accusantium veritatis id accusamus, dolorum <strong>dolore illum</strong> commodi?2</p><p>Eligendi velit culpa enim quidem? Nisi adipisci nulla illum! Dolores, atque aliquid voluptatem facere <em>molestiae</em> harum qui?</p>";
-	loadArtworkControls( artwork );
+	loadArtworkControls( artwork, artworkKey );
 	setArtworkLink( artworkKey );
 }
 
@@ -34,21 +34,21 @@ function e( idDomElement ) {
 	return document.getElementById( idDomElement );
 }
 
-function loadArtworkControls( artwork ) {
+function loadArtworkControls( artwork, artworkKey ) {
 	const cont = e( "info-controls" );
 	cont.innerHTML = "";
 	artwork.parms.forEach( parm => {
-		cont.appendChild( createParmInput( parm ) );
+		cont.appendChild( createParmInput( parm, artworkKey ) );
 	} );
 }
 
-function createParmInput( parm ) {
+function createParmInput( parm, artworkKey ) {
 	const inp = document.createElement( "INPUT" );
 	inp.type = "range";
 	inp.min = parm.min;
 	inp.max = parm.max;
 	inp.value = random( parm.min, parm.max );
-	inp.onchange = updateArtworkArgs;
+	inp.onchange = ev => { updateArtworkArgs( artworkKey ) };
 	inp.classList.add( "artwork-arg-input" );
 	inp.setAttribute( "arg-key", parm.key );
 	const lab = document.createElement( "LABEL" );
@@ -66,7 +66,7 @@ function random( min, max ) {
 function d( epoch ) {
 	const d = new Date(0);
 	d.setUTCSeconds( epoch );
-	return `${d.getDay()}/${d.getMonth()+1}/${d.getFullYear()}`;
+	return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
 }
 
 function setArtworkLink( artworkKey, argsQuery = "" ) {
@@ -81,13 +81,13 @@ function key2label( key ) {
 	return label;
 }
 
-function updateArtworkArgs( ev ) {
-	var argsQuery = "";
+function updateArtworkArgs( artworkKey ) {
+	var argsQuery = "a=0&";
 	const els = document.querySelectorAll( ".artwork-arg-input" );
 	els.forEach( el => {
 		const k = el.getAttribute( "arg-key" );
 		const v = el.value;
 		argsQuery += `${k}=${v}&`;
 	});
-	setArtworkLink( "organized_dots", argsQuery );
+	setArtworkLink( artworkKey, argsQuery );
 }

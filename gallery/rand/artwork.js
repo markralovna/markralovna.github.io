@@ -3,7 +3,12 @@ function readParms( args ) {
 	const urlParams = new URLSearchParams( window.location.href );
 	args.forEach( arg => {
 		const v = urlParams.get( arg.key );
-		values[arg.key] = v != null ? parseInt(v) : Math.random( ) * ( arg.max - arg.min ) + arg.min;
+		if ( v == null ) {
+			values[arg.key] = Math.random( ) * ( arg.max - arg.min ) + arg.min;
+			if ( arg.step == 1 ) values[arg.key] = Math.floor( values[arg.key] );
+		}
+		else
+			values[arg.key] = parseFloat(v);
 	});
 	return values;
 }
@@ -19,6 +24,10 @@ function getCurrentArtworkId( ) {
 function getCurrentArtworkData( ) {
 	const key = getCurrentArtworkId( );
 	return artworks[key];
+}
+
+function a( key ) {
+	return values[key];
 }
 
 const artworkData = getCurrentArtworkData();

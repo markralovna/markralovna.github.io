@@ -63,6 +63,7 @@ Root
 ## ToDo...
 
 * [ ] A `gallery\rand`, millorar el hover dels botons
+* [ ] A `gallery\rand`, preparar opció per exportar artwork
 * [ ] A `gallery\rand`, destacar el botó de l'artwork actiu
 * [ ] A `gallery\rand`, posar descripcions a cada artwork
 * [ ] A `gallery\rand`, arreglar les dates
