@@ -85,5 +85,28 @@ const artworks = {
 			{ key: "noise_scale", min: 100, max: 600 } 
 		],
 		info: ""
+	},
+	cricled_cave: {
+		title: "Cave rotated",
+		date: 1651003200,
+		parms: [
+			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "noise_factor", min: 50, max: 1000 },
+			{ key: "line_count", min: 128, max: 2048 },
+			{ key: "circle_count", min: 1, max: 16 } 
+		],
+		info: ""
+	},
+	mountains: {
+		title: "Mountains",
+		date: 1649545200,
+		parms: [
+			{ key: "base_color_hue", min: 60, max: 300 },
+			{ key: "noise_factor", min: 50, max: 1000 },
+			{ key: "moutain_resolution", min: 2, max: 15 },
+			{ key: "moutain_size_ratio", min: 1, max: 15 },
+			{ key: "number_mountains", min: 2, max: 15 } 
+		],
+		info: ""
 	} 
 };

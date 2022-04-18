@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Cave rotated</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&base_color_hue=180&noise_factor=500&circle_count=6&line_count=400
+		const MODE_DEV = false;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			colorMode( HSL );
+			angleMode( radians );
+			setupStyle( );
+			// blendMode( DODGE );
+		}
+
+		function setupStyle( ) {
+			strokeWeight( .5 );
+			noFill( );
+			strokeCap( ROUND );
+		}
+
+		function draw() {
+			background( 12 );
+			const n = MODE_DEV ? 1 : values['circle_count'];
+			const center = createVector( width * .5, height * .5 );
+			for ( let i = 0; i < n; i++ )
+				drawRandomLineCircles( center );
+		}
+
+		function drawRandomLineCircles( pos ) {
+			const diameter = random( .1, .8 ) * width;
+			const lineLength = random( .05, .3 ) * diameter;
+			stroke( randomColor( ) );
+			drawLineCircles( pos, diameter, values['line_count'], lineLength );
+		}
+
+		function drawLineCircles( pos, dim, numberLines, lineLength ) {
+			displayHelper( 180, 6, () => { circle( pos.x, pos.y, dim ) } );
+			const da = TAU / numberLines;
+			for ( let a = 0; a < TAU; a += da ) {
+				const x = pos.x + cos( a ) * dim * .5;
+				const y = pos.y + sin( a ) * dim * .5;
+				const l = lineLength + perlin( x, y );
+				displayHelper( 60, 12, () => { point( x, y ) } );
+				const x1 = pos.x + cos( a ) * ( dim - l ) * .5;
+				const y1 = pos.y + sin( a ) * ( dim - l ) * .5;
+				const x2 = pos.x + cos( a ) * ( dim + l ) * .5;
+				const y2 = pos.y + sin( a ) * ( dim + l ) * .5;
+				displayHelper( 300, 2, () => { line( x1, y1, x2, y2 ) } );
+				if ( !MODE_DEV ) line( x1, y1, x2, y2 );
+			}
+		}
+
+		function displayHelper( hue, size, drawCallback ) {
+			if ( MODE_DEV ) {
+				stroke( hue, 100, 50, .6 );
+				strokeWeight( size );
+				drawCallback( );
+			}
+		}
+
+		function perlin( a, b ) {
+			const noiseScale = values['noise_factor'];
+			return ( noise( a / noiseScale, b / noiseScale ) - .5 ) * noiseScale;
+		}
+
+		function randomColor( ) {
+			const b = values['base_color_hue'];
+			return [
+				b + random( -60, 60 ),
+				random( 70, 100 ),
+				random( 40, 60 )
+			];
+		}
+	</script>
+</html>
