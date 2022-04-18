@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Poli</title>
+
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&layers=3&polygon_sides=6&polygon_size_ratio=8&layers_radius_ratio=1.2
+
+		const layers = a('layers');
+		const polygon_sides = a('polygon_sides');
+		const polygon_size_ratio = a('polygon_size_ratio');
+		const layers_radius_ratio = a('layers_radius_ratio');
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			background( 12 );
+			stroke( 248 );
+			strokeWeight( 1 );
+			noFill();
+		}
+
+		function draw() {
+			const polygon_size = width / polygon_size_ratio;
+			const r = polygon_size * 2 * layers_radius_ratio;
+			const center = createVector( width * .5, height * .5 );
+			for ( let i = 0; i < layers; i++ )
+				drawBracelet( center, i * r, polygon_sides * i, polygon_sides, polygon_size, i );
+		}
+
+		function drawBracelet( pos, dim, nodes, sides, size, iteration ) {
+			const da = TAU / nodes;
+			for ( let a = 0; a < TAU; a += da ) {
+				const x = pos.x + sin( a ) * dim * .5;
+				const y = pos.y + cos( a ) * dim * .5;
+				polygon( x, y, size, sides, 0 );
+			}
+		}
+
+		function polygon( posX, posY, radius, sides, rotation ) {
+			const r = PI + HALF_PI + rotation;
+			beginShape();
+			for (let i = 0; i <= sides; i++) {
+				const a = TAU / sides * i + r;
+				const x = posX + cos(a) * radius * .5;
+				const y = posY + sin(a) * radius * .5;
+				vertex( x, y );
+			}
+			endShape( CLOSE );
+		}
+	</script>
+</html>

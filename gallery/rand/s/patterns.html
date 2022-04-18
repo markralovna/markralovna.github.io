@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Patterns</title>
+
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+
+		<style> .pattern { display: none } </style>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&n_factor=4&layers=16&dr=4
+
+		function setup() {
+			initPatterns( );
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			background( 12 );
+			stroke( 248 );
+			strokeWeight( 1 );
+		}
+
+		function draw() {
+			const nodes = a('nodes');
+			const circle_size = width / a('size_ratio');
+			const r = circle_size * 2 * a('layers_radius_ratio');
+			const center = createVector( width * .5, height * .5 );
+			for ( let i = 0; i < a('layers'); i++ )
+				drawBracelet( center, i * r, nodes * i, circle_size );
+		}
+
+		function drawBracelet( pos, dim, nodes, size ) {
+			const da = TAU / nodes;
+			for ( let a = 0; a < TAU; a += da ) {
+				const x = pos.x + sin( a ) * dim * .5;
+				const y = pos.y + cos( a ) * dim * .5;
+				fillPattern( );
+				circle( x, y, size );
+			}
+		}
+
+		function fillPattern( ) {
+			const patternId = randomArrayIndex( patternDrawFunctions );
+			const patternCanvas = document.getElementById( `pattern${patternId}` );
+			const pattern = this.drawingContext.createPattern( patternCanvas, 'repeat' );
+			this._renderer._setFill( pattern );
+		}
+
+		function initPatterns( ) {
+			patternDrawFunctions.forEach( ( drawFunction, i ) => {
+				const c = createPatternCanvas( i );
+				const color = `hsla(${random(360)}, 100%, 50%, .8)`;
+				drawFunction( c.getContext('2d'), color );
+			});
+		}
+
+		function randomArrayIndex( array ) {
+			return floor( random( 0, array.length ) );
+		}
+
+		function createPatternCanvas( id ) {
+			const el = document.createElement( "CANVAS" );
+			el.id = `pattern${id}`;
+			el.classList.add( 'pattern' );
+			el.width = 100;
+			el.height = 100;
+			document.body.appendChild( el );
+			return el;
+		}
+
+		const patternDrawFunctions = [
+			( ctx, color ) => {
+				ctx.strokeStyle = color;
+				for ( let i = -10; i < 10; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( 0, i * 10 );
+					ctx.lineTo( 100, 100 + i * 10 );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color ) => {
+				ctx.strokeStyle = color;
+				for ( let i = 0; i < 20; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( 0, i * 5 );
+					ctx.lineTo( 100, i * 5 );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color ) => {
+				ctx.strokeStyle = color;
+				for ( let i = 0; i < 20; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( i * 5, 0 );
+					ctx.lineTo( i * 5, 100 );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color ) => {
+				ctx.strokeStyle = color;
+				ctx.fillStyle = color;
+				for ( let i = 0; i < 10; i+=2 ) {
+					for ( let j = 0; j < 10; j+=2 ) {
+						ctx.beginPath( );
+						ctx.rect( i * 10, j * 10, 5, 5 );
+						ctx.stroke( );				
+					}
+				}
+			},
+			( ctx, color ) => {
+				ctx.strokeStyle = color;
+				for ( let i = 0; i < 10; i+=2 ) {
+					for ( let j = 0; j < 10; j+=2 ) {
+						ctx.beginPath( );
+						ctx.rect( i * 10, j * 10, 10, 10 );
+						ctx.stroke( );				
+						ctx.beginPath( );
+						ctx.rect( ( i + 1 ) * 10, ( j + 1 ) * 10, 10, 10 );
+						ctx.stroke( );				
+					}
+				}
+			}
+		];
+	</script>
+</html>

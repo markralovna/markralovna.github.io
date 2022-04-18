@@ -97,6 +97,17 @@ const artworks = {
 		],
 		info: ""
 	},
+	poli: {
+		title: "Poli",
+		date: 1650279600,
+		parms: [
+			{ key: "layers", min: 2, max: 6, step: 1 },
+			{ key: "polygon_sides", min: 3, max: 12, step: 1 },
+			{ key: "polygon_size_ratio", min: 5, max: 15, step: 1 },
+			{ key: "layers_radius_ratio", min: 1, max: 2, step: .01 } 
+		],
+		info: ""
+	},
 	mountains: {
 		title: "Mountains",
 		date: 1649545200,
@@ -106,6 +117,17 @@ const artworks = {
 			{ key: "moutain_resolution", min: 2, max: 15 },
 			{ key: "moutain_size_ratio", min: 1, max: 15 },
 			{ key: "number_mountains", min: 2, max: 15 } 
+		],
+		info: ""
+	},
+	patterns: {
+		title: "Patterns",
+		date: 1650283200,
+		parms: [
+			{ key: "layers", min: 2, max: 6, step: 1 },
+			{ key: "nodes", min: 3, max: 12, step: 1 },
+			{ key: "size_ratio", min: 5, max: 15, step: 1 },
+			{ key: "layers_radius_ratio", min: 1, max: 2, step: .01 } 
 		],
 		info: ""
 	} 
