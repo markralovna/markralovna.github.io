@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Patterns</title>
+
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+
+		<style>
+			body { background-color: #1F1F1F }
+			canvas { margin: 0; }
+		</style>
+	</head>
+	<body></body>
+	<script>
+		// ?a=0&grid_cells=4&base_color=180
+
+		const n = a( 'grid_cells' );
+		const base_color = a( 'base_color' );
+
+		window.addEventListener( 'load', initPatterns );
+
+		const TAU = Math.PI * 2;
+
+		function initPatterns( ) {
+			const w = window.innerWidth, h = window.innerHeight;
+			const s = ( w > h ? w : h ) / n;
+			for (let x = 0; x <= w; x += s) for (let y = 0; y <= h; y += s ) {
+				const drawFunction = randomArrayEl( patternDrawFunctions );
+				const c = createCanvasEl( s, s );
+				const color = randomColorShadow( base_color );
+				drawFunction( c.getContext('2d'), color, s );
+			}
+		}
+
+		function randomColorShadow( baseHue ) {
+			const h = baseHue + random( -60, 60 );
+			const s = random( 70, 100 );
+			const l = random( 40, 60 );
+			return `hsla(${h}, ${s}%, ${l}%, .8)`
+		}
+
+		function randomArrayEl( array ) {
+			return array[Math.floor( random( 0, array.length ) )];
+		}
+
+		function random( min, max ) {
+			return Math.random() * ( max - min ) + min;
+		}
+
+		function createCanvasEl( width, height ) {
+			const el = document.createElement( "CANVAS" );
+			el.width = width;
+			el.height = height;
+			document.body.appendChild( el );
+			return el;
+		}
+
+		const patternDrawFunctions = [
+			( ctx, color, size ) => {
+				ctx.strokeStyle = color;
+				ctx.lineWidth = 4;
+				const s = size / 10;
+				for ( let i = -s; i <= s; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( 0, i * s );
+					ctx.lineTo( size, size + i * s );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.strokeStyle = color;
+				const m = 15;
+				ctx.lineWidth = 4;
+				const s = size / m;
+				for ( let i = 0; i <= m; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( 0, i * s );
+					ctx.lineTo( size, i * s );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.strokeStyle = color;
+				ctx.lineWidth = 4;
+				const m = 15;
+				const s = size / m;
+				for ( let i = 0; i <= m; i++ ) {
+					ctx.beginPath( );
+					ctx.moveTo( i * s, 0 );
+					ctx.lineTo( i * s, size );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.fillStyle = color;
+				const s = size / 10;
+				for ( let i = 0; i < s; i += 2 ) {
+					for ( let j = 0; j < s; j += 2 ) {
+						ctx.beginPath( );
+						ctx.rect( i * s, j * s, s, s );	
+						ctx.fill( );
+						ctx.beginPath( );
+						ctx.rect( ( i + 1 ) * s, ( j + 1 ) * s, s, s );
+						ctx.fill( );
+					}
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.strokeStyle = color;
+				ctx.lineWidth = 4;
+				const p = size * .5;
+				for ( let r = .05; r < .5; r += .1 ) {
+					ctx.beginPath( );
+					ctx.arc( p, p, size * r, 0, TAU, true );
+					ctx.stroke( );
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.fillStyle = color;
+				const s = size / 10;
+				for ( let x = 0; x <= size + s; x += s ) for ( let y = 0; y <= size + s; y += s ) {
+					ctx.beginPath( );
+					ctx.arc( x, y, s * .25, 0, TAU, true );
+					ctx.fill( );
+				}
+			},
+			( ctx, color, size ) => {
+				ctx.strokeStyle = color;
+				ctx.lineWidth = 48;
+				ctx.beginPath( );
+				ctx.arc( 0, size * .5, size * .5, 0, TAU, true );
+				ctx.stroke( );
+				ctx.beginPath( );
+				ctx.arc( size, size * .5, size * .5, 0, TAU, true );
+				ctx.stroke( );
+			},
+			( ctx, color, size ) => { }
+		];
+	</script>
+</html>

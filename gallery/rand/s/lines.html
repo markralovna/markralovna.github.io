@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Manta</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&stroke_weight=2&distance=5&noise_scale=600&perp_line_length=40&num_paths=6
+
+		const speed = a( 'distance' );
+		const perp_line_length = a( 'perp_line_length' );
+		const n = a( 'num_paths' );
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			colorMode( HSL );
+			strokeWeight( a('stroke_weight') );
+			background( 12 );
+		}
+
+		function draw() {
+			const da = width / n;
+			const y = height * .5;
+			const pathLenght = y;
+			for ( let x = 0; x <= width; x += da ) {
+				const c = random( 0, 360 );
+				const pos = createVector( x, y );
+				drawPerlinPath( pos, a( 'noise_scale' ), pathLenght, perpLine, HALF_PI, .3, c );
+				const pos2 = createVector( x, y );
+				drawPerlinPath( pos2, a( 'noise_scale' ), pathLenght, perpLine, -HALF_PI, .3, c );
+			}
+		}
+
+		function perpLine( x, y, color, a = 0 ) {
+			stroke( c( color ) );
+			a += HALF_PI;
+			const l = perp_line_length;
+			line(
+				x - cos( a ) * l,
+				y - sin( a ) * l,
+				x + cos( a ) * l,
+				y + sin( a ) * l 
+			);
+		}
+
+		function drawPerlinPath( pos, scale, length, drawFunction, gravityDir, gravityForce, color ) {
+			const g = PI * gravityForce;
+			for (let i = 0; i < length; i++) {
+				const a = perlin( pos.x, pos.y, scale ) * g + gravityDir;
+				pos.x += cos( a ) * speed;
+				pos.y += sin( a ) * speed;
+				drawFunction( pos.x, pos.y, color, a );
+			}
+		}
+
+		function perlin( x, y, scale ) {
+			return noise( x / scale, y / scale ) - .5;
+		}
+
+		function c( hueColor ) {
+			return [
+				hueColor,
+				random( 70, 100 ),
+				random( 30, 70 ),
+				.8 
+			];
+		}
+	</script>
+</html>

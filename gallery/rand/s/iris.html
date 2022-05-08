@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Iris</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&noise_scale=6&base_color_hue=180&nodes=64&resolution=12
+
+		const MODE_DEV = false;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			colorMode( HSL );
+			angleMode( radians );
+			noFill();
+		}
+
+		const baseColorHue = a( 'base_color_hue' );
+		function draw() {
+			background( 12 );
+			const nodes = a( 'nodes' );
+			const noiseScale = a( 'noise_scale' );
+			const resolution = a( 'resolution' );
+			drawCurlyWheel( createVector( width * .5, height * .5 ), width * .4, nodes, resolution, noiseScale );
+		}
+
+		function drawCurlyWheel( pos, radius, nodes, resolution, noiseScale ) {
+			drawHelper( 300, 5, () => { circle( pos.x, pos.y, radius * 2 ) } );
+			const da = TAU / nodes;
+			const dr = radius / resolution;
+			for ( let a = 0; a < TAU; a += da ) {
+				stroke( c( baseColorHue ) );
+				beginShape();
+				for ( let r = dr; r <= radius; r += dr ) {
+					const x = pos.x + cos( a ) * r + n( noiseScale );
+					const y = pos.y + sin( a ) * r + n( noiseScale );
+					drawHelper( 180, 10, () => { point( x, y ) } );
+					vertex( x, y );
+				}
+				drawHelper( 60, 1, () => { } );
+				endShape( );
+			}
+			drawHelper( 60, 15, () => { point( pos.x, pos.y ) } );
+		}
+
+		function n( scale ) {
+			return random( -scale, scale );
+		}
+
+		function c( hue ) {
+			return [
+				hue + random( -30, 30 ),
+				random( 70, 100 ),
+				random( 40, 60 ),
+				random( .6, .9 ) 
+			];
+		}
+
+		function drawHelper( colorHue, size, callback ) {
+			if ( MODE_DEV ) {
+				stroke( [ colorHue, 90, 50, .6 ] );
+				strokeWeight( size );
+				callback();
+			}
+		}
+	</script>
+</html>

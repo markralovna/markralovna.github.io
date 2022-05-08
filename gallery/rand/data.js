@@ -130,5 +130,37 @@ const artworks = {
 			{ key: "layers_radius_ratio", min: 1, max: 2, step: .01 } 
 		],
 		info: ""
+	},
+	lines: {
+		title: "Manta",
+		date: 1650751200,
+		parms: [
+			{ key: "stroke_weight", min: .5, max: 3, step: .1 },
+			{ key: "distance", min: 1, max: 10, step: 1 },
+			{ key: "noise_scale", min: 50, max: 1000, step: 1 },
+			{ key: "perp_line_length", min: 5, max: 300, step: 1 },
+			{ key: "num_paths", min: 2, max: 20, step: 1 } 
+		],
+		info: ""
+	},
+	grid: {
+		title: "Patterns",
+		date: 1650837600,
+		parms: [
+			{ key: "grid_cells", min: 1, max: 3, step: 12 },
+			{ key: "base_color", min: 0, max: 360, step: 12 } 
+		],
+		info: ""
+	},
+	iris: {
+		title: "Iris",
+		date: 1652047200,
+		parms: [
+			{ key: "noise_scale", min: 1, max: 16, step: 1 },
+			{ key: "base_color_hue", min: 30, max: 330 },
+			{ key: "nodes", min: 3, max: 128, step: 1 },
+			{ key: "resolution", min: 1, max: 24, step: 1 } 
+		],
+		info: ""
 	} 
 };
