@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Whisper&display=swap');
+
+body, body > * {
+	position: fixed;
+}
+body {
+	background-color: #1F1F1F;
+	margin: 0;
+	top: 0; left: 0; bottom: 0; right: 0;
+	padding: 100px;
+}
+
+#image {
+	width: 80%;
+	max-width: 400px;
+	display: block;
+	cursor: pointer;
+}
+#answer {
+	color: #FF06;
+	font-family: 'Whisper', cursive;
+	font-size: 28pt;
+}
+.centered {
+	margin: 0;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+#image.answering {
+	display: none;
+} #image:not( .answering ) + #answer {
+	display: none;
+}
+
+#image, #answer {
+	animation: animText 2s;
+} @keycorners animText {
+	from { opacity: .2; }
+	to   { opacity:  1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#frame {
+	margin: 25px;
+}
+
+#frame > img {
+	position: fixed;
+	transform-origin: 50% 50%;
+	--p: 30px;
+	transform: translate( var( --tx ), var( --ty ) ) rotate( var( --r ) );
+}
+
+@media ( max-width: 500px ) {
+	#frame > img {
+		--p: 15px;
+	}
+}
+
+img {
+	--tx: 0; --ty: 0; --r: 0;
+}
+
+.v-top    { top:    var(--p); }
+.v-bottom { bottom: var(--p); }
+.h-left   { left:   var(--p); }
+.h-right  { right:  var(--p); }
+.v-center { top: 50%; --ty: -50% }
+.h-center { left: 50%; --tx: -50% }
+
+.r1 { --r: 0 }
+.r2 { --r: 90deg }
+.r3 { --r: 180deg }
+.r4 { --r: 270deg }
+
+
+
+.corner, .edge {
+	width: 200px; height: 200px;
+}
+
+.icon {
+	width: 25px; height: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.edge {
+	display: none;
+}

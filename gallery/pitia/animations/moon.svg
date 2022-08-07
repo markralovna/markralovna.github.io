@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10">
+	<defs>
+		<mask id="earth">
+			<rect x="0" y="0" width="10" height="10" fill="white"/>
+			<circle cx="8" cy="5" r="5" fill="black">
+				<animate attributeName="cx" from="-5" to="15" dur="5s" repeatCount="indefinite"/>
+			</circle>
+		</mask>
+	</defs>
+	<circle id="moon" cx="5" cy="5" r="5" fill="#F0F8" mask="url(#earth)"/>
+</svg>

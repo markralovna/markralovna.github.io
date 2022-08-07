@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" >
+	<style>
+		.mirror {
+			transform-origin: 50% 50%;
+			transform: rotate(90deg) scale(1,-1);
+		}
+		.magic-dust {
+			animation: dustAnim 4s infinite;
+			fill: hsl( var(--n), 95%, 55% );
+		}
+
+		.magic-dust:nth-child(1n)   { --n: 180; animation-delay: -1s }
+		.magic-dust:nth-child(2n)   { --n: 200; animation-delay: -2s }
+		.magic-dust:nth-child(3n)   { --n: 220; animation-delay: -3s }
+		.magic-dust:nth-child(4n)   { --n: 240; animation-delay: -4s }
+		.magic-dust:nth-child(5n)   { --n: 260; animation-delay: -5s }
+		.magic-dust:nth-child(6n)   { --n: 280; animation-delay: -6s }
+		.magic-dust:nth-child(7n)   { --n: 300; animation-delay: -7s }
+
+		@keyframes dustAnim {
+			0%   { opacity: .8; transform: translate(var(--t)) rotate(var(--r)) scale(1.2); }
+			50%  { opacity: .2; transform: translate(var(--t)) rotate(var(--r)) scale( .8); }
+			100% { opacity: .8; transform: translate(var(--t)) rotate(var(--r)) scale(1.2); }
+		}
+	</style>
+
+	<path  id="dust-circle"  d="m -5 -5 m 0 -2 l 2 2 l -2 2 l -2 -2 z"></path>
+	<path  id="dust-sparkle" d="m -5 -5 m 0 -5 c 0 2.5 2.5 5 5 5 c -2.5 0 -5 2.5 -5 5 c 0 -2.5 -2.5 -5 -5 -5 c 5 0 5 -5 5 -5 z"></path>
+
+	<g id="side">
+		<use href="#dust-sparkle" class="magic-dust" x="10"  y="10" />
+		<use href="#dust-circle"  class="magic-dust" x="20"  y="10" />
+		<use href="#dust-circle"  class="magic-dust" x="30"  y="10" />
+		<use href="#dust-circle"  class="magic-dust" x="55"  y="10" />
+		<use href="#dust-circle"  class="magic-dust" x="80"  y="10" />
+		<use href="#dust-circle"  class="magic-dust" x="90"  y="10" />
+		<use href="#dust-sparkle" class="magic-dust" x="100" y="10" />
+	</g>
+
+	<use href="#side" class="mirror"/>
+</svg>

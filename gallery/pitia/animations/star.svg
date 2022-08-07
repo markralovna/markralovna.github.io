@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10">
+	<style>
+		use, g {
+			transform-origin: 50% 50%;
+		}
+		use {
+			animation: dustAnim 4s infinite;
+		}
+		g > g > use {
+			animation-delay: 2s;
+		}
+		@keyframes dustAnim {
+			0%   { transform: scale(1.2) }
+			50%  { transform: scale(0.5) }
+			100% { transform: scale(1.2) }
+		}
+	</style>
+	<path id="aaa" d="m -10 -10 m 5 0 c 0 2.5 2.5 5 5 5 c -2.5 0 -5 2.5 -5 5 c 0 -2.5 -2.5 -5 -5 -5 c 5 0 5 -5 5 -5 z"></path>
+	<g>
+		<use href="#aaa" fill="#0FF8" x="10" y="10" />
+		<g style="transform: rotate(45deg);">
+			<use href="#aaa" fill="#F0F8" x="10" y="10" />
+		</g>
+	</g>
+</svg>
