@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Perlin Spiral Bezier</title>
+	
+		<link rel="stylesheet" href="../artwork.css">
+		<script src="../p5.js"></script>
+		<script src="../data.js"></script>
+		<script src="../artwork.js"></script>
+	</head>
+	<body></body>
+	<script>
+		// ?a=1&base_color_hue=300&noise_factor=500&polygon_vertices=2000&anchor_angle_increment=1&bezier_vertices=9
+
+		function setup() {
+			setupExport();
+			noLoop( );
+		}
+
+		function draw() {
+			buffer.colorMode( HSL );
+			buffer.angleMode( radians );
+			buffer.noFill( );
+			buffer.strokeWeight( .5 );
+			buffer.clear();
+			buffer.background( 12 );
+			buffer.scale(scaleRatio);
+			stroke( 248 );
+			const bezierAnchorPoints = [];
+			for (let i = 0; i < values['bezier_vertices']; i++)
+				bezierAnchorPoints.push( calcPolygonPoints(
+					createVector( width * .5, height * .5 ),
+					width * .1 * i,
+					values['polygon_vertices'],
+					values['anchor_angle_increment'] * i
+				) );
+			drawBeziers( bezierAnchorPoints );
+			image(buffer, 0, 0);
+		}
+
+		function calcPolygonPoints( pos, radius, n, rotation ) {
+			const points = [];
+			const da = TAU / n;
+			for ( let a = rotation; a < TAU + rotation; a += da ) {
+				const x = pos.x + radius * ( cos(a) + noiseScaled( ( a * radius ) ) );
+				const y = pos.y + radius * ( sin(a) + noiseScaled( ( a * radius ) ) );
+				points.push( createVector( x, y ) );
+			}
+			return points;
+		}
+
+		function drawBeziers( points ) {
+			for ( let p = 0; p < points[0].length; p++ ) {
+				const curve = [];
+				for ( let a = 0; a < points.length - 1; a++ )
+					curve.push( points[a][p] );
+				buffer.stroke( perlinColorVariant( values['base_color_hue'], p ) );
+				drawBezier( curve, 100 );
+			}
+		}
+
+		function perlinColorVariant( baseHue, noiseValue ) {
+			return [
+				baseHue + noiseScaled( noiseValue ) * 40,
+				noiseScaled( noiseValue + 10 ) * 20 + 80,
+				noiseScaled( noiseValue + 20 ) * 20 + 40,
+				.6
+			];
+		}
+
+		function noiseScaled( v ) {
+			const s = values['noise_factor'];
+			return (noise( v/s ) - .5) * 2;
+		}
+
+		function drawBezier (points, resolution) {
+			//Inspirated by: Koogs in https://forum.processing.org/two/discussion/19164/make-a-bezier-curve-with-more-than-2-control-points			
+			var resolution = 1 / resolution;
+			var t, x, y;
+			const n = points.length - 1;
+			const pascals = getPascalTrigRow(n+1);
+			buffer.beginShape();
+			for (t = 0; t < 1 + resolution; t += resolution) {
+				x = 0;
+				y = 0;
+				for (let i = 0; i < points.length; i++) {
+					const i_ = n - i;
+					x += (pascals[i] * t**i * (1-t)**i_ * points[i].x);
+					y += (pascals[i] * t**i * (1-t)**i_ * points[i].y);
+				}
+				buffer.vertex(x, y);
+			}
+			buffer.endShape();
+		};
+
+		function getPascalTrigRow (row) {
+			const PascalsTriangle = [
+				[1],
+				[1, 1],
+				[1, 2, 1],
+				[1, 3, 3, 1],
+				[1, 4, 6, 4, 1],
+				[1, 5, 10, 10, 5, 1],
+				[1, 6, 15, 20, 15, 6, 1],
+				[1, 7, 21, 35, 35, 21, 7, 1],
+				[1, 8, 28, 56, 70, 56, 28, 8, 1 ]
+			];
+			return PascalsTriangle[row - 1];
+		}
+	</script>
+</html>
