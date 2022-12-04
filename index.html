@@ -55,64 +55,118 @@
 	</body>
 
 	<script>
-		const ratio = .7;
-		const innerSizeRatio = .62;
-		const maxItearions = 12;
-
-		var size, innerSize, position, iteracions, innerGrowingRatio;
-
-		function setup() {
-			createCanvas(window.innerWidth, window.innerHeight);
-			frameRate(24);
-			position = createVector(width * .5, height * .5);
-			size = height * .9;
-			innerSize = size * innerSizeRatio;
-			setupStyle();
-		}
-
-		function draw() {
-			clearBackground();
-			iteracions = map(mouseX, 0, width, 0, maxItearions);
-			const maxGrowingRatio = (size/innerSize) ** (1/iteracions);
-			innerGrowingRatio = map(mouseY, 0, height, 1, maxGrowingRatio);
-			drawArtwork();
-		}
-
-		function setupStyle() {
-			noFill();
-			stroke(124);
-			strokeWeight(1);
-			angleMode(RADIANS);
-		}
-
-		function clearBackground() {
-			background(31);
-		}
-
-		function drawArtwork() {
-			circle( position.x, position.y, size);
-			for (let i = 0; i < iteracions; i++) {
-				const s = innerSize * innerGrowingRatio ** i;
-				const x1 = position.x + ( s - size ) * .5;
-				const x2 = position.x - ( s - size ) * .5;
-				const y = position.y;
-				circle( x1, y, s);
-				circle( x2, y, s);
+		class Moon {
+			constructor( posX, posY, size ) {
+				this.posX = 0;
+				this.posY = 0;
+				this.size = 0;
+				this.points = 0;
+			}
+			setup( posX, posY, size ) {
+				this.posX = posX;
+				this.posY = posY;
+				this.size = size;
+			}
+			setPoints( value ) {
+				this.points = value;
+			}
+			display( value ) {
+				var ccc = c.clone();
+				for ( let i = 0; i < this.points; i++ ) {
+					 ccc.incrementAndSetAsStrole();
+					const p1 = this.p( i );
+					const i2 = i * 2;
+					const p2 = this.p( i2 );
+					line( p1.x, p1.y, p2.x, p2.y );
+				}
+			}
+			p( index ) {
+				for ( let i = 0; i < this.points; i++ ) {
+					const a = TAU / this.points * index;
+					const x = this.posX + cos( a ) * this.size * .5;
+					const y = this.posY + sin( a ) * this.size * .5;
+					return createVector( x, y );
+				}
 			}
 		}
 
-		function drawStar(radius, position, numberNodes, seperationBetweenUnitedNodes) {
-			const ANGLE_INCR = TAU / numberNodes;
-			var a1 = 0;
-			var a2 = ANGLE_INCR * seperationBetweenUnitedNodes;
-			for (let i = 0; i < numberNodes * seperationBetweenUnitedNodes; i += seperationBetweenUnitedNodes) {
-				const p1 = createVector(cos(a1), sin(a1)).mult(radius).add(position);
-				const p2 = createVector(cos(a2), sin(a2)).mult(radius).add(position);
-				//this.colorHue = floor(map(noise(index * .01), 0, 1, colorHueMin, colorHueMax));
-				line(p1.x, p1.y, p2.x, p2.y);
-				a1 += ANGLE_INCR;
-				a2 += ANGLE_INCR;
+		class Coolor {
+			constructor( ) {
+				this.minHue = 0;
+				this.maxHue = 0;
+				this.saturation = 0;
+				this.lighness = 0;
+				this.alpha = 0;
+				this.hue = this.minHue;
+				this.incr = 1;
 			}
+			setup( minHue, maxHue, saturation, lighness, alpha ) {
+				this.minHue = minHue;
+				this.maxHue = maxHue;
+				this.saturation = saturation;
+				this.lighness = lighness;
+				this.alpha = alpha;
+				this.hue = this.minHue;
+			}
+			increment( ) {
+				this.hue += this.incr;
+				if ( this.hue < this.minHue || this.hue > this.maxHue ) this.incr *= -1;
+			}
+			setAsStroke( ) {
+				stroke( [ this.hue, this.saturation, this.lighness, this.alpha ] );
+			}
+			incrementAndSetAsStrole( ) {
+				this.increment( );
+				this.setAsStroke( );
+			}
+			clone( ) {
+				const clone = new Coolor();
+				clone.setup( this.minHue, this.maxHue, this.saturation, this.lighness, this.alpha );
+				clone.hue = this.hue;
+				clone.incr = this.incr;
+				return clone;
+			}
+		}
+
+
+
+		const BG_COLOR = [ 0, 0, 5 ];
+		const FG_COLOR_MIN_H = 180, FG_COLOR_MAX_H = 300, FG_COLOR_S = 100, FG_COLOR_L = 50, FG_COLOR_A = .6;
+		const SIZE_RATIO = .75;
+		const MIN_POINTS = 2 ** 5, MAX_POINTS = 2 ** 7;
+		
+		const moon = new Moon( );
+		const c = new Coolor( );
+
+		function setup( ) {
+			setSettings( );
+			initMoon( );
+			c.setup( FG_COLOR_MIN_H, FG_COLOR_MAX_H, FG_COLOR_S, FG_COLOR_L, FG_COLOR_A );
+			colorMode( HSL );
+			noFill( );
+			strokeWeight( 3 );
+		}
+
+		function setSettings( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+			angleMode( RADIANS );
+		}
+
+		function initMoon( ) {
+			const posX = width * .5;
+			const posY = height * .5;
+			const size = ( width > height ? height : width ) * SIZE_RATIO;
+			moon.setup( posX, posY, size );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			c.incrementAndSetAsStrole();
+			const e = map( mouseY, 0, height, .2, 2 );
+			const points = map( mouseX, 0, width, MIN_POINTS, MAX_POINTS );
+			moon.setPoints( points );
+			moon.display( );
 		}
 	</script>
 
