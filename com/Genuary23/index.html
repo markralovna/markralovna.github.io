@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./data.js"></script>
+		<title>Genuary22</title>
+	</head>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+		:root {
+			--bg-color: #F8F8F8;
+			--fg-color: #121212;
+		}
+		body {
+			font-family: 'Raleway', sans-serif;
+			color: var(--fg-color);
+			background-color: var( --bg-color );
+		}
+		h1 {
+			font-size: 2.5em;
+			text-align: center;
+		}
+		h1, #info-prompt, #info-title {
+			font-family: 'DM Mono', monospace;
+		}
+
+		* { padding: 0; margin: 0; }
+
+		body {
+			display: grid;
+			position: fixed;
+			top: 0; left: 0; bottom: 0; right: 0;
+			padding: 50px 100px;
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		h1 { grid-area: header; }
+		#info { grid-area: aaa; }
+		#artwork { grid-area: bbb;}
+		nav { grid-area: mmm; }
+		
+		#info > *, #info-info > p {
+			margin-bottom: 10px;
+		}
+		h3 {
+			font-weight: 300;
+		}
+
+		#menu {
+			list-style-type: none;
+			display: flex;
+			overflow-x: scroll;
+		}
+		#menu > li {
+			padding: 10px 15px;
+			min-width: 70px;
+			text-align: center;
+		}
+		#menu > li:hover {
+			cursor: pointer;
+			background-color: #4442;
+		}
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+
+		#info-link {
+			float: inline-end;
+		}
+
+		@media ( orientation: landscape ) {
+			body {
+				grid-template-columns: 65% 35%;
+				grid-template-rows: max-content auto max-content;
+				grid-template-areas: "header header" "bbb aaa" "mmm mmm";
+				column-gap: 60px;
+				row-gap: 30px;
+			}
+		}
+		@media ( orientation: portrait ) {
+			body {
+				grid-template-columns: 100%;
+				grid-template-rows: max-content auto auto max-content;
+				grid-template-areas: "header" "bbb" "aaa" "mmm";
+				row-gap: 20px;
+			}
+		}
+		@media ( max-device-width: 750px ) {
+			body {
+				padding: 25px 50px;
+			}
+		}
+	</style>
+	<body>
+		<h1>Genuary22</h1>
+		<iframe id="artwork" src="#"></iframe>
+		<div id="info">
+			<h2 id="info-prompt"></h2>
+			<h3 id="info-title"></h3>
+			<div id="info-info"></div>
+			<p><a href="#" id="info-link" target="_BLANK">Full screen</a></p>
+		</div>
+		<nav><ul id="menu"></ul></nav>
+	</body>
+	<script>
+		window.addEventListener( "load", loadMenu );
+		const d = new URL( window.location.href ).searchParams.get( "d" );
+		openArtwork( d ? artworks.find( a => a.day == d ) : artworks[0] );
+
+		function loadMenu() {
+			const el = e( "menu" );
+			artworks.forEach( artwork => {
+				el.appendChild( createMenuItem( artwork ) );
+			} );
+		}
+
+		function createMenuItem( artwork ) {
+			const el = document.createElement( "LI" );
+			el.innerText = `Day ${artwork.day}`;
+			el.onclick = ev => openArtwork( artwork );
+			return el;
+		}
+
+		function openArtwork( artwork ) {
+			e( "artwork" ).src = `./a/${artwork.day}.html`;
+			e( "info-title" ).innerText = artwork.title;
+			e( "info-prompt" ).innerText = artwork.prompt;
+			e( "info-info" ).innerHTML = artwork.info;
+			e( "info-link" ).href = `./a/${artwork.day}.html`;
+		}
+
+		function e( idDomElement ) {
+			return document.getElementById( idDomElement );
+		}
+	</script>
+</html>
