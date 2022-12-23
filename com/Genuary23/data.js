@@ -1,5 +1,5 @@
 const artworks = [
-	// {  day:  1,     prompt: "Perfect loop / Infinite loop / endless GIFs",                                                      title: "",   info: ""  },
+	{  day:  1,     prompt: "Perfect loop / Infinite loop / endless GIFs",                                                      title: "SnowFlake",   info: "Recursive snowflakes"  },
 	// {  day:  2,     prompt: "Made in 10 minutes",                                                                               title: "",   info: ""  },
 	// {  day:  3,     prompt: "Glitch Art",                                                                                       title: "",   info: ""  },
 	// {  day:  4,     prompt: "Intersections",                                                                                    title: "",   info: ""  },

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 1 - Perfect loop / Infinite loop / endless GIFs</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const lenght = window.innerWidth * .2, BRANCHES = 4;
+		const BG_COLOR = 7, FG_COLOR_HUE_MIN = 180, FG_COLOR_HUE_MAX = 220, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+
+		let f = 3.1, df = .1;
+
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+
+		function setup( ) {
+			createCanvas( posX * 2, posY * 2 );
+			frameRate( 8 );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			strokeWeight( 6 );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			f -= df;
+			if ( ( f >= TAU ) || ( f <= 0 ) )
+				df *= -1;
+			const sss = lenght * ( 1 - .65 ) * 2;
+			const size = lenght + map( f, 0, TAU, 0, sss );
+			displaySnowFlake( lenght );
+		}
+
+		function displaySnowFlake( size ) {
+			translate( posX, posY );
+			for ( let i = 0; i < BRANCHES * 2; i++ ) {
+				push( );
+				rotate( TAU * i * 0.5 / BRANCHES );
+				displaySnowFlakeBranch( size, BRANCHES );
+				pop( );
+			}
+		}
+
+		function setMapHue( a ) {
+			const hue = map( a, 0, BRANCHES, FG_COLOR_HUE_MIN, FG_COLOR_HUE_MAX );
+			stroke( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+		}
+
+		function displaySnowFlakeBranch( l, b ) {
+			setMapHue( b );
+			line( 0, 0, 0, l );
+			translate( 0, l );
+			const F = f * b * 0.8;
+			let angle = ( b - 1 ) * F * -.5;
+			for ( let i = 0; i < b; i++ ) {
+				push( );
+				rotate( angle );
+				if ( b > 1 )
+					displaySnowFlakeBranch( l * .65, b - 1 );
+				pop( );
+				angle += F;
+			}
+		}
+	</script>
+</html>
