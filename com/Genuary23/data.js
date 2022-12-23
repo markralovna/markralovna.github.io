@@ -1,6 +1,6 @@
 const artworks = [
-	{  day:  1,     prompt: "Perfect loop / Infinite loop / endless GIFs",                                                      title: "SnowFlake",   info: "Recursive snowflakes"  },
-	// {  day:  2,     prompt: "Made in 10 minutes",                                                                               title: "",   info: ""  },
+	{  day:  1,     prompt: "Perfect loop / Infinite loop / endless GIFs",                                                      title: "SnowFlake",                  info: "Recursive snowflakes"  },
+	{  day:  2,     prompt: "Made in 10 minutes",                                                                               title: "Symmetric Bubbles",          info: "Symmetry always work<br>Sorry, It took me almost 20 minutes..."  },
 	// {  day:  3,     prompt: "Glitch Art",                                                                                       title: "",   info: ""  },
 	// {  day:  4,     prompt: "Intersections",                                                                                    title: "",   info: ""  },
 	// {  day:  5,     prompt: "Debug view",                                                                                       title: "",   info: ""  },
