@@ -1,7 +1,7 @@
 const artworks = [
 	{  day:  1,     prompt: "Perfect loop / Infinite loop / endless GIFs",                                                      title: "SnowFlake",                  info: "Recursive snowflakes"  },
 	{  day:  2,     prompt: "Made in 10 minutes",                                                                               title: "Symmetric Bubbles",          info: "Symmetry always work<br>Sorry, It took me almost 20 minutes..."  },
-	// {  day:  3,     prompt: "Glitch Art",                                                                                       title: "",   info: ""  },
+	{  day:  3,     prompt: "Glitch Art",                                                                                       title: "",   info: "I made it with paint. I used to do that when I was yopung         It was   "  },
 	// {  day:  4,     prompt: "Intersections",                                                                                    title: "",   info: ""  },
 	// {  day:  5,     prompt: "Debug view",                                                                                       title: "",   info: ""  },
 	// {  day:  6,     prompt: "Steal Like An Artist",                                                                             title: "",   info: ""  },

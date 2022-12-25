@@ -44,7 +44,7 @@ gantt
 	dateFormat  YYYY-MM-DD
 	Develop artwork  1               : done     ,     d01,     2022-12-22,     2d 
 	Develop artwork  2               : done     ,     d02,     2022-12-23,     1d 
-	Develop artwork  3               : active   ,     d03,     2022-12-25,     1d 
+	Develop artwork  3               : done     ,     d03,     2022-12-24,     1d 
 	Develop artwork  4               :                d04,     2022-12-25,     1d 
 	Develop artwork  5               :                d05,     after d04 ,     1d 
 	Develop artwork  6               :                d06,     after d05 ,     1d 
@@ -108,7 +108,6 @@ gantt
 
 ## Idees
 
-* **Promp  3**: 
 * **Promp  4**: 
 * **Promp  5**: 
 * **Promp  6**: 
