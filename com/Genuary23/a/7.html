@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 7 - Sample a color palette from your favorite movie/album</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const NUMBER_PARTICLES = 500, PERLIN_SMOOTH_SCALE = 200, PERLIN_PARTICLE_SPEED = .5;
+		const BG_COLOR = 248, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		
+		const palette = [
+			// hsl(196, 37%, 74%)
+			[ 224, 24, 59 ],
+			[ 1,   42, 56 ],
+			[ 312, 26, 63 ],
+			[ 211, 43, 77 ],
+			[ 10,  24, 28 ]
+		];
+
+		const particles = [];
+		
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 ); // noLoop( );
+			setStyle( );
+			initParticles( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			noFill( );
+			angleMode( RADIANS );
+			background( BG_COLOR );
+			strokeWeight( .25 );
+		}
+
+		function initParticles( ) {
+			for ( let i = 0; i < NUMBER_PARTICLES; i++ )
+				particles.push( createRandomParicle( ) );
+		}
+
+		function draw( ) {
+			particles.forEach( p => { p.draw( ) } );
+		}
+
+		function createRandomParicle( ) {
+			return new Paricle(
+				random( 0, width ),
+				random( 0, height ),
+				random( 1, height ) * .2,
+				random( 0, TAU ),
+				randomFromArray( palette ),
+				random( 100, 1000 ) 
+			);
+		}
+
+		function randomFromArray( array ) {
+			const inx = floor( random( 0, array.length ) );
+			return array[inx];
+		}
+
+		class Paricle {
+			constructor( posX, posY, length, angle, color, life ) {
+				this.start = createVector( posX, posY );
+				this.end = createVector( posX, posY );
+				this.length = length;
+				this.angle = angle;
+				this.color = [ color[0], color[1], color[2], 1 ];
+				this.life = life;
+				this.lifeLeft = life;
+			}
+			update( ) {
+				const s = PERLIN_SMOOTH_SCALE;
+				const n = noise( this.start.x / s, this.start.y / s );
+				this.angle += (n * .01 )
+				this.start.x += cos( n * TAU ) * PERLIN_PARTICLE_SPEED;
+				this.start.y += sin( n * TAU ) * PERLIN_PARTICLE_SPEED;
+				this.end.x = this.start.x + cos( this.angle ) * this.length;
+				this.end.y = this.start.y + sin( this.angle ) * this.length;
+				this.color[3] = this.lifeLeft / this.life;
+				this.lifeLeft--;
+			}
+			display( ) {
+				const a = this.lifeLeft/this.life;
+				stroke( this.color );
+				line( this.start.x, this.start.y, this.end.x, this.end.y );
+			}
+			draw( ) {
+				if ( this.alive ) {
+					this.update( );
+					this.display( );
+				}
+			}
+			get alive( ) {
+				return this.lifeLeft > 0;
+			}
+		}
+	</script>
+</html>

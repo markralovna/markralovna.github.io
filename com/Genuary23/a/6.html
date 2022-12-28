@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 6 - Steal Like An Artist</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const NUMBER_PARTICLES = 600, PERLIN_SMOOTH_SCALE = 1000, PERLIN_PARTICLE_SPEED = .3;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		
+		const particles = [];
+
+		function setup( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 32 );
+			setStyle( );
+			initParticles( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			noFill( );
+			angleMode( RADIANS );
+			background( BG_COLOR );
+		}
+
+		function initParticles( ) {
+			for ( let i = 0; i < NUMBER_PARTICLES; i++ )
+				particles.push( createRandomParicle( ) );
+		}
+
+		function draw( ) {
+			particles.forEach( p => { p.draw( ) } );
+		}
+
+		function createRandomParicle( ) {
+			return new Paricle(
+				random( 0, width ),
+				random( 0, height ),
+				random( 1, 5 ),
+				random( 0, 360 ),
+				random( 100, 1000 ) 
+			);
+		}
+
+		class Paricle {
+			constructor( posX, posY, size, hue, life ) {
+				this.pos = createVector( posX, posY );
+				this.size = size;
+				this.hue = hue;
+				this.life = life;
+				this.lifeLeft = life;
+			}
+			update( ) {
+				const s = PERLIN_SMOOTH_SCALE;
+				const a = noise( this.pos.x / s, this.pos.y / s ) * TAU * s;
+				this.pos.x += cos( a ) * PERLIN_PARTICLE_SPEED;
+				this.pos.y += sin( a ) * PERLIN_PARTICLE_SPEED;
+				this.lifeLeft--;
+
+			}
+			display( ) {
+				strokeWeight( this.size );
+				const a = this.lifeLeft/this.life;
+				stroke( this.hue, FG_COLOR_SAT, FG_COLOR_LIG, a );
+				point( this.pos.x, this.pos.y );
+			}
+			draw( ) {
+				if ( this.alive ) {
+					this.update( );
+					this.display( );
+				}
+			}
+			get alive( ) {
+				return this.lifeLeft > 0;
+			}
+		}
+	</script>
+</html>

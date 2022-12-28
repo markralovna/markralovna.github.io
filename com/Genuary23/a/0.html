@@ -22,14 +22,35 @@
 	<body></body>
 	<script>
 		const MODE_DEBUG = false;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+		const size = ( posX > posY ? posX : posY ) * 1.2;
 
 		function setup() {
-			createCanvas( window.innerWidth, window.innerHeight );
+			createCanvas( posX * 2, posY * 2 ); // createCanvas( window.innerWidth, window.innerHeight );
 			frameRate( 24 ); // noLoop( );
+			setStyle( );
 		}
 
-		function draw() {
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			strokeWeight( 1 );
+			noStroke( );
+			stroke( 0, FG_COLOR_SAT, FG_COLOR_LIG );
+			noFill( );
+			fill( 0, FG_COLOR_SAT, FG_COLOR_LIG );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			aaa( );
 			// ...
+		}
+
+		function aaa( ) {
+			console.log( "Hello!" );
 		}
 	</script>
 </html>

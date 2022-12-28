@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 5 - Debug view</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const DEBUG_MODE = true;
+		const BG_COLOR = 7;
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+		const size = ( posX > posY ? posX : posY ) * 1.2;
+
+		function setup( ) {
+			createCanvas( posX * 2, posY * 2 );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			noFill( );
+			angleMode( RADIANS );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			const n = floor( random( 12, 64 ) );    // const n = floor( map( mouseX, 0, width, 3, 64 ) );
+			const d = floor( random( 1, n * .5 ) ); // const d = floor( map( mouseY, 0, height, 1, n * .5 ) );
+			displayStar( posX, posY, size, n, d );
+		}
+
+		function displayStar( centerX, centerY, radius, numberNodes, pointsDisplacement ) {
+			setDebugStroke( 300, 5 );
+			circle( centerX, centerY, radius );
+			const da = TAU / numberNodes;
+			const angleDisplacement = da * pointsDisplacement;
+			for ( let a1 = 0, a2 = angleDisplacement; a1 < TAU; a1 += da, a2 += da ) {
+				setDebugStroke( 60, 15 );
+				const x1 = centerX + cos( a1 ) * radius * .5;
+				const y1 = centerY + sin( a1 ) * radius * .5;
+				point( x1, y1 );
+				setDebugStroke( 180, 5 );
+				const x2 = centerX + cos( a2 ) * radius * .5;
+				const y2 = centerY + sin( a2 ) * radius * .5;
+				line( x1, y1, x2, y2 );
+			}
+		}
+
+		function setDebugStroke( hue, weight ) {
+			strokeWeight( weight );
+			stroke( hue, 100, 50, .4 );
+		}
+	</script>
+</html>

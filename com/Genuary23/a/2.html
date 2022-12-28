@@ -22,7 +22,7 @@
 	<body></body>
 	<script>
 		const SIMETRIES = 6;
-		const BG_COLOR = 7, FG_COLOR_HUE_MIN = 180, FG_COLOR_HUE_MAX = 220, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		const BG_COLOR = 7, MIN_CIRCLES = 8, MAX_CIRCLES = 32, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
 
 		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
 
@@ -38,14 +38,14 @@
 		}
 
 		function draw( ) {
-			background( 7 );
-			fill( 7 );
+			background( BG_COLOR );
+			fill( BG_COLOR );
 			translate( posX, posY );
 			displayRandomSymmetricCircles( );
 		}
 
 		function displayRandomSymmetricCircles( ) {
-			var n = random( 8, 32 );
+			var n = random( MIN_CIRCLES, MAX_CIRCLES );
 			for ( let i = 0; i < n; i ++ ) {
 				var a = d( 8 ), b = d( 8 ), c = d( 3 );
 				setRandomHueStroke( );
@@ -55,7 +55,7 @@
 
 		function setRandomHueStroke( a ) {
 			const hue = random( 0, 360 );
-			stroke( hue, 70, 60 );
+			stroke( hue, FG_COLOR_SAT, FG_COLOR_LIG );
 		}
 
 		function r( callback ) {

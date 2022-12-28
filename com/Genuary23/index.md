@@ -46,9 +46,9 @@ gantt
 	Develop artwork  2               : done     ,     d02,     2022-12-23,     1d 
 	Develop artwork  3               : done     ,     d03,     2022-12-24,     1d 
 	Develop artwork  4               : done     ,     d04,     2022-12-25,     1d 
-	Develop artwork  5               :                d05,     after d04 ,     1d 
-	Develop artwork  6               :                d06,     after d05 ,     1d 
-	Develop artwork  7               :                d07,     after d06 ,     1d 
+	Develop artwork  5               : done     ,     d05,     2022-12-28,     1d 
+	Develop artwork  6               : done     ,     d06,     2022-12-28,     1d 
+	Develop artwork  7               : done     ,     d07,     2022-12-28,     1d 
 	Develop artwork  8               :                d08,     after d07 ,     1d 
 	Develop artwork  9               :                d09,     after d08 ,     1d 
 	Develop artwork 10               :                d10,     after d09 ,     1d 
@@ -108,9 +108,6 @@ gantt
 
 ## Idees
 
-* **Promp  5**: 
-* **Promp  6**: 
-* **Promp  7**: 
 * **Promp  8**: 
 * **Promp  9**: 
 * **Promp 10**: 
