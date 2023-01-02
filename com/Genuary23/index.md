@@ -41,6 +41,7 @@
 ```mermaid
 gantt
 	title Genuary23
+    excludes    2023-01-10,2023-01-11,2023-01-17,2023-01-18,2023-01-24,2023-01-25,2023-01-31,2022-12-30
 	dateFormat  YYYY-MM-DD
 	Develop artwork  1               : done     ,     d01,     2022-12-22,     2d 
 	Develop artwork  2               : done     ,     d02,     2022-12-23,     1d 
@@ -49,13 +50,13 @@ gantt
 	Develop artwork  5               : done     ,     d05,     2022-12-28,     1d 
 	Develop artwork  6               : done     ,     d06,     2022-12-28,     1d 
 	Develop artwork  7               : done     ,     d07,     2022-12-28,     1d 
-	Develop artwork  8               :                d08,     after d07 ,     1d 
-	Develop artwork  9               :                d09,     after d08 ,     1d 
-	Develop artwork 10               :                d10,     after d09 ,     1d 
+	Develop artwork  8               : active   ,     d08,     2022-12-29,     1d 
+	Develop artwork  9               : done     ,     d09,     2022-12-31,     1d 
+	Develop artwork 10               :                d10,     after d8  ,     1d 
 	Post promp  1                    : milestone,     p01,     2023-01-01,     0d  
-	Develop artwork 11               :                d11,     after d10 ,     1d
+	Develop artwork 11               : done     ,     d11,     2022-12-31,     2d 
 	Post promp  2                    : milestone,     p02,     2023-01-02,     0d  
-	Develop artwork 12               :                d12,     after d11 ,     1d 
+	Develop artwork 12               :                d12,     2023-01-02,     1d  
 	Post promp  3                    : milestone,     p03,     2023-01-03,     0d 
 	Develop artwork 13               :                d13,     after d12 ,     1d 
 	Post promp  4                    : milestone,     p04,     2023-01-04,     0d 
@@ -108,11 +109,9 @@ gantt
 
 ## Idees
 
-* **Promp  8**: 
-* **Promp  9**: 
+* **Promp  8**: https://www.shadertoy.com/view/WtdBRS
 * **Promp 10**: 
-* **Promp 11**: 
-* **Promp 12**: 
+* **Promp 12**: https://www.creativefabrica.com/wp-content/uploads/2018/05/Multi-Color-Tessellation-Pattern-Digital-Paper-Collection-by-Frazella-Designs-2.jpg
 * **Promp 13**: 
 * **Promp 14**: 
 * **Promp 15**: 

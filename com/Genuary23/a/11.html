@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 11 - Suprematism</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+
+		function setup() {
+			createCanvas( posX * 2, posY * 2 );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			strokeWeight( 4 );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			displayLayout( );
+		}
+
+		function displayLayout( ) {
+			let x = 0;
+			while ( x < width ) {
+				let y = 0;
+				while ( y < height ) {
+					push( );
+					setRandomColor( 60, 4 );
+					translate( x, y );
+					rotate( random( 0, TAU ) );
+					displayZone( 0, 0 );
+					pop( );
+					y += random( .2, .5 ) * height;
+				}
+				x += random( .2, .5 ) * width;
+			}
+		}
+
+		function displayZone( posX, posY ) {
+			const sizeY = random( .1, .3 ) * height;
+			displayGroupLines(
+				posX, posY,
+				random( .1, .4 ) * width, sizeY,
+				random( 2, 8 ), random( .4, .7 )
+			);
+			if ( d(3) ) displayCircle( posX, posY, sizeY );
+			if ( d(5) ) displayLine( posX, posY, sizeY );
+		}
+
+		function displayGroupLines( posX, posY, sizeX, sizeY, numShapes, spacing ) {
+			const dx = sizeX / numShapes;
+			const w = dx * spacing;
+			for ( var x = posX; x < ( posX + sizeX ); x += dx ) {
+				const y = posY * random( 0.95, 1.05 );
+				const h = sizeY * random( 0.95, 1.05 );
+				rect( x, y, w, h );
+			}
+		}
+
+		function displayCircle( posX, posY, radius ) {
+			const r = radius * .5;
+			const x = posX - r * random( 1, 1.5 );
+			const y = posY + r;
+			circle( x, y, r );
+		}
+
+		function displayLine( posX, posY, radius ) {
+			const length = random( .4, .8 ) * width;
+			const y = posY + radius * .5;
+			line( posX, y, posX - length, y );
+		}
+
+		function setRandomColor( ) {
+			const hue = random( 0, 360 );
+			fill( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+			stroke( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+		}
+
+		function d( dificulty ) {
+			return random( 0, dificulty ) > ( dificulty - 1 );
+		}
+	</script>
+</html>

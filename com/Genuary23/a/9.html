@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 9 - Plants</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+		const size = ( posX > posY ? posX : posY ) * 1.2;
+
+		function setup() {
+			createCanvas( posX * 2, posY * 2 );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noStroke( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			const hue1 = random( 0, 360 );
+			fill( hue1, FG_COLOR_SAT, FG_COLOR_LIG, .1 );
+			drawFlowerLine( size * .5, size * .8, size * .3, size * .8, 1, 2 );
+			const hue2 = ( hue1 + random( 100, 140 ) ) % 360;
+			fill( hue2, FG_COLOR_SAT, FG_COLOR_LIG, .25 );
+			drawFlowerLine( size * .15, size * .5, size * .1, size * .3, 1, 4 );
+			const hue3 = ( hue2 + random( 100, 140 ) ) % 360;
+			fill( hue3, FG_COLOR_SAT, FG_COLOR_LIG, .5 );
+			drawFlowerLine( 0, size * .15, 1, size * .0375, 2, 8 );
+		}
+
+		function drawFlowerLine( minRadius, maxRadius, minSize, maxSize, minNodes, maxNodes ) {
+			if ( MODE_DEBUG ) {
+				setDebugStroke( 60, 4 );
+				circle( posX, posY, minRadius );
+				circle( posX, posY, maxRadius );
+				setDebugStroke( 180, 1 );
+			}
+			const n = random( minNodes, maxNodes );
+			for ( let i=0; i <= n; i++ ) {
+				const da = TAU / ( floor( random( 1, 4 ) ) * 3 );
+				const r = random( minRadius, maxRadius ) * .5;
+				const s = random( minSize, maxSize );
+				for (let a = 0; a < TAU; a += da) {
+					const x = posX + cos( a ) * r;
+					const y = posY + sin( a ) * r;
+					circle( x, y, s );
+				}
+			}
+		}
+
+		function setDebugStroke( hue, weight ) {
+			strokeWeight( weight );
+			stroke( hue, 100, 50, .4 );
+		}
+	</script>
+</html>
