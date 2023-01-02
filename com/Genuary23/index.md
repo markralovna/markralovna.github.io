@@ -56,7 +56,7 @@ gantt
 	Post promp  1                    : milestone,     p01,     2023-01-01,     0d  
 	Develop artwork 11               : done     ,     d11,     2022-12-31,     2d 
 	Post promp  2                    : milestone,     p02,     2023-01-02,     0d  
-	Develop artwork 12               :                d12,     2023-01-02,     1d  
+	Develop artwork 12               : done     ,     d12,     2023-01-02,     1d  
 	Post promp  3                    : milestone,     p03,     2023-01-03,     0d 
 	Develop artwork 13               :                d13,     after d12 ,     1d 
 	Post promp  4                    : milestone,     p04,     2023-01-04,     0d 
@@ -111,7 +111,6 @@ gantt
 
 * **Promp  8**: https://www.shadertoy.com/view/WtdBRS
 * **Promp 10**: 
-* **Promp 12**: https://www.creativefabrica.com/wp-content/uploads/2018/05/Multi-Color-Tessellation-Pattern-Digital-Paper-Collection-by-Frazella-Designs-2.jpg
 * **Promp 13**: 
 * **Promp 14**: 
 * **Promp 15**: 

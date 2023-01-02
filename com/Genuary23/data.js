@@ -10,7 +10,7 @@ const artworks = [
 	{  day:  9,     prompt: "Plants",                                                                                           title: "Flowers",                    info: "I love symmetries" },
 	// {  day: 10,     prompt: "Generative music",                                                                                 title: "",   info: ""  },
 	{  day: 11,     prompt: "Suprematism",                                                                                      title: "Grid not grid",              info: "I did my best for making random suprematisms. And yes, the colors are not primary but I wanted something of my style"  },
-	// {  day: 12,     prompt: "Tessellation",                                                                                     title: "",   info: ""  },
+	{  day: 12,     prompt: "Tessellation",                                                                                     title: "Intersectioning",            info: "This is a grid of polygons intersectioning" },
 	// {  day: 13,     prompt: "Something you've always wanted to learn",                                                          title: "",   info: ""  },
 	// {  day: 14,     prompt: "Aesemic",                                                                                          title: "",   info: ""  },
 	// {  day: 15,     prompt: "Sine waves",                                                                                       title: "",   info: ""  },

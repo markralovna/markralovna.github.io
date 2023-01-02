@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 12 - Tessellation</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BG_COLOR = 7, FG_COLOR = 248, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60, FG_COLOR_ALPHA = .2;
+		
+		const posX = window.innerWidth * .5, posY = window.innerHeight * .5;
+		const size = ( posX > posY ? posX : posY ) * 1.2;
+
+		function setup() {
+			createCanvas( posX * 2, posY * 2 );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			stroke( FG_COLOR );
+			noFill( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			const cellSize = width / floor( random( 8, 18 ) );
+			// setRandomHueFill( );
+			displayTessellation( cellSize, cellSize );
+		}
+
+		function displayTessellation( cellSizeX, cellSizeY ) {
+			const n = floor( random( 2, 6 ) ) * 2;
+			const dx = floor( random( 1, 4 ) ) * cellSizeX;
+			const dy = dx; // floor( random( 1, 4 ) ) * cellSizeY;
+			for ( let x = 0; x < width + dx; x += dx )
+				for ( let y = 0; y < height + dy ; y += dy )
+					polygon( x, y, dx, dy, n );
+		}
+
+		function polygon( posX, posY, sizeX, sizeY, sides ) {
+			const da = TAU / sides;
+			beginShape( );
+			for ( let a = 0; a <= TAU; a += da ) {
+				const x = posX + cos( a ) * sizeX;
+				const y = posY + sin( a ) * sizeY;
+				vertex( x, y );
+			}
+			endShape( );
+		}
+
+		function setRandomHueFill( ) {
+			const hue = random( 0, 360 );
+			fill( hue, FG_COLOR_SAT, FG_COLOR_LIG, FG_COLOR_ALPHA );
+		}
+	</script>
+</html>
