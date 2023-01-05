@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 26 - My kid could have made that</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const MIN_TRACES = 4, MAX_TRACES = 64, MIN_PERLIN_SMOOTH_SCALE = 250, MAX_PERLIN_SMOOTH_SCALE = 2500, PERLIN_PARTICLE_SPEED = .3;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60, FG_COLOR_ALPHA = .05;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			strokeWeight( 8 );
+			stroke( 0, FG_COLOR_SAT, FG_COLOR_LIG );
+			noFill( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			const n = random( MIN_TRACES, MAX_TRACES );
+			for ( let i = 0; i < n; i++ ) {
+				setRandomHueStroke( );
+				displayDrawing( );
+			}
+		}
+
+		function displayDrawing( ) {
+			const pos = createVector( random( 0, width ), random( 0, height ) );
+			const life = random( 100, 1000 );
+			const s = random( MIN_PERLIN_SMOOTH_SCALE, MAX_PERLIN_SMOOTH_SCALE );
+			for ( let i = 0; i < life; i++ ) {
+				const a = noise( pos.x / s, pos.y / s ) * TAU * s;
+				pos.x += cos( a ) * PERLIN_PARTICLE_SPEED;
+				pos.y += sin( a ) * PERLIN_PARTICLE_SPEED;
+				point( pos.x, pos.y );
+			}
+		}
+
+		function setRandomHueStroke( ) {
+			const hue = random( 0, 360 );
+			stroke( hue, FG_COLOR_SAT, FG_COLOR_LIG, FG_COLOR_ALPHA );
+		}
+	</script>
+</html>
