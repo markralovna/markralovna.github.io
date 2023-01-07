@@ -41,7 +41,7 @@
 ```mermaid
 gantt
 	title Genuary23
-    excludes    2023-01-10,2023-01-11,2023-01-17,2023-01-18,2023-01-24,2023-01-25,2023-01-31,2022-12-30
+    excludes    2023-01-10,2023-01-11,2023-01-17,2023-01-18,2023-01-24,2023-01-25,2023-01-31,2022-12-30,2023-01-06
 	dateFormat  YYYY-MM-DD
 	Develop artwork  1               : done     ,     d01,     2022-12-22,     2d 
 	Develop artwork  2               : done     ,     d02,     2022-12-23,     1d 
@@ -58,7 +58,7 @@ gantt
 	Post promp  2                    : milestone,     p02,     2023-01-02,     0d  
 	Develop artwork 12               : done     ,     d12,     2023-01-02,     1d  
 	Post promp  3                    : milestone,     p03,     2023-01-03,     0d 
-	Develop artwork 13               :                d13,     2023-01-06,     1d 
+	Develop artwork 13               :                d13,     2023-01-08,     1d 
 	Post promp  4                    : milestone,     p04,     2023-01-04,     0d 
 	Develop artwork 14               :                d14,     after d13 ,     1d 
 	Post promp  5                    : milestone,     p05,     2023-01-05,     0d 
@@ -109,7 +109,6 @@ gantt
 
 ## Idees
 
-* **Promp  8**: https://www.shadertoy.com/view/WtdBRS
 * **Promp 13**: 
 * **Promp 14**: 
 * **Promp 15**: 

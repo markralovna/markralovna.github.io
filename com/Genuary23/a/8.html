@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 8 - Signed Distance Functions</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const NUM_PARTICLES = 200, PERLIN_SMOOTH_SCALE = 100, PERLIN_PARTICLE_SPEED = .25, COLLISION_MARGIN = 15;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+		
+		const particles = [];
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( ); // frameRate( 24 ); // 
+			setStyle( );
+			initParticles( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noFill( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			Particle.resetPositions( );
+			particles.forEach( p => p.draw( ) );
+		}
+
+		function initParticles( ) {
+			const size = ( width > height ? width : height ) * .425;
+			for ( let i = 0; i < NUM_PARTICLES; i++ ) {
+				const p = new Particle( size );
+				particles.push( p );
+			}
+			particles[0].setAsFather( size );
+		}
+
+		function addPosition( x, y, r ) {
+			positions.push( { x:x, y:y, r:r } );
+		}
+
+
+
+		class Particle {
+			static positions = [];
+
+			static addPosition ( x, y, r ) {
+				this.positions.push( { x:x, y:y, r:r } );
+			}
+			static resetPositions ( ) {
+				this.positions.positions = [];
+			}
+			static displayPoint ( x, y, r ) {
+				if ( !Particle.isColliding( x, y, r ) ) {
+					point( x, y );
+					// Particle.addPosition( x, y, r );
+				}
+			}
+			static isColliding ( x, y, r ) {
+				let res = false;
+				this.positions.forEach( p => {
+					const d = dist( x, y, p.x, p.y );
+					if ( d <= ( p.r + r + COLLISION_MARGIN ) ) res = true;
+				} );
+				return res;
+			}
+
+			constructor( sizeTemplate ) {
+				this.hue = random( 0, 360 );
+				this.pos = createVector( random( 0, width ), random( 0, height ) );
+				this.size = sizeTemplate * random( .1, .6 );
+				this.isFather = false;
+			}
+			setAsFather( size ) {
+				this.pos = createVector( width * .5, height * .5 );
+				this.size = size;
+				this.isFather = true;
+			}
+			draw( ) {
+				if ( !this.isFather ) this.update( );
+				this.display( );
+				Particle.addPosition( this.pos.x, this.pos.y, this.size * .5 );
+			}
+			update( ) {
+				const s = PERLIN_SMOOTH_SCALE;
+				const a = noise( this.pos.x / s, this.pos.y / s ) * TAU * s;
+				this.pos.x += cos( a ) * PERLIN_PARTICLE_SPEED;
+				this.pos.y += sin( a ) * PERLIN_PARTICLE_SPEED;
+			}
+			display( ) {
+				let radius = this.size * .5;
+				let sat = FG_COLOR_SAT;
+				const r = this.size * .1;
+				strokeWeight( r );
+				while ( radius > 5 ) {
+					const n = floor( sqrt( radius ) * .5 ) * 6;
+					stroke( this.hue, sat, FG_COLOR_LIG );
+					const da = TAU / n;
+					for ( let a = 0; a < n; a += da ) {
+						const x = this.pos.x + cos( a ) * radius;
+						const y = this.pos.y + sin( a ) * radius;
+						Particle.displayPoint( x, y, r );
+					}
+					radius -= ( r * 1.5 );
+					sat -= 15;
+				}
+				Particle.displayPoint( this.pos.x, this.pos.y, r );
+			}
+
+		}
+	</script>
+</html>
