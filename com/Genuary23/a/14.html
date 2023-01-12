@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 14 - Aesemic</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const BG_COLOR = 7, FG_COLOR_SAT = 60, FG_COLOR_LIG = 70;
+
+
+		const BRUSH_SIZE_MIN = 5, BRUSH_SIZE_MAX = 15, D_X_MIN = 10, D_X_MAX = 20;
+		const MARGIN = .1, LINE_HEIGHT = .1;
+
+		let initLine, endLine, endPage;
+		let alive, posX, posY, lPosX, lPosY, hue;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 ); // noLoop( );
+			initLine = width * MARGIN;
+			endLine = width * ( 1 - MARGIN );
+			endPage = height * ( 1 - MARGIN );
+			lineHeight = width * LINE_HEIGHT;
+			posX = initLine, posY = initLine;
+			lPosX = posX, lPosY = posY;
+			alive = true;
+			hue = random( 0, 360 );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noFill( );
+			background( BG_COLOR );
+		}
+
+		function draw( ) {
+			if ( alive ) {
+				hue = ( hue + 1 ) % 360;
+				stroke( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+				updatePosition();
+				strokeWeight( random( BRUSH_SIZE_MIN, BRUSH_SIZE_MAX ) );
+			}
+		}
+
+		function updatePosition( ) {
+			point( posX, posY );
+			posX += random( D_X_MIN, D_X_MAX );
+			if ( posX >= endLine ) {
+				posX = initLine;
+				posY += lineHeight;
+				hue = random( 0, 360 );
+			}
+			if ( posY >= endPage ) alive = false;
+		}
+	</script>
+</html>

@@ -52,24 +52,24 @@ gantt
 	Develop artwork  7               : done     ,     d07,     2022-12-28,     1d 
 	Develop artwork  8               : active   ,     d08,     2022-12-29,     8d 
 	Develop artwork  9               : done     ,     d09,     2022-12-31,     1d 
-	Develop artwork 10               : done     ,     d10,     2023-01-03,     3d  
-	Post promp  1                    : milestone,     p01,     2023-01-01,     0d  
+	Develop artwork 10               : done     ,     d10,     2023-01-03,     3d 
+	Post promp  1                    : milestone,     p01,     2023-01-01,     0d 
 	Develop artwork 11               : done     ,     d11,     2022-12-31,     2d 
-	Post promp  2                    : milestone,     p02,     2023-01-02,     0d  
-	Develop artwork 12               : done     ,     d12,     2023-01-02,     1d  
+	Post promp  2                    : milestone,     p02,     2023-01-02,     0d 
+	Develop artwork 12               : done     ,     d12,     2023-01-02,     1d 
 	Post promp  3                    : milestone,     p03,     2023-01-03,     0d 
-	Develop artwork 13               :                d13,     2023-01-08,     1d 
+	Develop artwork 13               : done     ,     d13,     2023-01-08,     1d 
 	Post promp  4                    : milestone,     p04,     2023-01-04,     0d 
-	Develop artwork 14               :                d14,     after d13 ,     1d 
+	Develop artwork 14               : done     ,     d14,     2023-01-09,     1d 
 	Post promp  5                    : milestone,     p05,     2023-01-05,     0d 
-	Develop artwork 15               :                d15,     after d14 ,     1d 
+	Develop artwork 15               :                d15,     2023-01-12,     1d 
 	Post promp  6                    : milestone,     p06,     2023-01-06,     0d 
 	Develop artwork 16               :                d16,     after d15 ,     1d 
 	Post promp  7                    : milestone,     p07,     2023-01-07,     0d 
 	Develop artwork 17               :                d17,     after d16 ,     1d 
 	Post promp  8                    : milestone,     p08,     2023-01-08,     0d 
 	Develop artwork 18               :                d18,     after d17 ,     1d 
-	Post promp  9                    : milestone,     p09,     2023-01-09,     0d
+	Post promp  9                    : milestone,     p09,     2023-01-09,     0d 
 	Develop artwork 19               : done     ,     d19,     2023-01-05,     1d 
 	Post promp 10                    : milestone,     p10,     2023-01-10,     0d 
 	Develop artwork 20               :                d20,     after d18 ,     1d 
@@ -109,8 +109,6 @@ gantt
 
 ## Idees
 
-* **Promp 13**: 
-* **Promp 14**: 
 * **Promp 15**: 
 * **Promp 16**: 
 * **Promp 17**: 

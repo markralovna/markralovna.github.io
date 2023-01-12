@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 13 - Something you've always wanted to learn</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BG_COLOR = 7, FG_COLOR_SAT = 65, FG_COLOR_LIG = 60;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noStroke( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			fill( 0, FG_COLOR_SAT, FG_COLOR_LIG );
+			const p = new Packaging( width * .5, height * .5, 200, 10, 5, 100 );
+			p.display( );
+		}
+
+		class Packaging {
+			constructor( posX, posY, radius, margin, minSize, maxSize ) {
+				this.posX = posX;
+				this.posY = posY;
+				this.radius = radius;
+				this.margin = margin;
+				this.maxSize = maxSize;
+				this.minSize = minSize;
+				this.positions = [ ];
+				this.failMargin = ceil( radius * .01 );
+				this.createPackaging( );
+			}
+
+			display( ) {
+				this.positions.forEach( p => {
+					const hue = map( p.r, this.minSize, this.maxSize, 0, 360 );
+					fill( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+					circle( p.x, p.y, p.r );
+				} );
+			}
+
+			createPackaging( ) {
+				let size = this.maxSize;
+				let fails = 0;
+				while ( size > this.minSize ) {
+					fails += this.addRandomCircle( size );
+					if ( fails > this.failMargin ) {
+						size *= .85;
+						fails = 0;
+					}
+				}
+			}
+
+			addRandomCircle( radius ) {
+				const a = random( 0, TAU );
+				const m = random( 0, this.radius );
+				const x = this.posX + cos( a ) * m;
+				const y = this.posY + sin( a ) * m;
+				const r = radius;
+				const place = this.isntColliding( x, y, r );
+				if ( place )
+					this.registerPosition( x, y, r );
+				return place ? 1 : 0;
+			}
+
+			isntColliding( x, y, r ) {
+				let res = true;
+				this.positions.forEach( p => {
+					const d = dist( x, y, p.x, p.y );
+					if ( d < ( ( r + p.r ) * .5 + this.margin ) ) res = false;
+				} );
+				return res;
+			}
+
+			registerPosition( x, y, r ) {
+				this.positions.push( { x: x, y: y, r: r } );
+			}
+		}
+	</script>
+</html>
