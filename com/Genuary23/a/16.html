@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 16 - Reflection of a reflection</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const SIMETRIES = 12;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60, FG_COLOR_ALPHA = .2;
+
+		let planet;
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 ); // noLoop( );
+			setStyle( );
+			strokeWeight( 1 );
+			initPlanet( );
+		}
+
+		function initPlanet( ) {
+			planet = new Planet ( 0, 0, random( .2, .6 ) * width );
+			const a = new Moon( width * random( .1, .4 ), 0, random( .001, .01 ) );
+			planet.addChild( a );
+			a.addChild( new Moon( width * random( .05, .25 ), PI, random( .001, .01 ) ) );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			strokeWeight( 1 );
+			noFill( );
+			background( BG_COLOR );
+		}
+
+		function draw( ) {
+			if ( MODE_DEBUG ) background( BG_COLOR );
+			translate( width * .5, height * .5 );
+			r( ( ) => { planet.draw( ) } );
+		}
+
+		function r( callback ) {
+			const da = TAU / SIMETRIES;
+			for ( let a = 0; a < TAU; a += da ) {
+				push( );
+				rotate( a );
+				callback( );
+				pop( );
+			}
+		}
+
+		class Planet {
+			constructor( posX, posY, radius ) {
+				this.posX = posX;
+				this.posY = posY;
+				this.radius = radius;
+				this.childs = [ ];
+			}
+			draw( ) {
+				this.display( );
+				this.update( );
+				if ( MODE_DEBUG ) this.displayHelper( );
+			}
+			display( ) {
+				this.childs.forEach( c => { c.display( ) } );
+			}
+			update( ) {
+				this.childs.forEach( c => { c.update( ) } );
+			}
+			addChild( child ) {
+				this.childs.push( child );
+				child.setParent( this );
+			}
+			displayHelper( ) {
+				stroke( '#00FFFFA0' );
+				strokeWeight( 5 );
+				circle( this.posX, this.posY, this.radius );
+				stroke( '#FFFF00A0' );
+				strokeWeight( 15 );
+				point( this.posX, this.posY );
+				this.childs.forEach( c => { c.displayHelper() } );
+			}
+		}
+		class Moon {
+			constructor( orbitRadius, initAngle, angularSpeed ) {
+				this.radius = orbitRadius;
+				this.angle = initAngle;
+				this.angularSpeed = angularSpeed;
+				this.parent = null;
+				this.childs = [ ];
+			}
+			setParent( parent ) {
+				this.parent = parent;
+			}
+			update( ) {
+				this.angle += this.angularSpeed;
+				this.childs.forEach( c => { c.update( ) } );
+			}
+			display( ) {
+				if ( MODE_DEBUG ) { stroke( '#FF00FFA0' ); strokeWeight( 5 ); }
+				if ( this.childs.length == 0 ) {
+					const hue = noise( this.posX/100, this.posY/100 ) * 360;
+					stroke( [ hue, FG_COLOR_SAT, FG_COLOR_LIG, FG_COLOR_ALPHA ] );
+					line( this.parent.posX, this.parent.posY, this.posX, this.posY );
+				}
+				this.childs.forEach( c => { c.display( ) } );
+			}
+			addChild( child ) {
+				this.childs.push( child );
+				child.setParent( this );
+			}
+			displayHelper( ) {
+				stroke( '#00FFFFA0' );
+				strokeWeight( 5 );
+				circle( this.posX, this.posY, this.radius );
+				stroke( '#FFFF00A0' );
+				strokeWeight( 15 );
+				point( this.posX, this.posY );
+				this.childs.forEach( c => { c.displayHelper() } );
+			}
+			get posX( ) {
+				return this.parent.posX + cos( this.angle ) * this.parent.radius * .5;
+			}
+			get posY( ) {
+				return this.parent.posY + sin( this.angle ) * this.parent.radius * .5;
+			}
+		}
+	</script>
+</html>

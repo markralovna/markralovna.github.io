@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 18 - Definitely not a grid</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60, FG_COLOR_ALPHA = .4;
+
+		const SIZE_RATIO = .65;
+
+		const drawFunctions = [
+			( x, y, r, s ) => {
+				const dr = r/s * 2;
+				strokeWeight( r/s * .5 );
+				randomStroke( );
+				noFill( );
+				for ( let r_ = r; r_ > 0; r_ -= dr )
+					circle( x, y, r_ );
+				noStroke( );
+			},
+			( x, y, r, s ) => {
+				const dx = r / s;
+				const s_ = s * .5;
+				for ( let c = -s_; c < s_; c += 2 ) {
+					rect( x + c * dx, y-r/2, dx, r );
+				}
+			},
+			( x, y, r, s ) => {
+				const dy = r / s;
+				const s_ = s * .5;
+				for ( let c = -s_; c < s_; c += 2 ) {
+					rect( x-r/2, y + c * dy, r, dy );
+				}
+			},
+			( x, y, r, s ) => {
+				drawFunctions[1]( x, y, r, s );
+				drawFunctions[2]( x, y, r, s );
+			},
+			( x, y, r, s ) => {
+				const dr = r / s;
+				const s_ = s * .5;
+				for ( let c = -s_; c < s_; c += 2 )
+					for ( let r_ = -s_; r_ < s_; r_ += 2 )
+						rect( x + c * dr, y + r_ * dr, dr, dr );
+				for ( let c = -s_+1; c < s_; c += 2 )
+					for ( let r_ = -s_+1; r_ < s_; r_ += 2 )
+						rect( x + c * dr, y + r_ * dr, dr, dr );
+
+			}
+		];
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noStroke( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			displayFlower( width * .5, height * .5, width * .85, 4 );
+		}
+
+		function displayFlower( posX, posY, radius, layers ) {
+			const n = layers * 2 + 1;
+			const dr = radius / n;
+			for ( let i = 0, r = 0; r < radius * .5; r += dr, i++ ) {
+				const da = TAU / ( 6 * i );
+				for ( let a = 0; a < TAU; a += da ) {
+					const x = posX + cos( a ) * r;
+					const y = posY + sin( a ) * r;
+					randomDrawing( x, y, dr );
+				}
+			}
+		}
+
+		function randomDrawing( x, y, r ) {
+			randomFill( );
+			const inx = floor( random( 0, drawFunctions.length ) );
+			const funct = drawFunctions[ inx ];
+			const c = SIZE_RATIO;
+			funct( x, y, r * c, 5 );
+		}
+
+		function randomFill( ) {
+			fill(
+				random( 0, 360 ),
+				FG_COLOR_SAT,
+				FG_COLOR_LIG,
+				FG_COLOR_ALPHA
+			);
+		}
+
+		function randomStroke( ) {
+			stroke(
+				random( 0, 360 ),
+				FG_COLOR_SAT,
+				FG_COLOR_LIG,
+				FG_COLOR_ALPHA
+			);
+		}
+	</script>
+</html>

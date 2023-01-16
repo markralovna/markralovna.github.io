@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 17 - A grid inside a grid inside a grid</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const MODE_DEBUG = false;
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60, FG_COLOR_ALPHA = .4;
+
+		const SIZE_RATIO = .6;
+
+		const drawFunctions = [
+			( x, y, w, h, s ) => {
+				const dr = w/s * 2;
+				strokeWeight( w / s * .5 );
+				randomStroke( );
+				noFill( );
+				for ( let r = w; r > 0; r -= dr )
+					circle( x + w * .5, y + h * .5, r );
+				noStroke( );
+			},
+			( x, y, w, h, s ) => {
+				const dx = w/s;
+				for ( let c = 0; c < s; c += 2 ) {
+					rect( x + c * dx, y, dx, h );
+				}
+			},
+			( x, y, w, h, s ) => {
+				const dy = h/s;
+				for ( let r = 0; r < s; r += 2 ) {
+					rect( x, y + r * dy, w, dy );
+				}
+			},
+			( x, y, w, h, s ) => {
+				drawFunctions[1]( x, y, w, h, s );
+				drawFunctions[2]( x, y, w, h, s );
+			},
+			( x, y, w, h, s ) => {
+				const dx = w/s,  dy = h/s;
+				for ( let c = 0; c < s; c += 2 )
+					for ( let r = 0; r < s; r += 2 )
+						rect( x + c * dx, y + r * dy, dx, dy );
+				for ( let c = 1; c < s; c += 2 )
+					for ( let r = 1; r < s; r += 2 )
+						rect( x + c * dx, y + r * dy, dx, dy );
+
+			},
+		];
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			noStroke( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			const s = floor( random( 4, 32 ) * .25 ) * 2 + 1;
+			displayGrid( 0, 0, width, height, s, s );
+		}
+
+		function displayGrid( posX, posY, width, height, cols, rows ) {
+			const dx = ( width / cols ), dy = ( height / rows );
+			const maxX = posX + width, maxY = posY + height;
+			for ( var x = posX; x < maxX; x += dx )
+				for ( var y = posY; y < maxY; y += dy )
+					randomDrawing( x, y, dx, dy );
+		}
+
+		function randomDrawing( x, y, w, h ) {
+			randomFill( );
+			const inx = floor( random( 0, drawFunctions.length ) );
+			const funct = drawFunctions[ inx ];
+			const c = SIZE_RATIO;
+			const c_ = ( 1 - c ) * .5;
+			funct( x + w * c_, y + h * c_, w * c, h * c, 5 );
+		}
+
+		function randomFill( ) {
+			fill(
+				random( 0, 360 ),
+				FG_COLOR_SAT,
+				FG_COLOR_LIG,
+				FG_COLOR_ALPHA
+			);
+		}
+
+		function randomStroke( ) {
+			stroke(
+				random( 0, 360 ),
+				FG_COLOR_SAT,
+				FG_COLOR_LIG,
+				FG_COLOR_ALPHA
+			);
+		}
+	</script>
+</html>

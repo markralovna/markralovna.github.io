@@ -41,7 +41,7 @@
 ```mermaid
 gantt
 	title Genuary23
-    excludes    2023-01-10,2023-01-11,2023-01-17,2023-01-18,2023-01-24,2023-01-25,2023-01-31,2022-12-30,2023-01-06
+    excludes    2023-01-10,2023-01-11,2023-01-17,2023-01-18,2023-01-24,2023-01-25,2023-01-31,2022-12-30,2023-01-06,2023-01-14
 	dateFormat  YYYY-MM-DD
 	Develop artwork  1               : done     ,     d01,     2022-12-22,     2d 
 	Develop artwork  2               : done     ,     d02,     2022-12-23,     1d 
@@ -62,13 +62,13 @@ gantt
 	Post promp  4                    : milestone,     p04,     2023-01-04,     0d 
 	Develop artwork 14               : done     ,     d14,     2023-01-09,     1d 
 	Post promp  5                    : milestone,     p05,     2023-01-05,     0d 
-	Develop artwork 15               :                d15,     2023-01-12,     1d 
+	Develop artwork 15               : done     ,     d15,     2023-01-12,     1d 
 	Post promp  6                    : milestone,     p06,     2023-01-06,     0d 
-	Develop artwork 16               :                d16,     after d15 ,     1d 
+	Develop artwork 16               : done     ,     d16,     2023-01-13,     3d 
 	Post promp  7                    : milestone,     p07,     2023-01-07,     0d 
-	Develop artwork 17               :                d17,     after d16 ,     1d 
+	Develop artwork 17               : done     ,     d17,     2023-01-15,     1d 
 	Post promp  8                    : milestone,     p08,     2023-01-08,     0d 
-	Develop artwork 18               :                d18,     after d17 ,     1d 
+	Develop artwork 18               : done     ,     d18,     2023-01-15,     1d 
 	Post promp  9                    : milestone,     p09,     2023-01-09,     0d 
 	Develop artwork 19               : done     ,     d19,     2023-01-05,     1d 
 	Post promp 10                    : milestone,     p10,     2023-01-10,     0d 
@@ -109,10 +109,6 @@ gantt
 
 ## Idees
 
-* **Promp 15**: 
-* **Promp 16**: 
-* **Promp 17**: 
-* **Promp 18**: 
 * **Promp 20**: 
 * **Promp 21**: 
 * **Promp 22**: 
