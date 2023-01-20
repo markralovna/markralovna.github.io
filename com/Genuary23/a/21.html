@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 21 - Persian Rug</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BG_COLOR = 7, FG_COLOR_SAT = 70, FG_COLOR_LIG = 60;
+
+		function setup( ) {
+			createCanvas( window.innerWidth, window.innerHeight );
+			noLoop( );
+			setStyle( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			strokeWeight( 6 );
+			noStroke( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			translate( width * .5, height * .5 );
+			displayRandomSymmetricCircles( );
+		}
+
+		function displayRandomSymmetricCircles( ) {
+			const initY = random( 300, 200 );
+			const ratio = .9; // const ratio = random( .7, .9 );
+			for ( let y = initY; y > 5; y *= ratio ) {
+				const r = random( 5, 15 );
+				const s = floor( random( 6, 9 ) );
+				setRandomFillStroke( );
+				drawRotated( ( ) => { dot( 0, y, r, s ) } );
+			}
+		}
+
+		function setRandomFillStroke( a ) {
+			const hue = random( 0, 360 );
+			fill( hue, FG_COLOR_SAT, FG_COLOR_LIG );
+		}
+
+		function drawRotated( callback ) {
+			const simetries = floor( random( 1, 10 ) ) * 6;
+			const da = TAU / simetries;
+			for ( let a = 0; a < TAU; a += da ) {
+				push( );
+				rotate( a );
+				callback( );
+				pop( );
+			}
+		}
+
+		function dot( posX, posY, radius, simetries ) {
+			const da = TAU / simetries;
+			beginShape( );
+			for ( let a = 0; a < TAU; a += da ) {
+				const x = posX + cos( a ) * radius;
+				const y = posY + sin( a ) * radius;
+				vertex( x, y );
+			}
+			endShape( CLOSE );
+		}
+
+		function d( value ) {
+			return random( value ) * width * .05;
+		}
+	</script>
+</html>
