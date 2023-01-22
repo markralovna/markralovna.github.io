@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Genuary23 | 23 - More Moiré</title>
+
+		<script src="../p5.js"></script>
+	</head>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			border: none;
+			overflow: hidden;
+		}
+	</style>
+	<body></body>
+	<script>
+		const BG_COLOR = 7, FG_COLOR = 255 - BG_COLOR;
+
+		const grids = [ ];
+
+		function setup() {
+			createCanvas( window.innerWidth, window.innerHeight );
+			frameRate( 24 );
+			setStyle( );
+			initGrids( );
+		}
+
+		function setStyle( ) {
+			colorMode( HSL );
+			angleMode( RADIANS );
+			rectMode( CENTER );
+			strokeWeight( 1 );
+			stroke( FG_COLOR );
+			noFill( );
+		}
+
+		function draw( ) {
+			background( BG_COLOR );
+			drawGrids( );
+		}
+
+		function initGrids( ) {
+			const class1 = selectRandomClass( );
+			const class2 = selectRandomClass( );
+			const n = floor( random( 2, 16 ) );
+			const da = TAU / n;
+			for ( let a = 0; a < TAU; a+=da )
+				grids.push( new class1( width * .5, height * .5, width * .4, 10, a, .01 ) );
+			for ( let a = da/2; a < TAU; a+=da )
+				grids.push( new class2( width * .5, height * .5, width * .4, 10, a, 0 ) );
+		}
+
+		function selectRandomClass( ) {
+			const classes = [ SquareConc, CircleConc, SuqareGrid ];
+			const inx = floor( random( 0, classes.length ) );
+			return classes[ inx ];
+		}
+
+		function drawGrids( ) {
+			grids.forEach( grid => {
+				grid.draw( );
+			} );
+		}
+
+		class Grid {
+			constructor( posX, posY, size, n, f, df ) {
+				this.posX = posX;
+				this.posY = posY;
+				this.size = size;
+				this.n = n;
+				this.minSize = size * .5;
+				this.maxSize = size * 2;
+				this.f = f;
+				this.df = df;
+			}
+			draw( ) {
+				this.update( );
+				push( );
+				this.setCanvas( );
+				this.display( );
+				pop( );
+			}
+			update( ) {
+				this.f += this.df;
+			}
+			setCanvas( ) {
+				translate( this.posX, this.posY );
+				rotate( this.f );
+				const s = this.size * .5;
+				translate( s, s );
+			}
+			display( ) {
+				rect( this.posX, this.posY, this.size, this.size );
+			}
+		}
+
+		class SquareConc extends Grid {
+			display( ) {
+				const ds = this.size / this.n;
+				for ( let s = this.size; s > ds-1; s -= ds )
+					rect( 0, 0, s, s );
+				point( 0, 0 );
+			}
+		}
+
+		class CircleConc extends Grid {
+			display( ) {
+				const ds = this.size / this.n;
+				for ( let s = this.size; s > ds-1; s -= ds )
+					circle( 0, 0, s );
+				point( 0, 0 );
+			}
+		}
+
+		class SuqareGrid extends Grid {
+			display( ) {
+				const ds = this.size / this.n;
+				const minX = -this.size * .5;
+				const maxX = +this.size * .5 + .01;
+				const minY = -this.size * .5;
+				const maxY = +this.size * .5 + .01;
+				for ( let x = minX; x <= maxX; x += ds )
+					line( x, minY, x, maxY );
+				for ( let y = minY; y <= maxY; y += ds )
+					line( minX, y, maxX, y );
+			}
+		}
+	</script>
+</html>

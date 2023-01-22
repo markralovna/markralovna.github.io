@@ -21,7 +21,7 @@ const artworks = [
 	{  day: 20,     prompt: "Art Deco",                                                                                         title: "Luxury doors",               info: "<p>I made a random generator of symmetric patterns.</p><p>Not all the inputs give good results.</p>"  },
 	{  day: 21,     prompt: "Persian Rug",                                                                                      title: "Fail",                       info: "I wanted to do something like this https://upload.wikimedia.org/wikipedia/commons/7/71/Ardabil_Carpet.jpg"  },
 	{  day: 22,     prompt: "Shadows",                                                                                          title: "There are no shadows without light", info: "Bézier curves + high transparent colors" },
-	// {  day: 23,     prompt: "More Moiré",                                                                                       title: "",   info: ""  },
+	{  day: 23,     prompt: "More Moiré",                                                                                       title: "Rotating",                   info: "First time experimenting with Moiré. I liked it."  },
 	// {  day: 24,     prompt: "Textile",                                                                                          title: "",   info: ""  },
 	// {  day: 25,     prompt: "Yayoi Kusama",                                                                                     title: "",   info: ""  },
 	{  day: 26,     prompt: "My kid could have made that",                                                                      title: "Perlin lines",               info: ""  },
